@@ -1,0 +1,92 @@
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\appsettings.Development.json
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\appsettings.json
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.exe
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.deps.json
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.runtimeconfig.json
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.pdb
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\System.Data.SqlClient.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\BusinessLogicLayer.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\Models.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\BusinessLogicLayer.pdb
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\Models.pdb
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\bin\Debug\net6.0\DataAccessLayer.pdb
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.csproj.AssemblyReference.cache
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.GeneratedMSBuildEditorConfig.editorconfig
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.AssemblyInfoInputs.cache
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.AssemblyInfo.cs
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.csproj.CoreCompileInputs.cache
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.MvcApplicationPartsAssemblyInfo.cs
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.MvcApplicationPartsAssemblyInfo.cache
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\staticwebassets\msbuild.APIShopSneaker.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\staticwebassets\msbuild.build.APIShopSneaker.props
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.APIShopSneaker.props
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.APIShopSneaker.props
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\staticwebassets.pack.json
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\staticwebassets.build.json
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\staticwebassets.development.json
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\scopedcss\bundle\APIShopSneaker.styles.css
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.csproj.CopyComplete
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\refint\APIShopSneaker.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.pdb
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.genruntimeconfig.cache
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\APIShopSneaker\obj\Debug\net6.0\ref\APIShopSneaker.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\appsettings.Development.json
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\appsettings.json
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.exe
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.deps.json
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.runtimeconfig.json
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\APIShopSneaker.pdb
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\System.Data.SqlClient.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\BusinessLogicLayer.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\Models.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\BusinessLogicLayer.pdb
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\Models.pdb
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\bin\Debug\net6.0\DataAccessLayer.pdb
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.csproj.AssemblyReference.cache
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.GeneratedMSBuildEditorConfig.editorconfig
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.AssemblyInfoInputs.cache
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.AssemblyInfo.cs
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.csproj.CoreCompileInputs.cache
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.MvcApplicationPartsAssemblyInfo.cs
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.MvcApplicationPartsAssemblyInfo.cache
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\staticwebassets\msbuild.APIShopSneaker.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\staticwebassets\msbuild.build.APIShopSneaker.props
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.APIShopSneaker.props
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.APIShopSneaker.props
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\staticwebassets.pack.json
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\staticwebassets.build.json
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\staticwebassets.development.json
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\scopedcss\bundle\APIShopSneaker.styles.css
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.csproj.CopyComplete
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\refint\APIShopSneaker.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.pdb
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\APIShopSneaker.genruntimeconfig.cache
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\APIShopSneaker\obj\Debug\net6.0\ref\APIShopSneaker.dll

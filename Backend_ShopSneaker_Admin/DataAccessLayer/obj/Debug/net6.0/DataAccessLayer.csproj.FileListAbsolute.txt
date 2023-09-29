@@ -1,0 +1,30 @@
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\bin\Debug\net6.0\Models.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\bin\Debug\net6.0\Models.pdb
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.AssemblyReference.cache
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfoInputs.cache
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfo.cs
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CopyComplete
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
+D:\Workspace\Phát triển PM HDV\Bài tập lớn\BTL\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\bin\Debug\net6.0\Models.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\bin\Debug\net6.0\Models.pdb
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.AssemblyReference.cache
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfoInputs.cache
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfo.cs
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CopyComplete
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
+D:\Workspace\Phát triển PM HDV\BaiTapLon\Backend_ShopSneaker_Admin\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
