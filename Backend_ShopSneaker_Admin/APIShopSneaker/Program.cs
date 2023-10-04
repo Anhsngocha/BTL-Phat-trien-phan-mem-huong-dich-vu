@@ -26,6 +26,12 @@ builder.Services.AddTransient<IDanhGiaRepository, DanhGiaRepository>();
 builder.Services.AddTransient<IDanhGiaBusiness, DanhGiaBusiness>();
 builder.Services.AddTransient<IGiamGiaRepository, GiamGiaRepository>();
 builder.Services.AddTransient<IGiamGiaBusiness, GiamGiaBusiness>();
+builder.Services.AddTransient<IPhiVanChuyenRepository, PhiVanChuyenRepository>();
+builder.Services.AddTransient<IPhiVanChuyenBusiness, PhiVanChuyenBusiness>();
+builder.Services.AddTransient<IThuVienRepository, ThuVienRepository>();
+builder.Services.AddTransient<IThuVienBusiness, ThuVienBusiness>();
+builder.Services.AddTransient<IQuanTriVienRepository, QuanTriVienRepository>();
+builder.Services.AddTransient<IQuanTriVienBusiness, QuanTriVienBusiness>();
 // Add services to the container.
 
 builder.Services.AddControllers();
