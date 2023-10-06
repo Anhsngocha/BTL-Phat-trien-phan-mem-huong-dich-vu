@@ -9,6 +9,7 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IQuanTriVienRepository
     {
+        QuanTriVienModel Login(string taikhoan, string matkhau);
         QuanTriVienModel GetQTVBySDT(string sdt);
 
         List<QuanTriVienModel> GetAllQuanTriVien();

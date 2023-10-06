@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using System.Text;
+
+namespace Models
 {
     public class QuanTriVienModel
     {
@@ -10,5 +12,6 @@
         public string Email { get; set; }
         public string MatKhau { get; set; }
 
+        public string token { get; set; }
     }
 }

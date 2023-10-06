@@ -9,6 +9,7 @@ namespace BusinessLogicLayer
 {
     public partial interface IQuanTriVienBusiness
     {
+        QuanTriVienModel Login(string taikhoan, string matkhau);
         QuanTriVienModel GetQTVBySDT(string sdt);
 
         List<QuanTriVienModel> GetAllQuanTriVien();

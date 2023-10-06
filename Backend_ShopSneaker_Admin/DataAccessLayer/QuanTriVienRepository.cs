@@ -11,6 +11,25 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+        public QuanTriVienModel Login(string taikhoan, string matkhau)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_login",
+                     "@taikhoan", taikhoan,
+                     "@matkhau", matkhau
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<QuanTriVienModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public QuanTriVienModel GetQTVBySDT(string sdt)
         {
             string msgError = "";

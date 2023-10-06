@@ -9,7 +9,6 @@ namespace BusinessLogicLayer
 {
     public partial interface IGiamGiaBusiness
     {
-
         List<GiamGiaModel> GetAllGiamGia();
         bool Create(GiamGiaModel model);
         bool Update(GiamGiaModel model);

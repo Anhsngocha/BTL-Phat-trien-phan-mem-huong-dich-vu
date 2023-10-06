@@ -1,7 +1,8 @@
 ﻿using BusinessLogicLayer;
 using Models;
 using Microsoft.AspNetCore.Mvc;
-
+using DataModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.BTL.Controllers
 {
@@ -13,6 +14,16 @@ namespace Api.BTL.Controllers
         public QuanTriVienController(IQuanTriVienBusiness quanTriVienBusiness)
         {
             _quanTriVienBusiness = quanTriVienBusiness;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] AuthenticateModel model)
+        {
+            var quantrivien_account = _quanTriVienBusiness.Login(model.Username, model.Password);
+            if (quantrivien_account == null)
+                return BadRequest(new { message = "Tài khoản hoặc mật khẩu không đúng!" });
+            return Ok(new { username = quantrivien_account.TenTaiKhoan, email = quantrivien_account.Email, phone = quantrivien_account.SDT, token = quantrivien_account.token });
         }
 
         [Route("get-by-sdt/{sdt}")]

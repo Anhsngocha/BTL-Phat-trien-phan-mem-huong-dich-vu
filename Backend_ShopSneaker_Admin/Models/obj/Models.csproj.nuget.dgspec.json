@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Workspace\\Phát triển PM HDV\\BaiTapLon\\Backend_ShopSneaker_Admin\\Models\\Models.csproj": {}
+    "D:\\Workspace\\Web API 125211\\CloneAPI\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\Models.csproj": {}
   },
   "projects": {
-    "D:\\Workspace\\Phát triển PM HDV\\BaiTapLon\\Backend_ShopSneaker_Admin\\Models\\Models.csproj": {
+    "D:\\Workspace\\Web API 125211\\CloneAPI\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\Phát triển PM HDV\\BaiTapLon\\Backend_ShopSneaker_Admin\\Models\\Models.csproj",
+        "projectUniqueName": "D:\\Workspace\\Web API 125211\\CloneAPI\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "D:\\Workspace\\Phát triển PM HDV\\BaiTapLon\\Backend_ShopSneaker_Admin\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\Phát triển PM HDV\\BaiTapLon\\Backend_ShopSneaker_Admin\\Models\\obj\\",
+        "projectPath": "D:\\Workspace\\Web API 125211\\CloneAPI\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\Workspace\\Web API 125211\\CloneAPI\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
