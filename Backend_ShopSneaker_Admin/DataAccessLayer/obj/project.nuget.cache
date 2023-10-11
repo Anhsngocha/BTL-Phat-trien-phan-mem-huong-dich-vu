@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0OEeClLQgXXTHWQkgtv9ylkRYOWcPCqAOTUjva2RPU6CY+FKa/Kygulp8UNQ57hwnGunE08aWMndDk+/EQ5Snw==",
+  "dgSpecHash": "HjqLjHcebBrfLyhSJPDRrox3JVQ4cSAitsFHXfDf+pgNYfpb4XCMoe+afx5vDYyYekW7zds8Gf7d5ld1BPewrQ==",
   "success": true,
-  "projectFilePath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\DataAccessLayer\\DataAccessLayer.csproj",
+  "projectFilePath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\DataAccessLayer\\DataAccessLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.1\\microsoft.extensions.configuration.6.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

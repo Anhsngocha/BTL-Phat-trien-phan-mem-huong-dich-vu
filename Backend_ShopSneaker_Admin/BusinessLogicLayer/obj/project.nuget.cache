@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4R3TlZrVNVPuyk5MRz+wI8sfZEA9hE0vfh4OFT98mOV1SZvnd+Icm/0kMZFBTezoxFrT9NySAzUzgmQiJO3AYQ==",
+  "dgSpecHash": "1HiBDp1ZxVj/FNrWwYAjOZa4Dg63TlgO94i2QtygBkutVXgS+Ts5pF1mJzhmapENFjwd3yL0OveUwrn0qgJ2Wg==",
   "success": true,
-  "projectFilePath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+  "projectFilePath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.1\\microsoft.extensions.configuration.6.0.1.nupkg.sha512",

@@ -442,11 +442,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\APIShopSneaker_Users\\APIShopSneaker_Users.csproj",
+      "projectUniqueName": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\APIShopSneaker_Users\\APIShopSneaker_Users.csproj",
       "projectName": "APIShopSneaker_Users",
-      "projectPath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\APIShopSneaker_Users\\APIShopSneaker_Users.csproj",
+      "projectPath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\APIShopSneaker_Users\\APIShopSneaker_Users.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\APIShopSneaker_Users\\obj\\",
+      "outputPath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\APIShopSneaker_Users\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",

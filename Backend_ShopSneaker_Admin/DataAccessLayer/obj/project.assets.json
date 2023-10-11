@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectUniqueName": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\DataAccessLayer\\DataAccessLayer.csproj",
       "projectName": "DataAccessLayer",
-      "projectPath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectPath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\DataAccessLayer\\DataAccessLayer.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\DataAccessLayer\\obj\\",
+      "outputPath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\DataAccessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -713,8 +713,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\Models.csproj": {
-              "projectPath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\Models.csproj"
+            "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\Models.csproj": {
+              "projectPath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\Models\\Models.csproj"
             }
           }
         }

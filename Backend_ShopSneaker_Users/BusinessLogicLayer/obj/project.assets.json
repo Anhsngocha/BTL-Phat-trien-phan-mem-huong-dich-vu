@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+      "projectUniqueName": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
       "projectName": "BusinessLogicLayer",
-      "projectPath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+      "projectPath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\BusinessLogicLayer\\obj\\",
+      "outputPath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\BusinessLogicLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XqyjQL1dxkEsP/woUg0onrKccMreLGAKGwfnDmDgdmOFgNjTwIELy5tfRRQRtiqJFcxHCKYFqUh5onDyWGbe+w==",
+  "dgSpecHash": "NpZavcC4WaRU3cSDvwi122BHAudFWd5VXgPLycBIY91T380lB5PKl17mULQ/vIapgoMdkXEtChyfhuE8G+ZEsg==",
   "success": true,
-  "projectFilePath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\APIShopSneaker_Users\\APIShopSneaker_Users.csproj",
+  "projectFilePath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Users\\APIShopSneaker_Users\\APIShopSneaker_Users.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

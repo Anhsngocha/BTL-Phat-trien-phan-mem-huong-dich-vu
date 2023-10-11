@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h4GxkXa9rE4OENeCzFZkx0PtE4YXe2IiS88OPJw9Bg2yOSb4Qh2o6YXjLpgGle7HJLjWque6DKl74elFZLKPUg==",
+  "dgSpecHash": "95Cpok6KDTo6hSYo15tziRyhpHZyhTCaq1UYyBnIaTrG2iFoEEWaMLi3xj72ve9MmJZv+bUHoDBovgzxaL1bvg==",
   "success": true,
-  "projectFilePath": "E:\\Workspace\\Phát triển PM HDV\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\APIShopSneaker\\APIShopSneaker.csproj",
+  "projectFilePath": "E:\\Workspace\\Phát triển phần mềm hướng dịch vụ\\BTL\\BTL-Phat-trien-phan-mem-huong-dich-vu\\Backend_ShopSneaker_Admin\\APIShopSneaker\\APIShopSneaker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.22\\microsoft.aspnetcore.authentication.jwtbearer.6.0.22.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

@@ -12,6 +12,7 @@ namespace DataAccessLayer
         }
 
 
+
         public bool Create(TinhThanhPhoModel model)
         {
             string msgError = "";
