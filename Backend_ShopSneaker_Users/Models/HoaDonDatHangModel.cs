@@ -10,8 +10,10 @@
         public DateTime NgayDat { get; set; }
         public int TrangThai { get; set; }
 
+        List<ChiTietHDDatHangModel> list_json_chitietHDDH {  get; set; }
+
     }
-    public class ChiTietHDModel
+    public class ChiTietHDDatHangModel
     {
         public int MaChiTietHD { get; set; }
         public int MaHoaDon { get; set; }
