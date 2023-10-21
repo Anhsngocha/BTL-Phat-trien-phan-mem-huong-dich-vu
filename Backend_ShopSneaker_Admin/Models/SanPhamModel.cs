@@ -5,7 +5,7 @@
         public int MaSanPham { get; set; }
         public string TenSanPham { get; set; }
 
-        public int Size { get; set; }
+        
         public int GiaTien { get; set; }
         public int GiamGia { get; set; }
         public string LinkAnh { get; set; }

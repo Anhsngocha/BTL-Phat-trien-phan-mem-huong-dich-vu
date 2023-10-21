@@ -7,12 +7,14 @@ using Models;
 
 namespace DataAccessLayer.Interfaces
 {
-    public partial interface ITinhThanhPhoRepository
+    public partial interface ISizeSanPhamRepository
     {
-      
-        bool Create(TinhThanhPhoModel model);
-        bool Update(TinhThanhPhoModel model);
+        SizeSanPhamModel GetSizeSP(string masp);
+
+        bool Create(SizeSanPhamModel model);
+        bool Update(SizeSanPhamModel model);
         bool Delete(string id);
 
+        
     }
 }
