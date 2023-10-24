@@ -35,8 +35,8 @@ create proc sp_them_sanpham
 )
 as
 begin
-	insert into SanPham(TenSanPham, Size, GiaTien, GiamGia, LinkAnh, MoTa, SoLuong, DaBan, MaDanhMuc, MaThuongHieu)
-	values(@TenSanPham, @Size, @GiaTien, @GiamGia, @LinkAnh, @MoTa, @SoLuong, @DaBan, @MaDanhMuc, @MaThuongHieu)
+	insert into SanPham(TenSanPham, GiaTien, GiamGia, LinkAnh, MoTa, SoLuong, DaBan, MaDanhMuc, MaThuongHieu)
+	values(@TenSanPham, @GiaTien, @GiamGia, @LinkAnh, @MoTa, @SoLuong, @DaBan, @MaDanhMuc, @MaThuongHieu)
 end
 go
 
@@ -53,7 +53,8 @@ create proc sp_sua_sanpham
 	@SoLuong int,
 	@DaBan int,
 	@MaDanhMuc int,
-	@MaThuongHieu int
+	@MaThuongHieu int,
+	@NgayTao datetime
 )
 
 AS
@@ -61,7 +62,6 @@ BEGIN
 	update SanPham
 	set
 		TenSanPham = CASE WHEN @TenSanPham IS NOT NULL AND @TenSanPham <> 'null' AND @TenSanPham <> 'string' THEN @TenSanPham ELSE TenSanPham END,
-		Size = CASE WHEN @Size IS NOT NULL AND @Size <> 'null' AND @Size <> 'string' THEN @Size ELSE @Size END,
 		GiaTien = CASE WHEN @GiaTien IS NOT NULL AND @GiaTien <> 'null' AND @GiaTien <> 'string' THEN @GiaTien ELSE GiaTien END,
 		GiamGia = CASE WHEN @GiamGia IS NOT NULL AND @GiamGia <> 'null' AND @GiamGia <> 'string' THEN @GiamGia ELSE GiamGia END,
 		LinkAnh = CASE WHEN @LinkAnh IS NOT NULL AND @LinkAnh <> 'null' AND @LinkAnh <> 'string' THEN @LinkAnh ELSE LinkAnh END,
@@ -69,10 +69,13 @@ BEGIN
 		SoLuong = CASE WHEN @SoLuong IS NOT NULL AND @SoLuong <> 'null' AND @SoLuong <> 'string' THEN @SoLuong ELSE SoLuong END,
 		DaBan = CASE WHEN @DaBan IS NOT NULL AND @DaBan <> 'null' AND @DaBan <> 'string' THEN @DaBan ELSE DaBan END,
 		MaDanhMuc = CASE WHEN @MaDanhMuc IS NOT NULL AND @MaDanhMuc <> 'null' AND @MaDanhMuc <> 'string' THEN @MaDanhMuc ELSE MaDanhMuc END,
-		MaThuongHieu = CASE WHEN @MaThuongHieu IS NOT NULL AND @MaThuongHieu <> 'null' AND @MaThuongHieu <> 'string' THEN @MaThuongHieu ELSE MaThuongHieu END
+		MaThuongHieu = CASE WHEN @MaThuongHieu IS NOT NULL AND @MaThuongHieu <> 'null' AND @MaThuongHieu <> 'string' THEN @MaThuongHieu ELSE MaThuongHieu END,
+		NgayTao = CASE WHEN @NgayTao IS NOT NULL AND @NgayTao <> 'null' AND @NgayTao <> 'string' THEN @NgayTao ELSE @NgayTao END,
+		NgayCapNhat = GETDATE()
 
 	where MaSanPham = @MaSanPham
 END
+go
 
 --xóa sản phẩm
 create proc sp_xoa_sanpham
@@ -84,6 +87,7 @@ begin
 	delete from SanPham where MaSanPham = @MaSanPham
 end
 go
+
 
 --tìm kiếm sản phẩm
 create PROCEDURE [dbo].[sp_search_sanpham] (@page_index  INT, 
@@ -466,7 +470,7 @@ go
 
 --Bảng đánh giá
 --Thêm đánh giá
-ALTER proc [dbo].[sp_them_danhgia]
+create proc [dbo].[sp_them_danhgia]
 (
 	@Ho nvarchar(50),
 	@Ten varchar(50),
@@ -480,8 +484,11 @@ begin
 	insert into DanhGia(Ho,Ten, Email, SDT, TieuDe,NoiDungDanhGia)
 	values(@Ho,@Ten, @Email, @SDT, @TieuDe,@NoiDungDanhGia)
 end
+go
+
+
 --Sửa đánh giá
-ALTER proc [dbo].[sp_sua_danhgia]
+create proc [dbo].[sp_sua_danhgia]
 (
 	@MaDanhGia int,
 	@Ho nvarchar(50),
@@ -503,9 +510,10 @@ begin
 		NoiDungDanhGia = CASE WHEN @NoiDungDanhGia IS NOT NULL AND @NoiDungDanhGia <> 'null' AND @NoiDungDanhGia <> 'string' THEN @NoiDungDanhGia ELSE NoiDungDanhGia END
 	where MaDanhGia = @MaDanhGia
 end
+go
 
 --Xóa đánh giá
-ALTER proc [dbo].[sp_xoa_danhgia]
+create proc [dbo].[sp_xoa_danhgia]
 (
 	@MaDanhGia int
 )
@@ -514,8 +522,10 @@ begin
 	delete DanhGia
 	where MaDanhGia = @MaDanhGia
 end
+go
+
 --Tìm kiếm đánh giá
-ALTER PROCEDURE [dbo].[sp_search_danhgia] (@page_index  INT, 
+create PROCEDURE [dbo].[sp_search_danhgia] (@page_index  INT, 
                                        @page_size   INT,
 									   @tieude nvarchar(100))
 AS
@@ -560,15 +570,20 @@ AS
 			end
     END;
 
+go
+
 --Bảng giảm giá
 --Lấy về tất cả mã giảm giá
-ALTER proc [dbo].[sp_get_all_magiamgia]
+create proc [dbo].[sp_get_all_magiamgia]
 as
 begin
 	select * from GiamGia
 end
+go
+
+
 --Thêm mã giảm giá
-ALTER proc [dbo].[sp_them_magiamgia]
+create proc [dbo].[sp_them_magiamgia]
 (
 	@TenMaGG nvarchar(250),
 	@BatDau datetime,
@@ -583,8 +598,11 @@ begin
 	insert into GiamGia(TenMaGG, BatDau, KetThuc, SoLuongMa, SoTienGiam, MaCode, TrangThai)
 	values(@TenMaGG, @BatDau, @KetThuc, @SoLuongMa, @SoTienGiam, @MaCode, @TrangThai)
 end
+go
+
+
 --Sửa mã giảm giá
-ALTER proc [dbo].[sp_sua_magiamgia]
+create proc [dbo].[sp_sua_magiamgia]
 (
 	@MaGiamGia int,
 	@TenMaGG nvarchar(250),
@@ -608,8 +626,10 @@ begin
 		TrangThai = CASE WHEN @TrangThai IS NOT NULL AND @TrangThai <> 'null' AND @TrangThai <> 'string' THEN @TrangThai ELSE TrangThai END
 	where MaGiamGia =@MaGiamGia
 end
+go
+
 --Xóa mã giám giá
-ALTER proc [dbo].[sp_xoa_magiamgia]
+create proc [dbo].[sp_xoa_magiamgia]
 (
 	@MaGiamGia int
 )
@@ -618,45 +638,6 @@ begin
 	delete GiamGia
 	where MaGiamGia = @MaGiamGia
 end
-
-
---Bảng tỉnh thành phố
---Thêm tỉnh thành phố
-ALTER proc [dbo].[sp_create_tinhthanhpho]
-(
-	@TenTinhTP nvarchar(100)
-)
-as
-begin
-	insert into TinhThanhPho(TenTinhTP)
-	values(@TenTinhTP)
-end
---Sửa tỉnh thành phố
-ALTER proc [dbo].[sp_update_tinhthanhpho]
-(
-	@MaTinhTP int,
-	@TenTinhTP nvarchar(100)
-)
-as
-begin
-	if @TenTinhTP is not null and @TenTinhTP <> 'string'
-	begin
-		update TinhThanhPho
-		set TenTinhTP = @TenTinhTP
-		where MaTinhTP = @MaTinhTP
-	end
-end
---Xóa tỉnh thành phố
-ALTER proc [dbo].[sp_delete_tinhthanhpho]
-(
-	@MaTinhTP int
-)
-as
-begin
-	delete TinhThanhPho
-	where MaTinhTP = @MaTinhTP
-end
-
-
+go
 
 
