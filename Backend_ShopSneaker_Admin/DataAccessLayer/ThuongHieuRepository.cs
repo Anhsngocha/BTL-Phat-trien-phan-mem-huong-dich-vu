@@ -11,6 +11,22 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+        public List<ThuongHieuModel> GetAllThuongHieu()
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getall_thuonghieu");
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<ThuongHieuModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public bool Create(ThuongHieuModel model)
         {

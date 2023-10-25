@@ -1,10 +1,11 @@
 ﻿using BusinessLogicLayer;
 using Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.BTL.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class KhachHangController : ControllerBase

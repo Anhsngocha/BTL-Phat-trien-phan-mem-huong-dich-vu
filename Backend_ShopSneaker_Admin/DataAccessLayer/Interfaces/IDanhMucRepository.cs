@@ -16,6 +16,5 @@ namespace DataAccessLayer.Interfaces
         bool Update(DanhMucModel model);
         bool Delete(string id);
 
-        List<DanhMucModel> Search(int pageIndex, int pageSize, out long total, string ten_danhmuc);
     }
 }

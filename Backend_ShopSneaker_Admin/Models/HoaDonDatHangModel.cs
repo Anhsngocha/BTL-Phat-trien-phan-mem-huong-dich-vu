@@ -10,6 +10,7 @@
         public DateTime NgayDat { get; set; }
         public int TrangThai { get; set; }
 
+        List<ChiTietHDBModel> list_json_chitietHDBan { get; set; }
     }
    
 }

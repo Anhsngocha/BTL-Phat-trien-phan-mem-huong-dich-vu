@@ -22,5 +22,8 @@
 
         public int MaThuongHieu { get; set; }
 
+        public DateTime? NgayTao { get; set; }
+
+        public DateTime? NgayCapNhat { get; set; }
     }
 }

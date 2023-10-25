@@ -426,6 +426,13 @@ go
 
 --Bảng thương hiệu
 --Thêm thương hiệu
+create proc sp_getall_thuonghieu
+as
+begin
+	select * from ThuongHieu
+end
+go
+
 create proc [dbo].[sp_create_thuonghieu]
 (
 	@TenThuongHieu nvarchar(350)
@@ -641,3 +648,58 @@ end
 go
 
 
+--bảng quản trị viên
+--đăng nhập
+create proc sp_login
+(
+	@TenTaiKhoan nvarchar(500),
+	@MatKhau varchar(50)
+)
+as
+begin
+	select * from QuanTriVien
+	where TenTaiKhoan = @TenTaiKhoan and MatKhau = @MatKhau
+end
+go
+
+--lấy tài khoản theo id
+create proc sp_get_taiKhoan_byID
+(
+	@MaQTV int
+)
+as
+begin
+	select * from QuanTriVien
+	where MaQTV = @MaQTV
+end
+go
+
+
+--lấy theo tên tài khoản
+create proc sp_get_by_name
+(
+	@TenTaiKhoan nvarchar(500)
+)
+as
+begin
+	select * from QuanTriVien
+	where TenTaiKhoan = @TenTaiKhoan
+end
+go
+
+--thêm quản trị viên
+create proc sp_create_admin
+(
+	@TenTaiKhoan nvarchar(500),
+	@Ho nvarchar(50),
+	@Ten nvarchar(50),
+	@SDT varchar(20),
+	@Email varchar(150),
+	@MatKhau varchar(50)
+)
+as
+begin
+	insert into QuanTriVien
+	values(@TenTaiKhoan, @Ho, @Ten, @SDT, @Email, @MatKhau)
+end
+go

@@ -17,8 +17,8 @@ namespace DataAccessLayer
             try
             {
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_login",
-                     "@taikhoan", taikhoan,
-                     "@matkhau", matkhau
+                     "@TenTaiKhoan", taikhoan,
+                     "@MatKhau", matkhau
                      );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);

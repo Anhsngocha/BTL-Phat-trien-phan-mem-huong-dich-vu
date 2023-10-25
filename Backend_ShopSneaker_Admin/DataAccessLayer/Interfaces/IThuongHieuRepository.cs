@@ -9,7 +9,7 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IThuongHieuRepository
     {
-       
+        List<ThuongHieuModel> GetAllThuongHieu();
         bool Create(ThuongHieuModel model);
         bool Update(ThuongHieuModel model);
         bool Delete(string id);

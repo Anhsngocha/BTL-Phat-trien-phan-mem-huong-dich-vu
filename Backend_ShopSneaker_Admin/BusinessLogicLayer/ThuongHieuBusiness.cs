@@ -13,6 +13,11 @@ namespace BusinessLogicLayer
             _res = res;
         }
 
+        public List<ThuongHieuModel> GetAllThuongHieu()
+        {
+            return _res.GetAllThuongHieu();
+        }
+
         public bool Create(ThuongHieuModel model)
         {
             return _res.Create(model);

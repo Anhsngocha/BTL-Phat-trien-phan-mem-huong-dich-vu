@@ -7,7 +7,7 @@
         public DateTime NgayNhap { get; set; }
         public int TongTien { get; set; }
 
-
+        public List<ChiTietHDNModel> list_json_chitietHDN { get; set; }
     }
 
 }

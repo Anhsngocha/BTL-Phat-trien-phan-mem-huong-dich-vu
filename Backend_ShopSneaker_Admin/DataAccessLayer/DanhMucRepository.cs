@@ -101,25 +101,5 @@ namespace DataAccessLayer
             }
         }
 
-        public List<DanhMucModel> Search(int pageIndex, int pageSize, out long total, string ten_danhmuc)
-        {
-            string msgError = "";
-            total = 0;
-            try
-            {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_search_danhmuc",
-                    "@page_index", pageIndex,
-                    "@page_size", pageSize,
-                    "@ten_danhmuc", ten_danhmuc);
-                if (!string.IsNullOrEmpty(msgError))
-                    throw new Exception(msgError);
-                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<DanhMucModel>().ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }

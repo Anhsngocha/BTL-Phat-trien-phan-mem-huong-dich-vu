@@ -37,9 +37,5 @@ namespace BusinessLogicLayer
             return _res.Delete(id);
         }
 
-        public List<DanhMucModel> Search(int pageIndex, int pageSize, out long total, string ten_danhmuc)
-        {
-            return _res.Search(pageIndex, pageSize, out total, ten_danhmuc);
-        }
     }
 }

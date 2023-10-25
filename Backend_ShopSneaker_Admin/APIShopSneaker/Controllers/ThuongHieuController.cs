@@ -16,6 +16,12 @@ namespace Api.BTL.Controllers
         }
 
 
+        [Route("get-all")]
+        [HttpGet]
+        public List<ThuongHieuModel> GetAllThuongHieu()
+        {
+            return _thuongHieuBusiness.GetAllThuongHieu();
+        }
 
         [Route("create-thuonghieu")]
         [HttpPost]

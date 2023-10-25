@@ -39,8 +39,8 @@ namespace Api.BTL.Controllers
         }
 
         [Route("update-sanpham")]
-        [HttpPost]
-        public SanPhamModel UpdateItem([FromBody] SanPhamModel model)
+        [HttpPut]
+        public SanPhamModel UpdateSanPham([FromBody] SanPhamModel model)
         {
             _sanPhamBusiness.Update(model);
             return model;
