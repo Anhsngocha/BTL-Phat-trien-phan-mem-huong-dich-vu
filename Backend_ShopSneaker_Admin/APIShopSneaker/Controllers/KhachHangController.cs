@@ -67,12 +67,12 @@ namespace Api.BTL.Controllers
             {
                 var page = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
-                string ten_khachhang = "";
-                if (formData.Keys.Contains("ten_khachhang") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_khachhang"]))) { ten_khachhang = Convert.ToString(formData["ten_khachhang"]); }
-                string diachi = "";
-                if (formData.Keys.Contains("diachi") && !string.IsNullOrEmpty(Convert.ToString(formData["diachi"]))) { diachi = Convert.ToString(formData["diachi"]); }
+                string TenKhachHang = "";
+                if (formData.Keys.Contains("TenKhachHang") && !string.IsNullOrEmpty(Convert.ToString(formData["TenKhachHang"]))) { TenKhachHang = Convert.ToString(formData["TenKhachHang"]); }
+                string DiaChi = "";
+                if (formData.Keys.Contains("DiaChi") && !string.IsNullOrEmpty(Convert.ToString(formData["DiaChi"]))) { DiaChi = Convert.ToString(formData["DiaChi"]); }
                 long total = 0;
-                var data = _khachHangBusiness.Search(page, pageSize, out total, ten_khachhang, diachi);
+                var data = _khachHangBusiness.Search(page, pageSize, out total, TenKhachHang, DiaChi);
                 return Ok(
                     new
                     {

@@ -210,10 +210,10 @@ end
 go
 
 --tìm kiếm khách hàng
-create PROCEDURE sp_search_khachhang (@page_index  INT, 
+create PROCEDURE sp_search_khachhang(@page_index  INT, 
                                        @page_size   INT,
-									   @tenKH nvarchar(500),
-									   @diaChi nvarchar(250))
+									   @TenKhachHang nvarchar(500),
+									   @DiaChi nvarchar(255))
 AS
     BEGIN
         DECLARE @RecordCount BIGINT;
@@ -228,8 +228,8 @@ AS
 							  kh.DiaChi
                         INTO #Results1
                         FROM [KhachHang] AS kh
-					    WHERE (@tenKH = '' or kh.TenKhachHang like N'%' + @tenKH +'%') and
-						(@diaChi = '' or kh.DiaChi like N'%' + @diaChi +'%');                   
+					    WHERE (@TenKhachHang = '' or kh.TenKhachHang like N'%' + @TenKhachHang +'%') and
+						(@DiaChi = '' or kh.DiaChi like N'%' + @DiaChi +'%');                   
                         SELECT @RecordCount = COUNT(*)
                         FROM #Results1;
                         SELECT *, 
@@ -250,8 +250,8 @@ AS
 							  kh.DiaChi
                         INTO #Results2
                         FROM [KhachHang] AS kh
-					    WHERE (@tenKH = '' or kh.TenKhachHang like N'%' + @tenKH +'%') and
-						(@diaChi = '' or kh.DiaChi like N'%' + @diaChi +'%');                   
+					     WHERE (@TenKhachHang = '' or kh.TenKhachHang like N'%' + @TenKhachHang +'%') and
+						(@DiaChi = '' or kh.DiaChi like N'%' + @DiaChi +'%');                  
                         SELECT @RecordCount = COUNT(*)
                         FROM #Results2;
                         SELECT *, 
@@ -261,7 +261,6 @@ AS
         END;
     END;
 go
-
 
 --Bảng hóa đơn nhập
 --thêm hóa đơn nhập

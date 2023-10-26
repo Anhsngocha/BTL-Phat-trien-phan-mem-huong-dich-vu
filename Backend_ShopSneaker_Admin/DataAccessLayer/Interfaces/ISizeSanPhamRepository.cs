@@ -9,11 +9,11 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface ISizeSanPhamRepository
     {
-        SizeSanPhamModel GetSizeSP(string masp);
+        //SizeSanPhamModel GetSizeSP(string masp);
 
         bool Create(SizeSanPhamModel model);
-        bool Update(SizeSanPhamModel model);
-        bool Delete(string id);
+        //bool Update(SizeSanPhamModel model);
+        //bool Delete(string id);
 
         
     }

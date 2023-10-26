@@ -16,6 +16,6 @@ namespace DataAccessLayer.Interfaces
         bool Update(KhachHangModel model);
         bool Delete(string id);
 
-        List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khachhang, string sdt);
+        List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string TenKhachHang, string DiaChi);
     }
 }

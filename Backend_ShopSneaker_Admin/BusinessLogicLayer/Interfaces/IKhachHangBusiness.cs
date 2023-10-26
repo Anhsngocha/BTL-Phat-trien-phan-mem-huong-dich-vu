@@ -16,7 +16,7 @@ namespace BusinessLogicLayer
         bool Update(KhachHangModel model);
         bool Delete(string id);
 
-        List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string TenKhachHang, string SDT);
+        List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string TenKhachHang, string DiaChi);
 
     }
 }
