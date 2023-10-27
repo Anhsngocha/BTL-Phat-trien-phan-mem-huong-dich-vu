@@ -1,0 +1,164 @@
+.navbar-vertical .category-list {
+    display: none;
+}
+
+.navbar-vertical:hover .category-list {
+    display: initial;
+}
+
+.category-list li .active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.category-item-link:hover.active {
+    margin-bottom: 6px;
+}
+
+.container-content {
+    margin: 20px 0;
+    padding-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.box-signup {
+    display: none;
+}
+
+.box-header {
+    display: flex;
+    justify-content: space-around;
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+h3:hover {
+    color: var(--primary-color);
+}
+
+.member,
+.newuser {
+    font-size: 0.9rem;
+    color: #afafaf;
+    margin-bottom: 20px;
+}
+
+#sign-up,
+#login {
+    max-width: 400px;
+    margin: auto;
+}
+
+input {
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+}
+
+label {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.miss-pasword {
+    text-decoration: underline;
+}
+
+#sign-up input {
+    width: 100%;
+}
+
+button {
+    padding: 10px 24px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    margin: 20px 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f82e2e;
+}
+
+.end {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.end a {
+    color: var(--text-color);
+}
+
+.end a:hover {
+    color: var(--primary-color);
+}
+
+.form-control {
+    position: relative;
+    margin-top: 20px;
+}
+
+.form-control:first-child {
+    margin-top: 0px;
+}
+
+.form-control i {
+    background-color: #737373;
+    width: 16px;
+    height: 16px;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    color: var(--white-color);
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50px;
+    right: 8px;
+    display: none;
+}
+
+.form-control small {
+    color: #8b8b8b;
+    display: none;
+}
+
+.form-control.success input {
+    border: 1px solid #1dcf26;
+}
+
+.form-control.error input {
+    border: 1px solid #e62a2a;
+}
+
+.form-control.error small {
+    display: initial;
+}
+
+.form-control.success i {
+    background-color: #1dcf26;
+}
+
+.form-control.error i {
+    background-color: var(--primary-color);
+}
+
+.form-control.success .icon-success {
+    display: flex;
+}
+
+.form-control.error .icon-error {
+    display: flex;
+}
+
+.active-form {
+    color: var(--primary-color);
+}

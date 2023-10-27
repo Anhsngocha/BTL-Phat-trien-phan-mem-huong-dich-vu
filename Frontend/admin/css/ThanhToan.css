@@ -1,0 +1,248 @@
+body {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 54%, rgba(224, 224, 224, 0.6225840678068102) 54%, rgba(224, 224, 224, 1) 54%, rgba(224, 224, 224, 1) 54%, rgba(224, 224, 224, 1) 54%, rgba(11, 0, 193, 1) 54%, rgba(11, 0, 193, 1) 54%, rgba(66, 66, 182, 1) 54%, rgba(0, 212, 255, 1) 54%, rgba(121, 121, 121, 0) 54%, rgba(255, 255, 255, 1) 54%, rgba(249, 249, 249, 1) 54%);
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    height: 100vh;
+}
+
+.info-delivery {
+    padding-top: 50px;
+    width: 55%;
+    border-right: 1px solid var(--border-color);
+    padding-right: 5%;
+    min-width: 400px;
+}
+
+.header-text {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.info-deli-text {
+    color: #444444;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.user-test {
+    color: #a8a8a8;
+    font-size: 0.8rem;
+}
+
+.user-test a {
+    color: #007cb6;
+    cursor: pointer;
+}
+
+.user-test a:hover {
+    color: #00d9ff;
+}
+
+.info-deli {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-contact {
+    display: flex;
+}
+
+.input-email {
+    width: 57%;
+    margin-right: 3%;
+}
+
+.input-phone {
+    width: 40%;
+}
+
+select,
+input {
+    padding: 0.94em 2.8em 0.94em 0.8em;
+    box-shadow: 0 0 0 1px #d9d9d9;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    outline: none;
+    margin: 8px 0;
+}
+
+.address {
+    display: flex;
+}
+
+.slt-city {
+    margin-right: 10px;
+}
+
+.address select {
+    flex: 1;
+}
+
+select:focus,
+input:focus {
+    border: 2px solid #00b0b6;
+}
+
+.btn-submit {
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    background-color: transparent;
+    color: var(--text-color);
+    border-radius: 4px;
+    border: 1px solid var(--primary-color);
+    outline: none;
+    position: relative;
+}
+
+button {
+    padding: 0.8rem 1.2rem;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    cursor: pointer;
+    margin-top: 12px;
+    margin-right: 8px;
+    transition: 0.5s;
+}
+
+.btn-submit::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 2px;
+    background-color: var(--primary-color);
+    z-index: -1;
+    transition: height 0.25s linear, width 0.25s ease-in-out 0.25s;
+}
+
+.btn-submit:hover:before {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-submit:hover {
+    color: var(--white-color);
+}
+
+.link-cart button {
+    background-color: #00b0b6;
+}
+
+.link-cart {
+    color: var(--white-color);
+}
+
+.btn-cart:hover {
+    background-color: #007cb6;
+}
+
+.info-product {
+    padding-top: 50px;
+    padding-left: 5%;
+    width: 44%;
+    min-width: 320px;
+}
+
+.buyed-product {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.buyed-product tbody tr {
+    font-size: 0.8rem;
+    color: #686868;
+}
+
+.img-product {
+    width: 5rem;
+}
+
+.img-product img {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 70px;
+    object-fit: contain;
+    height: 70px;
+    background: #fff;
+}
+
+.name-product {
+    font-weight: 600;
+}
+
+.name-product .color-product {
+    font-weight: 500;
+    color: #8f8f8f;
+}
+
+.code-sale {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.input-code {
+    width: 75%;
+    margin-right: 2%;
+}
+
+.use-code {
+    background-color: #b4b4b4;
+    cursor: initial;
+}
+
+.use-code:hover {
+    background-color: #b4b4b4;
+}
+
+.box-price {
+    padding-top: 10px;
+    padding-bottom: 4px;
+}
+
+.pay-trans {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pay-trans,
+.box-price {
+    display: flex;
+    justify-content: space-between;
+    color: #686868;
+    font-size: 0.9rem;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    color: #444444;
+}
+
+.price-after {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+@media (max-width: 800px) {
+    body {
+        background: #fff;
+    }
+    .info-product {
+        margin: auto;
+        background-color: rgba(249, 249, 249, 1);
+    }
+    .info-delivery {
+        margin: auto;
+        border: none;
+    }
+}

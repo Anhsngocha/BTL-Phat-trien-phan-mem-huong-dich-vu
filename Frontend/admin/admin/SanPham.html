@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/ajax.googleapis.com_ajax_libs_jquery_3.6.4_jquery.min.js"></script>
+    <script src="../js/ajax.googleapis.com_ajax_libs_angularjs_1.6.9_angular.min.js"></script>
+    <title>Quản lý cửa hàng trang sức - Sản phẩm</title>
+    <link rel="stylesheet" href="../font/fontawesome-free-6.1.1-web/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                position: absolute;
+                top: 150%;
+            }
+            to {
+                opacity: 1;
+                position: absolute;
+                top: 100%;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* header */
+        
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #007579;
+            color: #fff;
+        }
+        
+        .account {
+            float: right;
+            height: 100%;
+            width: 100px;
+            border-left: 1px solid #ccc;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .account p {
+            padding-top: 14px;
+        }
+        
+        .manage-user {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #007579;
+            width: 150px;
+            animation: fadeIn ease 0.5s;
+            list-style: none;
+        }
+        
+        .account:hover .manage-user {
+            display: block;
+        }
+        
+        .manage-user li:hover {
+            background-color: #005457;
+        }
+        
+        .manage-user li {
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            transition: 0.5s;
+        }
+        /* navigation */
+        
+        #navigation {
+            width: 135px;
+            height: 100%;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            background-color: #ccc;
+        }
+        
+        .active-menu {
+            background-color: #aaa;
+            border-right: 5px solid rgb(132, 0, 172);
+        }
+        
+        .list-menu a {
+            text-decoration: none;
+        }
+        
+        .item-menu {
+            color: #333;
+            width: 100%;
+            padding: 20px 8px;
+            list-style-type: none;
+            transition: 0.3s;
+            border-right: 0;
+        }
+        
+        .item-menu:hover {
+            background-color: #aaa;
+            border-right: 5px solid rgb(132, 0, 172);
+        }
+        /* main */
+        
+        #main {
+            margin-top: 50px;
+            margin-left: 150px;
+            display: flex;
+        }
+        
+        .enter-information {
+            width: 35%;
+            padding-right: 24px;
+        }
+        
+        .text-header {
+            margin: 12px 0 30px;
+            color: #007579;
+            border-bottom: 2px solid #007579;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .list-product {
+            width: 65%;
+        }
+        
+        .enter-information-product input,
+        .enter-information-product select {
+            width: 97%;
+            padding: 8px 10px;
+            margin: 10px 0 16px;
+            outline: none;
+            border: 1px solid #a9a9a9;
+            border-radius: 6px;
+        }
+        
+        .enter-information-product label {
+            color: #525252;
+        }
+        
+        .btns {
+            border-top: 1px solid #333;
+            width: 97%;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btns button {
+            padding: 12px 5%;
+            margin-left: 6px;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            opacity: 0.8;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btns button:hover {
+            opacity: 1;
+        }
+        
+        .btns button:first-child {
+            margin: 0;
+            background-color: #e72300;
+            color: #fff;
+        }
+        
+        .add-new {
+            background-color: rgba(4, 139, 11);
+            color: #fff;
+        }
+        
+        .reload-info {
+            background-color: rgb(16, 108, 214);
+            color: #fff;
+        }
+        
+        .header-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-list button {
+            width: 90px;
+            height: 40px;
+            margin-right: 20px;
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            background-color: #007579;
+            color: #fff;
+        }
+        
+        .header-list button i {
+            margin-right: 4px;
+        }
+        
+        .search {
+            display: flex;
+            justify-content: space-between;
+            width: 97%;
+        }
+        
+        .search input {
+            width: 82%;
+            padding: 8px;
+        }
+        
+        .search button {
+            width: 17%;
+            border: none;
+            outline: none;
+            background-color: rgb(0, 117, 121);
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        
+        .search button i {
+            margin-right: 4px;
+        }
+        
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        
+        table th {
+            border-top: 1px solid #555;
+            border-left: 1px solid #555;
+            border-bottom: 1px solid #555;
+            padding: 8px 0;
+        }
+        
+        table th:nth-child(2) {
+            width: 70px;
+        }
+
+        table th:last-child {
+            border-right: 1px solid #555;
+        }
+        
+        table td {
+            padding: 4px;
+            border-left: 1px solid #555;
+            border-bottom: 1px solid #555;
+        }
+        
+        table td:last-child {
+            border-right: 1px solid #555;
+        }
+        
+        td i {
+            color: #005457;
+            padding: 0 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        td i:hover {
+            color: #f05151;
+        }
+        
+        .table-list-product {
+            width: 97%;
+        }
+        
+        .table-list-product tr td {
+            max-width: 150px;
+        }
+        
+        .col-img img {
+            max-width: 100px;
+        }
+        
+        .col-price {
+            color: rgb(230, 43, 43);
+        }
+        
+        .quantity {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            height: 70px;
+            background-color: #d2eef1;
+            color: black;
+        }
+        
+        .total-quantity {
+            display: flex;
+            font-family: sans-serif;
+        }
+        
+        .page {
+            margin-right: 14px;
+        }
+        
+        .page button {
+            width: 25px;
+            height: 25px;
+            background-color: rgba(43, 43, 223, 0.7);
+            border-radius: 4px;
+            color: #fff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .page i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .page button:hover {
+            background-color: rgb(23, 23, 230);
+        }
+        /* Responsive - menu */
+        
+        .nav-btn--bar {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            font-size: 1.5rem;
+            display: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .nav-btn--bar:hover {
+            color: #92d39a;
+        }
+        
+        #nav-respon,
+        .overlay,
+        .box-nav-respon {
+            display: none;
+        }
+        
+        #nav-respon:checked~.overlay,
+        #nav-respon:checked~.box-nav-respon {
+            display: block;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: -1000px;
+            /* width: 100vw;
+            height: 100vh; */
+            background-color: rgba(177, 177, 177, 0.5);
+        }
+        
+        .nav-btn--close {
+            position: absolute;
+            top: 2px;
+            left: 130px;
+            z-index: 2;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #a9a9a9;
+            transition: 0.3s;
+        }
+        
+        .nav-btn--close:hover {
+            color: #525252;
+        }
+        
+        .box-nav-respon .nav-menu-respon {
+            width: 160px;
+            background-color: rgb(17, 127, 134);
+            color: rgb(255, 255, 255);
+            position: absolute;
+            top: 0px;
+            left: 0;
+            bottom: -1000px;
+            z-index: 1;
+            padding-top: 40px;
+        }
+        /* Responsive */
+        
+        @media (max-width: 900px) {
+            .nav-btn--bar {
+                display: block;
+            }
+            .box-content,
+            .actions .box {
+                display: block;
+                width: 96%;
+                margin: 0 2%;
+            }
+            .content-income,
+            .box>div {
+                margin: 10px 0;
+                width: 100%;
+            }
+            #navigation {
+                display: none;
+            }
+            #main {
+                margin-left: 0px;
+            }
+            .enter-type input {
+                width: 95%;
+            }
+        }
+        
+        @media (max-width: 1023px) {
+            #main {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body ng-app="SanphamApp" ng-controller="SanphamCtrl">
+    <div id="header">
+        <div class="account">
+            <p>Xin chào <i class="fa-solid fa-caret-down"></i></p>
+            <ul class="manage-user">
+                <li><i class="fa-solid fa-user"></i> Tài khoản</li>
+                <li><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</li>
+            </ul>
+        </div>
+        <div class="menu-responsive">
+            <label for="nav-respon" class="nav-btn--bar">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <input type="checkbox" id="nav-respon">
+            <label for="nav-respon" class="overlay"></label>
+            <div class="box-nav-respon">
+                <label for="nav-respon" class="nav-btn--close">
+                    <i class="fa-solid fa-xmark"></i>
+                </label>
+                <ul class="list-menu nav-menu-respon">
+                    <a href="TongQuan.html">
+                        <li class="item-menu"><i class="fa-solid fa-tachograph-digital"></i> Tổng quan</li>
+                    </a>
+                    <a href="LoaiSanPham.html">
+                        <li class="item-menu"><i class="fa-solid fa-cubes-stacked"></i> Loại sản phẩm</li>
+                    </a>
+                    <a href="#">
+                        <li class="item-menu active-menu"><i class="fa-solid fa-bicycle"></i> Sản phẩm</li>
+                    </a>
+                    <a href="KhachHang.html">
+                        <li class="item-menu"><i class="fa-solid fa-people-line"></i> Khách hàng</li>
+                    </a>
+                    <a href="ThuongHieu.html">
+                        <li class="item-menu"><i class="fa-solid fa-user"></i> Thương hiệu</li>
+                    </a>
+                    <a href="ThietLap.html">
+                        <li class="item-menu"><i class="fa-solid fa-sliders"></i> Cài Đặt</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="navigation">
+        <ul class="list-menu">
+            <a href="TongQuan.html">
+                <li class="item-menu"><i class="fa-solid fa-tachograph-digital"></i> Tổng quan</li>
+            </a>
+            <a href="LoaiSanPham.html">
+                <li class="item-menu"><i class="fa-solid fa-cubes-stacked"></i> Loại sản phẩm</li>
+            </a>
+            <a href="#">
+                <li class="item-menu active-menu"><i class="fa-solid fa-bicycle"></i> Sản phẩm</li>
+            </a>
+            
+            <a href="KhachHang.html">
+                <li class="item-menu"><i class="fa-solid fa-people-line"></i> Khách hàng</li>
+            </a>
+            <a href="ThuongHieu.html">
+                <li class="item-menu"><i class="fa-solid fa-user"></i> Thương hiệu</li>
+            </a>
+            <a href="ThietLap.html">
+                <li class="item-menu"><i class="fa-solid fa-sliders"></i> Cài Đặt</li>
+            </a>
+        </ul>
+    </div>
+    <div id="main">
+        <div class="enter-information">
+            <h3 class="text-header">Nhập thông tin sản phẩm</h3>
+            <form action="" class="enter-information-product">
+                <label for="select-type-product">Danh mục</label>
+                <select ng-model="maDanhMuc" name="select-type-product" id="select-type-product">
+                    <option value="" class="item-type-product" disabled selected>--Chọn danh mục--</option>
+                    <option value="{{x.maDanhMuc}}" class="item-type-product" ng-repeat="x in listDanhMuc">{{x.tenDanhMuc}}</option>
+                </select>
+                <label for="producer">Thương hiệu</label>
+                <select ng-model="maThuongHieu" name="select-type-product" id="producer">
+                    <option value="" class="item-producer" disabled selected>--Chọn nhà cung cấp</option>
+                    <option value="{{x.maThuongHieu}}" class="item-producer" ng-repeat="x in listThuongHieu">{{x.tenThuongHieu}}</option>
+                    
+                </select>
+                <label for="enter-tensp" class="txttensp">Tên sản phẩm</label>
+                <input type="text" id="enter-tensp" ng-model="tenSP">
+                <label for="enter-masp" class="txt-mota">Mô tả</label>
+                <input type="text" id="enter-mota" ng-model="motaSP">
+                <label for="enter-img" class="txt-enterimg">Hình ảnh</label>
+                <input type="file" id="enter-img">
+                <label for="enter-quantity" class="txtquantity">Số lượng</label>
+                <input type="text" id="enter-quantity" ng-model="soLuongSP">
+                <label for="enter-price" class="txtprice">Giá bán</label>
+                <input type="text" id="enter-price" ng-model="giaSP">
+            </form>
+            <div class="btns">
+                <button class="add-type" ng-click="AddProduct()" type="button">Thêm sản phẩm</button>
+                <button class="add-new">Nhập mới</button>
+                <button class="reload-info">Cập nhật thông tin</button>
+            </div>
+        </div>
+        <div class="list-product">
+            <div class="header-list">
+                <h3 class="text-header"><i class="fa-solid fa-list-ul"></i> Danh sách loại sản phẩm</h3>
+                <button><i class="fa-solid fa-trash-can"></i>Xoá tất cả</button>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Nhập mã, tên sản phẩm muốn tìm...">
+                <button><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm</button>
+            </div>
+            <table class="table-list-product">
+                <thead>
+                    <tr>
+                        <th>
+                            <!-- <input type="checkbox" name="check" id="chk-type-product"> -->
+                        </th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Số lượng</th>
+                        <th>Giá bán</th>
+                        <th>Ngày tạo
+                        <th>Thương hiệu</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in listSanPham">
+                        <td class="check-product">
+                            <input type="checkbox" name="check" id="chk-type-product">
+                        </td>
+                        <td class="col-masp">{{x.maSanPham}}</td>
+                        <td class="col-tensp">{{x.tenSanPham}}</td>
+                        <td class="col-img"><img src="../images/act1kc.jpg" alt=""></td>
+                        <td class="col-quantity">{{x.soLuong}}</td>
+                        <td class="col-price">{{x.giaTien}}</td>
+                        <td class="col-type">{{x.ngayTao}}</td>
+                        <td class="col-producer">{{x.tenThuongHieu}}</td>
+                        <td class="col-thaotac"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="quantity">
+                <div class="total-quantity">
+                    <p>Số lượng sản phẩm: </p>
+                    <small style="padding-top: 0px;margin-left: 6px;font-size: 1.1rem; color: #e76800;">1</small>
+                </div>
+                <div class="page">
+                    <button><i class="fa-solid fa-angles-left"></i></button>
+                    <button><i class="fa-solid fa-angle-left"></i></button>
+                    <button>1</i></button>
+                    <button>2</i></button>
+                    <button><i class="fa-solid fa-angle-right"></i></button>
+                    <button><i class="fa-solid fa-angles-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            window.location.href = 'Login.html';
+        }
+
+        function LogOut() {
+            localStorage.setItem('user', null);
+            window.location.href = "./login.html";
+        }
+    </script>
+
+    <script src="../js/global.js"></script>
+    <script src="../js/SanPham.js"></script>
+</body>
+
+</html>

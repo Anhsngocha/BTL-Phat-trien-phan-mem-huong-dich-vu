@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/ajax.googleapis.com_ajax_libs_jquery_3.6.4_jquery.min.js"></script>
+    <script src="../js/ajax.googleapis.com_ajax_libs_angularjs_1.6.9_angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>Ha-Na Sneaker - Danh mục</title>
+    <link rel="stylesheet" href="../font/fontawesome-free-6.1.1-web/css/all.min.css">
+    
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                position: absolute;
+                top: 150%;
+            }
+            to {
+                opacity: 1;
+                position: absolute;
+                top: 100%;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* header */
+        
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #007579;
+            color: #fff;
+        }
+        
+        .account {
+            float: right;
+            height: 100%;
+            width: 100px;
+            border-left: 1px solid #ccc;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .account p {
+            padding-top: 14px;
+        }
+        
+        .manage-user {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #007579;
+            width: 150px;
+            animation: fadeIn ease 0.5s;
+            list-style: none;
+        }
+        
+        .account:hover .manage-user {
+            display: block;
+        }
+        
+        .manage-user li:hover {
+            background-color: #005457;
+        }
+        
+        .manage-user li {
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            transition: 0.5s;
+        }
+        /* navigation */
+        
+        #navigation {
+            width: 135px;
+            height: 100%;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            background-color: #ccc;
+        }
+        
+        .active-menu {
+            background-color: #aaa;
+            border-right: 5px solid rgb(132, 0, 172);
+        }
+        
+        .list-menu a {
+            text-decoration: none;
+        }
+        
+        .item-menu {
+            color: #333;
+            width: 100%;
+            padding: 20px 8px;
+            list-style-type: none;
+            transition: 0.3s;
+            border-right: 0;
+        }
+        
+        .item-menu:hover {
+            background-color: #aaa;
+            border-right: 5px solid rgb(132, 0, 172);
+        }
+        /* Content */
+        
+        #main {
+            margin-top: 50px;
+            margin-left: 135px;
+            display: flex;
+            padding: 0 12px;
+        }
+        
+        .input-info-type-product {
+            flex: 3;
+        }
+        
+        .text-header {
+            margin: 12px 0 30px;
+            color: #007579;
+            border-bottom: 2px solid #007579;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .enter-type label {
+            margin-top: 16px;
+        }
+        
+        .enter-type input {
+            width: 90%;
+            margin: 10px 0 20px;
+            padding: 6px;
+            display: block;
+            outline: none;
+            border: 1px solid #ccc;
+        }
+        
+        .enter-type button {
+            padding: 12px 5%;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin: 0 4px;
+            transition: 0.2s;
+        }
+        
+        .btns {
+            border-top: 1px solid #333;
+            width: 90%;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btns button {
+            padding: 12px 5%;
+            margin-left: 6px;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            opacity: 0.8;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btns button:hover {
+            opacity: 1;
+        }
+        
+        .btns button:first-child {
+            margin: 0;
+            background-color: #e72300;
+            color: #fff;
+        }
+        
+        .add-new {
+            background-color: rgba(4, 139, 11);
+            color: #fff;
+        }
+        
+        .reload-info {
+            background-color: rgb(16, 108, 214);
+            color: #fff;
+        }
+        
+        .list-type-product {
+            flex: 5;
+        }
+        
+        .header-list button {
+            padding: 8px;
+            float: right;
+            margin: 16px 8px;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background-color: rgba(0, 117, 121, 0.6);
+            color: #fff;
+            transition: 0.3s;
+        }
+        
+        .header-list button i {
+            margin-right: 4px;
+        }
+        
+        .header-list button:hover {
+            background-color: rgb(0, 117, 121);
+        }
+        
+        .search {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .search input {
+            width: 82%;
+            padding: 8px;
+        }
+        
+        .search button {
+            width: 17%;
+            border: none;
+            outline: none;
+            background-color: rgb(0, 117, 121);
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .search button i {
+            margin-right: 4px;
+        }
+        
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        
+        table th {
+            border-top: 1px solid #555;
+            border-left: 1px solid #555;
+            border-bottom: 1px solid #555;
+            padding: 8px 0;
+        }
+        
+        table th:last-child {
+            border-right: 1px solid #555;
+        }
+        
+        table td {
+            padding: 4px;
+            border-left: 1px solid #555;
+            border-bottom: 1px solid #555;
+        }
+        
+        table td:last-child {
+            border-right: 1px solid #555;
+        }
+        
+        td i {
+            color: #005457;
+            padding: 0 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        td i:hover {
+            color: #f05151;
+        }
+        
+        .quantity {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            height: 70px;
+            background-color: #d2eef1;
+            color: black;
+        }
+        
+        .total-quantity {
+            display: flex;
+            font-family: sans-serif;
+        }
+        
+        .page {
+            margin-right: 14px;
+        }
+        
+        .page button {
+            width: 25px;
+            height: 25px;
+            background-color: rgba(43, 43, 223, 0.7);
+            border-radius: 4px;
+            color: #fff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .page i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .page button:hover {
+            background-color: rgb(23, 23, 230);
+        }
+        /* Responsive - menu */
+        
+        .nav-btn--bar {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            font-size: 1.5rem;
+            display: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .nav-btn--bar:hover {
+            color: #92d39a;
+        }
+        
+        #nav-respon,
+        .overlay,
+        .box-nav-respon {
+            display: none;
+        }
+        
+        #nav-respon:checked~.overlay,
+        #nav-respon:checked~.box-nav-respon {
+            display: block;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: -1000px;
+            /* width: 100vw;
+            height: 100vh; */
+            background-color: rgba(177, 177, 177, 0.5);
+        }
+        
+        .nav-btn--close {
+            position: absolute;
+            top: 2px;
+            left: 130px;
+            z-index: 2;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #a9a9a9;
+            transition: 0.3s;
+        }
+        
+        .nav-btn--close:hover {
+            color: #525252;
+        }
+        
+        .box-nav-respon .nav-menu-respon {
+            width: 160px;
+            background-color: rgb(17, 127, 134);
+            color: rgb(255, 255, 255);
+            position: absolute;
+            top: 0px;
+            left: 0;
+            bottom: -1000px;
+            z-index: 1;
+            padding-top: 40px;
+        }
+        /* Responsive */
+        
+        @media (max-width: 900px) {
+            .nav-btn--bar {
+                display: block;
+            }
+            .box-content,
+            .actions .box {
+                display: block;
+                width: 96%;
+                margin: 0 2%;
+            }
+            .content-income,
+            .box>div {
+                margin: 10px 0;
+                width: 100%;
+            }
+            #navigation {
+                display: none;
+            }
+            #main {
+                margin-left: 0px;
+            }
+            .enter-type input {
+                width: 95%;
+            }
+        }
+        
+        @media (max-width: 1023px) {
+            #main {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+
+</head>
+
+<body ng-app="DanhmucApp" ng-controller="DanhmucCtrl">
+    <div id="header">
+        <div class="account">
+            <p>Xin chào <i class="fa-solid fa-caret-down"></i></p>
+            <ul class="manage-user">
+                <li><i class="fa-solid fa-user"></i> Tài khoản</li>
+                <li onclick="LogOut()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</li>
+            </ul>
+        </div>
+        <div class="menu-responsive">
+            <label for="nav-respon" class="nav-btn--bar">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <input type="checkbox" id="nav-respon">
+            <label for="nav-respon" class="overlay"></label>
+            <div class="box-nav-respon">
+                <label for="nav-respon" class="nav-btn--close">
+                    <i class="fa-solid fa-xmark"></i>
+                </label>
+                <ul class="list-menu nav-menu-respon">
+                    <a href="#">
+                        <li class="item-menu"><i class="fa-solid fa-tachograph-digital"></i> Tổng quan</li>
+                    </a>
+                    <a href="LoaiSanPham.html">
+                        <li class="item-menu active-menu"><i class="fa-solid fa-cubes-stacked"></i> Loại sản phẩm</li>
+                    </a>
+                    <a href="SanPham.html">
+                        <li class="item-menu"><i class="fa-solid fa-bicycle"></i> Sản phẩm</li>
+                    </a>
+                    
+                    <a href="KhachHang.html">
+                        <li class="item-menu"><i class="fa-solid fa-people-line"></i> Khách hàng</li>
+                    </a>
+                    <a href="./ThuongHieu.html">
+                        <li class="item-menu"><i class="fa-solid fa-user"></i> Thương hiệu</li>
+                    </a>
+                    <a href="ThietLap.html">
+                        <li class="item-menu"><i class="fa-solid fa-sliders"></i> Cài Đặt</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="navigation">
+        <ul class="list-menu">
+            <a href="TongQuan.html">
+                <li class="item-menu"><i class="fa-solid fa-tachograph-digital"></i> Tổng quan</li>
+            </a>
+            <a href="LoaiSanPham.html">
+                <li class="item-menu active-menu"><i class="fa-solid fa-cubes-stacked"></i> Loại sản phẩm</li>
+            </a>
+            <a href="SanPham.html">
+                <li class="item-menu"><i class="fa-solid fa-bicycle"></i> Sản phẩm</li>
+            </a>
+            
+            <a href="KhachHang.html">
+                <li class="item-menu"><i class="fa-solid fa-people-line"></i> Khách hàng</li>
+            </a>
+            <a href="ThuongHieu.html">
+                <li class="item-menu"><i class="fa-solid fa-user"></i> Thương hiệu</li>
+            </a>
+            <a href="ThietLap.html">
+                <li class="item-menu"><i class="fa-solid fa-sliders"></i> Cài Đặt</li>
+            </a>
+        </ul>
+    </div>
+    <div id="main">
+        <div class="input-info-type-product">
+            <h3 class="text-header"><i class="fa-solid fa-boxes-stacked"></i> Nhập thông tin loại sản phẩm</h3>
+            <form action="" class="enter-type">
+                <!-- <label for="txt-masp">Mã loại sản phẩm</label>
+                <input type="text" id="txt-masp" placeholder="Nhập mã loại sản phẩm..."> -->
+                <label for="txt-tensp">Tên loại sản phẩm</label>
+                <input type="text" id="txt-tensp" placeholder="Nhập tên loại sản phẩm...">
+            </form>
+            <div class="btns">
+                <button class="add-type" onclick="addTypeProduct()">Thêm loại sản phẩm</button>
+                <button class="add-new" onclick="NhapMoi()">Nhập mới</button>
+                <button class="reload-info" onclick="CapNhat()">Cập nhật thông tin</button>
+            </div>
+        </div>
+        <div class="list-type-product">
+            <div class="header-list">
+                <h3 class="text-header"><i class="fa-solid fa-list-ul"></i> Danh sách loại sản phẩm</h3>
+                <button><i class="fa-solid fa-trash-can"></i>Xoá tất cả</button>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Nhập mã, tên loại sản phẩm muốn tìm...">
+                <button><i class="fa-solid fa-magnifying-glass"></i>Tìm kiếm</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="check" id="chk-type-product">
+                        </th>
+                        <th>Mã loại sản phẩm</th>
+                        <th>Tên loại sản phẩm</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="listTypeProduct">
+                    <tr ng-repeat="x in listDistributor">
+                        <td>
+                            <input type="checkbox" name="check" id="chk-type-product">
+                        </td>
+                        <td>{{x.maDanhMuc}}</td>
+                        <td>{{x.tenDanhMuc}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="quantity">
+                <div class="total-quantity">
+                    <p>Số lượng loại sản phẩm: </p>
+                    <small id="soluong" style="padding-top: 0px;margin-left: 6px;font-size: 1.1rem; color: #e76800;">0</small>
+                </div>
+                <div class="page">
+                    <button><i class="fa-solid fa-angles-left"></i></button>
+                    <button><i class="fa-solid fa-angle-left"></i></button>
+                    <button>1</i></button>
+                    <button>2</i></button>
+                    <button><i class="fa-solid fa-angle-right"></i></button>
+                    <button><i class="fa-solid fa-angles-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // var user = JSON.parse(localStorage.getItem('user'));
+        // if (!user) {
+        //     window.location.href = 'Login.html';
+        // }
+
+        // function LogOut() {
+        //     localStorage.setItem('user', null);
+        //     window.location.href = " login.html";
+        // }
+        // var list = JSON.parse(localStorage.getItem('typeProduct')) || [];
+
+        // function NhapMoi() {
+        //     document.getElementById('txt-masp').value = '';
+        //     document.getElementById('txt-tensp').value = '';
+        // }
+
+        // function addTypeProduct() {
+        //     var number = /^[0-9]+$/;
+        //     var masp = document.getElementById('txt-masp').value;
+        //     var tensp = document.getElementById('txt-tensp').value;
+
+        //     if (masp == null || masp == "") {
+        //         alert("Mã loại sản phẩm không được để trống! Vui lòng nhập lại!");
+        //         return false;
+        //     } else if (!masp.match(number) || masp.length < 6) {
+        //         alert("Mã loại phải là kiểu số và có độ dài lớn hơn hoặc bằng 6 ký tự! Vui lòng nhập lại!");
+        //         return false;
+        //     } else if (tensp == null || tensp == "") {
+        //         alert("Tên loại sản phẩm không được để trống! Vui lòng nhập lại!");
+        //         return false;
+        //     }
+        //     if (list == null) list = [];
+        //     var typeProduct = {
+        //         "masp": masp,
+        //         "tensp": tensp
+        //     }
+        //     list.push(typeProduct);
+        //     localStorage.setItem("typeProduct", JSON.stringify(list));
+        //     alert("Đã thêm thành công!");
+        //     location.reload();
+        // }
+
+        // function LoadData() {
+        //     var str = "";
+        //     var index = 0;
+        //     list.sort();
+        //     for (x of list) {
+        //         index++;
+        //         str += `<tr>
+        //             <td>
+        //                 <input type = "checkbox" name = "check" id = "chk-type-product">
+        //             </td>
+        //             <td> ` + x.masp + `</td>
+        //             <td> ` + x.tensp + `</td>
+        //             <td><i class="fa-solid fa-pen-to-square"  onclick="SuaLoaiSanPham(` + x.masp + `)"></i><i class="fa-solid fa-trash-can" onclick="XoaLoaiSanPham(` + x.masp + `)"></i></td>
+        //         </tr>
+        //         `;
+        //     }
+        //     document.getElementById('listTypeProduct').innerHTML = str;
+        //     document.getElementById('soluong').innerText = index;
+        // }
+        // LoadData();
+
+        // function XoaLoaiSanPham(maloai) {
+        //     if (confirm("Bạn chắc chắn muốn xoá!")) {
+        //         var index = list.findIndex(x => x.masp == maloai)
+        //         if (index >= 0) {
+        //             list.splice(index, 1);
+        //         }
+        //         LoadData();
+        //         localStorage.setItem('typeProduct', JSON.stringify(list));
+        //     }
+        // }
+
+        // function SuaLoaiSanPham(maloai) {
+        //     for (x of list) {
+        //         if (x.masp == maloai) {
+        //             document.getElementById('txt-masp').value = x.masp;
+        //             document.getElementById('txt-tensp').value = x.tensp;
+        //         }
+        //     }
+        // }
+
+        // function CapNhat() {
+        //     var masp = document.getElementById('txt-masp').value;
+        //     var tensp = document.getElementById('txt-tensp').value;
+        //     var ok = true;
+        //     if (tensp == null || tensp == "") {
+        //         alert("Tên loại sản phẩm không được để trống!!! Vui lòng nhập lại!");
+        //         return false;
+        //     }
+
+        //     for (x of list) {
+        //         if (x.masp == masp) {
+        //             x.tensp = tensp;
+        //             ok = false;
+        //             break;
+        //         }
+        //     }
+        //     if (ok == false) {
+        //         alert("Cập nhật thông tin thành công!");
+        //         localStorage.setItem("typeProduct", JSON.stringify(list));
+        //         location.reload();
+        //     } else {
+        //         alert("Cập nhật thông tin không thành công")
+        //     }
+        // }
+
+        var userAcc = JSON.parse(localStorage.getItem('user'))
+        if(!userAcc){
+            window.location.href='./Login.html'
+        }
+
+        function LogOut() {
+            localStorage.setItem('user', null);
+            window.location.href = "./Login.html";
+        }
+    </script>
+
+    <script src="../js/global.js"></script>
+    <script src="../js/Danhmuc.js"></script>
+</body>
+
+</html>

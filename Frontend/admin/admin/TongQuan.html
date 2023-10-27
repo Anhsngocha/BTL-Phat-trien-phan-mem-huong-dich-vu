@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý cửa hàng trang sức - Tổng quan</title>
+    <link rel="stylesheet" href="../font/fontawesome-free-6.1.1-web/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                position: absolute;
+                top: 150%;
+            }
+            to {
+                opacity: 1;
+                position: absolute;
+                top: 100%;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* header */
+        
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 50px;
+            background-color: rgb(0, 117, 121);
+            color: #fff;
+        }
+        
+        .account {
+            float: right;
+            height: 100%;
+            width: 100px;
+            border-left: 1px solid #ccc;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .account p {
+            padding-top: 14px;
+        }
+        
+        .manage-user {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: rgb(0, 117, 121);
+            width: 150px;
+            animation: fadeIn ease 0.5s;
+            list-style: none;
+        }
+        
+        .account:hover .manage-user {
+            display: block;
+        }
+        
+        .manage-user li:hover {
+            background-color: rgb(0, 84, 87);
+        }
+        
+        .manage-user li {
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            transition: 0.5s;
+        }
+        /* navigation */
+        
+        #navigation {
+            /* margin-top: 50px; */
+            width: 135px;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            background-color: #ccc;
+        }
+        
+        .list-menu a {
+            text-decoration: none;
+        }
+        
+        .item-menu {
+            color: #333;
+            width: 100%;
+            padding: 20px 8px;
+            list-style-type: none;
+            transition: 0.3s;
+            border-right: 0;
+        }
+        
+        .item-menu:hover {
+            background-color: #aaa;
+            border-right: 5px solid rgb(132, 0, 172);
+        }
+        
+        .active-menu {
+            background-color: #aaa;
+            border-right: 5px solid rgb(132, 0, 172);
+        }
+        /* Content */
+        
+        #wrapper {
+            width: 100%;
+            margin-top: 50px;
+            margin-right: 135px;
+            background-color: rgba(245, 245, 245, 0.4);
+        }
+        
+        #main {
+            margin-left: 135px;
+        }
+        
+        .box {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        
+        .box>div {
+            width: 31%;
+        }
+        
+        .header-content {
+            padding: 8px 16px;
+            border-bottom: 3px solid #345;
+            width: 100%;
+            color: rgb(0, 150, 170);
+            margin-bottom: 24px;
+        }
+        
+        .bills .head-income {
+            background-color: rgb(9, 13, 226);
+        }
+        
+        .bills .content-income {
+            border: 1px solid rgb(9, 13, 226);
+        }
+        
+        .bills .content-income .act-income {
+            border-bottom: 1px solid rgb(9, 13, 226);
+        }
+        
+        .head-income {
+            width: 100%;
+            height: 70px;
+            background-color: yellowgreen;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .head-income i {
+            padding: 0 16px;
+        }
+        
+        .content-income {
+            margin-top: 20px;
+            width: 31%;
+            border: 1px solid #345;
+            border-radius: 10px;
+        }
+        
+        .box-content {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        
+        .act-income {
+            border-bottom: 1px solid #345;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .content-income div+div {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 10px;
+        }
+        
+        .bills-return .head-income {
+            background-color: rgb(248, 23, 23);
+        }
+        
+        .bills-return .content-income {
+            border: 1px solid rgb(248, 23, 23);
+        }
+        
+        .bills-return .content-income .act-income {
+            border-bottom: 1px solid rgb(248, 23, 23);
+        }
+        /* Responsive - menu */
+        
+        .nav-btn--bar {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            font-size: 1.5rem;
+            display: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .nav-btn--bar:hover {
+            color: #92d39a;
+        }
+        
+        #nav-respon,
+        .overlay,
+        .box-nav-respon {
+            display: none;
+        }
+        
+        #nav-respon:checked~.overlay,
+        #nav-respon:checked~.box-nav-respon {
+            display: block;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: -1000px;
+            /* width: 100vw;
+            height: 100vh; */
+            background-color: rgba(177, 177, 177, 0.5);
+        }
+        
+        .nav-btn--close {
+            position: absolute;
+            top: 2px;
+            left: 130px;
+            z-index: 2;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #a9a9a9;
+            transition: 0.3s;
+        }
+        
+        .nav-btn--close:hover {
+            color: #525252;
+        }
+        
+        .box-nav-respon .nav-menu-respon {
+            width: 160px;
+            background-color: rgb(17, 127, 134);
+            color: rgb(255, 255, 255);
+            position: absolute;
+            top: 0px;
+            left: 0;
+            bottom: -1000px;
+            z-index: 1;
+            padding-top: 40px;
+        }
+        /* Responsive */
+        
+        @media (max-width: 900px) {
+            .nav-btn--bar {
+                display: block;
+            }
+            .box-content,
+            .actions .box {
+                display: block;
+                width: 96%;
+                margin: 0 2%;
+            }
+            .content-income,
+            .box>div {
+                margin: 10px 0;
+                width: 100%;
+            }
+            #navigation {
+                display: none;
+            }
+            #main {
+                margin-left: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div class="account">
+            <p>Xin chào <i class="fa-solid fa-caret-down"></i></p>
+            <ul class="manage-user">
+                <li><i class="fa-solid fa-user"></i> Tài khoản</li>
+                <li onclick="LogOut()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</li>
+            </ul>
+        </div>
+        <div class="menu-responsive">
+            <label for="nav-respon" class="nav-btn--bar">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <input type="checkbox" id="nav-respon">
+            <label for="nav-respon" class="overlay"></label>
+            <div class="box-nav-respon">
+                <label for="nav-respon" class="nav-btn--close">
+                    <i class="fa-solid fa-xmark"></i>
+                </label>
+                <ul class="list-menu nav-menu-respon">
+                    <a href="#">
+                        <li class="item-menu active-menu"><i class="fa-solid fa-tachograph-digital"></i> Tổng quan</li>
+                    </a>
+                    <a href="LoaiSanPham.html">
+                        <li class="item-menu"><i class="fa-solid fa-cubes-stacked"></i> Loại sản phẩm</li>
+                    </a>
+                    <a href="SanPham.html">
+                        <li class="item-menu"><i class="fa-solid fa-bicycle"></i> Sản phẩm</li>
+                    </a>
+                    
+                    <a href="KhachHang.html">
+                        <li class="item-menu"><i class="fa-solid fa-people-line"></i> Khách hàng</li>
+                    </a>
+                    <a href="ThuongHieu.html">
+                        <li class="item-menu"><i class="fa-solid fa-user"></i> Thương Hiệu</li>
+                    </a>
+
+                    <a href="ThietLap.html">
+                        <li class="item-menu"><i class="fa-solid fa-sliders"></i> Cài Đặt</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="navigation">
+        <ul class="list-menu">
+            <a href="#">
+                <li class="item-menu active-menu"><i class="fa-solid fa-tachograph-digital"></i> Tổng quan</li>
+            </a>
+            <a href="LoaiSanPham.html">
+                <li class="item-menu"><i class="fa-solid fa-cubes-stacked"></i> Loại sản phẩm</li>
+            </a>
+            <a href="SanPham.html">
+                <li class="item-menu"><i class="fa-solid fa-bicycle"></i> Sản phẩm</li>
+            </a>
+            
+            <a href="KhachHang.html">
+                <li class="item-menu"><i class="fa-solid fa-people-line"></i> Khách hàng</li>
+            </a>
+            <a href="ThuongHieu.html">
+                <li class="item-menu"><i class="fa-solid fa-user"></i> Thương hiệu</li>
+            </a>
+            <a href="ThietLap.html">
+                <li class="item-menu"><i class="fa-solid fa-sliders"></i> Cài Đặt</li>
+            </a>
+        </ul>
+    </div>
+    <div id="wrapper">
+        <div id="main">
+            <h2 class="header-content">Hoạt động hôm nay</h2>
+            <div class="actions">
+                <div class="box">
+                    <div class="income">
+                        <div class="head-income">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <div>
+                                <p class="head-act text-income">Tiền bán hàng</p>
+                                <small class="money-act money-income">0đ</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bills">
+                        <div class="head-income">
+                            <i class="fa-solid fa-cloud"></i>
+                            <div>
+                                <p class="head-act text-income">Số đơn hàng</p>
+                                <small class="money-act money-income">0đ</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bills-return">
+                        <div class="head-income">
+                            <i class="fa-solid fa-arrow-rotate-right"></i>
+                            <div>
+                                <p class="head-act text-income">Số đơn hàng hoàn trả</p>
+                                <small class="money-act money-income">0đ</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div class="content-income">
+                        <div class="act-income"><i class="fa-solid fa-arrow-trend-up"></i> Hoạt động</div>
+                        <div>
+                            <p class="item-act-income">Tiền bán hàng</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Số đơn hàng</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Số sản phẩm</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Khách trả hàng</p>
+                            <small>0đ</small>
+                        </div>
+                    </div>
+
+
+                    <div class="content-income">
+                        <div class="act-income"><i class="fa-solid fa-boxes-stacked"></i> Thông tin kho</div>
+                        <div>
+                            <p class="item-act-income">Tồn kho</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Hết hàng</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Sắp hết hàng</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Vượt định mức</p>
+                            <small>0đ</small>
+                        </div>
+                    </div>
+
+
+                    <div class="content-income">
+                        <div class="act-income"><i class="fa-solid fa-arrow-trend-up"></i> Thông tin sản phẩm</div>
+                        <div>
+                            <p class="item-act-income">Sản phẩm</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Hàng chưa làm giá bán</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Hàng chưa nhập giá mua</p>
+                            <small>0đ</small>
+                        </div>
+                        <div>
+                            <p class="item-act-income">Hàng chưa phân loạig</p>
+                            <small>0đ</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var userAcc = JSON.parse(localStorage.getItem('user'))
+        if(!userAcc){
+            window.location.href='./Login.html'
+        }
+
+        function LogOut() {
+            localStorage.setItem('user', null);
+            window.location.href = "./Login.html";
+        }
+    </script>
+</body>
+
+</html>

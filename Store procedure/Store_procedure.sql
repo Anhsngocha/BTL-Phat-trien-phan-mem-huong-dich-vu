@@ -15,7 +15,10 @@ go
 create proc sp_get_all_sanpham
 as
 begin
-	select * from SanPham
+	select sp.MaSanPham, sp.TenSanPham, sp.GiaTien, sp.LinkAnh, sp.MoTa, sp.SoLuong, sp.DaBan, dm.TenDanhMuc, th.TenThuongHieu, NgayTao, NgayCapNhat
+	from SanPham sp
+	inner join ThuongHieu th on sp.MaThuongHieu = th.MaThuongHieu
+	inner join DanhMuc dm on sp.MaDanhMuc = dm.MaDanhMuc
 end
 go
 
