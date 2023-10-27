@@ -9,6 +9,8 @@ namespace BusinessLogicLayer
 {
     public partial interface IThuongHieuBusiness
     {
+        ThuongHieuModel GetSanPhamByThuongHieu(string name);
+
         List<ThuongHieuModel> GetAllThuongHieu();
         bool Create(ThuongHieuModel model);
         bool Update(ThuongHieuModel model);

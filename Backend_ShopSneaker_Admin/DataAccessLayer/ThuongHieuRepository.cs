@@ -11,6 +11,23 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+        public ThuongHieuModel GetSanPhamByThuongHieu(string name)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_sanpham_by_thuonghieu",
+                     "@TenThuongHieu", name);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<ThuongHieuModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<ThuongHieuModel> GetAllThuongHieu()
         {
             string msgError = "";

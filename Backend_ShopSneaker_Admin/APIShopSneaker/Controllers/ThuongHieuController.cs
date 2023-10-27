@@ -15,6 +15,13 @@ namespace Api.BTL.Controllers
             _thuongHieuBusiness = thuongHieuBusiness;
         }
 
+        [Route("get-sp-by-thuonghieu/{name}")]
+        [HttpGet]
+        public ThuongHieuModel GetSanPhamByThuongHieu(string name)
+        {
+            return _thuongHieuBusiness.GetSanPhamByThuongHieu(name);
+        }
+
 
         [Route("get-all")]
         [HttpGet]

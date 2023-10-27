@@ -18,6 +18,11 @@ namespace BusinessLogicLayer
             return _res.GetDanhMucByID(id);
         }
 
+        public DanhMucModel GetSanPhamByDanhMuc(string name)
+        {
+            return _res.GetSanPhamByDanhMuc(name);
+        }
+
         public List<DanhMucModel> GetAllDanhMuc()
         {
             return _res.GetAllDanhMuc();

@@ -9,6 +9,7 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IThuongHieuRepository
     {
+        ThuongHieuModel GetSanPhamByThuongHieu(string name);
         List<ThuongHieuModel> GetAllThuongHieu();
         bool Create(ThuongHieuModel model);
         bool Update(ThuongHieuModel model);

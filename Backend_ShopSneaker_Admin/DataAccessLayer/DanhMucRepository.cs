@@ -28,6 +28,23 @@ namespace DataAccessLayer
             }
         }
 
+        public DanhMucModel GetSanPhamByDanhMuc(string name)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_sanpham_by_danhmuc",
+                     "@TenDanhMuc", name);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<DanhMucModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<DanhMucModel> GetAllDanhMuc()
         {
             string msgError = "";

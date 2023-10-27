@@ -22,6 +22,13 @@ namespace Api.BTL.Controllers
             return _danhMucBusiness.GetDanhMucByID(id);
         }
 
+        [Route("get-sp-by-danhmuc/{name}")]
+        [HttpGet]
+        public DanhMucModel GetSanPhamByDanhMuc(string name)
+        {
+            return _danhMucBusiness.GetSanPhamByDanhMuc(name);
+        }
+
         [Route("get-all")]
         [HttpGet]
         public List<DanhMucModel> GetAllDanhMuc()

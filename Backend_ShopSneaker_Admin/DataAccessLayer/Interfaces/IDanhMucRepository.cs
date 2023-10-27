@@ -11,6 +11,8 @@ namespace DataAccessLayer.Interfaces
     {
         DanhMucModel GetDanhMucByID(string id);
 
+        DanhMucModel GetSanPhamByDanhMuc(string name);
+
         List<DanhMucModel> GetAllDanhMuc();
         bool Create(DanhMucModel model);
         bool Update(DanhMucModel model);

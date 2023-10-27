@@ -13,6 +13,11 @@ namespace BusinessLogicLayer
             _res = res;
         }
 
+        public ThuongHieuModel GetSanPhamByThuongHieu(string name)
+        {
+            return _res.GetSanPhamByThuongHieu(name);
+        }
+
         public List<ThuongHieuModel> GetAllThuongHieu()
         {
             return _res.GetAllThuongHieu();

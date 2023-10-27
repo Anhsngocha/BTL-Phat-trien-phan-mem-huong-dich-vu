@@ -22,6 +22,43 @@ begin
 end
 go
 
+
+--lấy sản phẩm theo danh mục
+create proc sp_get_sanpham_by_danhmuc
+(
+	@TenDanhMuc nvarchar(350)
+)
+as
+begin
+	SELECT dm.*, 
+        (
+            SELECT sp.*
+            FROM SanPham AS sp
+            WHERE dm.MaDanhMuc = sp.MaDanhMuc FOR JSON PATH
+        ) AS list_json_sanpham_by_danhmuc
+        FROM DanhMuc AS dm
+        WHERE  dm.TenDanhMuc = @TenDanhMuc;
+end
+go
+
+--lấy sản phẩm theo thương hiệu
+create proc sp_get_sanpham_by_thuonghieu
+(
+	@TenThuongHieu nvarchar(100)
+)
+as
+begin
+	SELECT th.*, 
+        (
+            SELECT sp.*
+            FROM SanPham AS sp
+            WHERE th.MaThuongHieu = sp.MaThuongHieu FOR JSON PATH
+        ) AS list_json_sanpham_by_thuonghieu
+        FROM ThuongHieu AS th
+        WHERE  th.TenThuongHieu = @TenThuongHieu;
+end
+go
+
 --thêm sản phẩm
 create proc sp_them_sanpham
 (
