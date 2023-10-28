@@ -39,24 +39,6 @@ namespace Api.BTL.Controllers
             return model;
         }
 
-        [Route("update-khachhang")]
-        [HttpPost]
-        public KhachHangModel UpdateKhachHang([FromBody] KhachHangModel model)
-        {
-            _khachHangBusiness.Update(model);
-            return model;
-        }
-
-        [Route("delete-khachhang")]
-        [HttpPost]
-        public IActionResult DeleteKhachHang([FromBody] Dictionary<string, object> formData)
-        {
-            string MaKhachHang = "";
-            if (formData.Keys.Contains("MaKhachHang") && !string.IsNullOrEmpty(Convert.ToString(formData["MaKhachHang"]))) { MaKhachHang = Convert.ToString(formData["MaKhachHang"]); }
-            _khachHangBusiness.Delete(MaKhachHang);
-            return Ok();
-        }
-
 
         [Route("search")]
         [HttpPost]

@@ -6,11 +6,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="./js/ajax.googleapis.com_ajax_libs_angularjs_1.6.9_angular.min.js"></script>
+    <script src="./js/ajax.googleapis.com_ajax_libs_jquery_3.6.4_jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
-<body>
+<body ng-app="SanPhamApp" ng-controller="SanPhamCtrl">
     <header>
         <nav class="nav">
             <a href="" class="nav-logo">
@@ -112,7 +114,7 @@
                 <h2>New Product</h2>
             </div>
             <div class="product-container">
-                <div class="product-item">
+                <div ng-repeat="x in listSanPham" class="product-item">
                     <div class="product-img">
                         <img src="./img/product/product1.jpg" alt="" id="product-img-id">
                         <div class="sale-icon">
@@ -123,7 +125,7 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <a href="" class="product-title" id="product-title-id">Nike Air Force 1</a>
+                        <a href="" class="product-title" id="product-title-id">{{x.tenSanPham}}</a>
                         <div class="product-rating">
                             <ul class="rating-star">
                                 <li><i class="fa-solid fa-star"></i></li>
@@ -134,243 +136,73 @@
                             </ul>
 
                             <div class="rating-sold">
-                                <p>Đã bán 100</p>
+                                <p>{{x.daBan}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="product-price">
-                        <p class="products-sale" id="product-sale-id">800.000đ</p>
-                        <p class="products-cost" id="product-cost-id">1.500.000đ</p>
+                        <p class="products-sale" id="product-sale-id">{{x.giaTien}}</p>
+                        <p class="products-cost" id="product-cost-id"></p>
                     </div>
                 </div>
 
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="./img/product/product2.jpg" alt="" id="product-img-id">
-                        <div class="sale-icon">
-                            <span>-68%</span>
-                        </div>
-                        <div class="cart-button">
-                            <button class="add-btn">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <a href="" class="product-title" id="product-title-id">Converse Chuck Taylor All Star</a>
-                        <div class="product-rating">
-                            <ul class="rating-star">
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                            </ul>
-
-                            <div class="rating-sold">
-                                <p>Đã bán 100</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <p class="products-sale" id="product-sale-id">700.000đ</p>
-                        <p class="products-cost" id="product-cost-id">1.500.000đ</p>
-                    </div>
-                </div>
-
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="./img/product/product3.jpg" alt="" id="product-img-id">
-                        <div class="sale-icon">
-                            <span>-45%</span>
-                        </div>
-                        <div class="cart-button">
-                            <button class="add-btn">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <a href="" class="product-title" id="product-title-id">Nike Air More Uptempo</a>
-                        <div class="product-rating">
-                            <ul class="rating-star">
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                            </ul>
-
-                            <div class="rating-sold">
-                                <p>Đã bán 200</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <p class="products-sale" id="product-sale-id">1.000.000đ</p>
-                        <p class="products-cost" id="product-cost-id">2.500.000đ</p>
-                    </div>
-                </div>
-
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="./img/product/product4.jpg" alt="" id="product-img-id">
-                        <div class="sale-icon">
-                            <span>-60%</span>
-                        </div>
-                        <div class="cart-button">
-                            <button class="add-btn">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <a href="" class="product-title" id="product-title-id">Jordan 11</a>
-                        <div class="product-rating">
-                            <ul class="rating-star">
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                            </ul>
-
-                            <div class="rating-sold">
-                                <p>Đã bán 500</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <p class="products-sale" id="product-sale-id">500.000đ</p>
-                        <p class="products-cost" id="product-cost-id">1.000.000đ</p>
-                    </div>
-                </div>
-
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="./img/product/product6.jpg" alt="" id="product-img-id">
-                        <div class="sale-icon">
-                            <span>-55%</span>
-                        </div>
-                        <div class="cart-button">
-                            <button class="add-btn">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <a href="" class="product-title" id="product-title-id">Nike Waffle</a>
-                        <div class="product-rating">
-                            <ul class="rating-star">
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                            </ul>
-
-                            <div class="rating-sold">
-                                <p>Đã bán 50</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <p class="products-sale" id="product-sale-id">700.000đ</p>
-                        <p class="products-cost" id="product-cost-id">1.000.000đ</p>
-                    </div>
-                </div>
-
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="./img/product/product5.jpg" alt="" id="product-img-id">
-                        <div class="sale-icon">
-                            <span>-50%</span>
-                        </div>
-                        <div class="cart-button">
-                            <button class="add-btn">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <a href="" class="product-title" id="product-title-id">Converse Classic</a>
-                        <div class="product-rating">
-                            <ul class="rating-star">
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                            </ul>
-
-                            <div class="rating-sold">
-                                <p>Đã bán 80</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <p class="products-sale" id="product-sale-id">1.000.000đ</p>
-                        <p class="products-cost" id="product-cost-id">2.500.000đ</p>
-                    </div>
-                </div>
-
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="./img/product/product4.jpg" alt="" id="product-img-id">
-                        <div class="sale-icon">
-                            <span>-60%</span>
-                        </div>
-                        <div class="cart-button">
-                            <button class="add-btn">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <a href="" class="product-title" id="product-title-id">Converse 1970s Vintage</a>
-                        <div class="product-rating">
-                            <ul class="rating-star">
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                            </ul>
-
-                            <div class="rating-sold">
-                                <p>Đã bán 100</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <p class="products-sale" id="product-sale-id">550.000đ</p>
-                        <p class="products-cost" id="product-cost-id">1.000.000đ</p>
-                    </div>
-                </div>
-
-                <div class="product-item">
-                    <div class="product-img">
-                        <img src="./img/product/product3.jpg" alt="" id="product-img-id">
-                        <div class="sale-icon">
-                            <span>-65%</span>
-                        </div>
-                        <div class="cart-button">
-                            <button class="add-btn">Add to cart</button>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <a href="" class="product-title" id="product-title-id">Converse Rubber</a>
-                        <div class="product-rating">
-                            <ul class="rating-star">
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                                <li><i class="fa-solid fa-star"></i></li>
-                            </ul>
-
-                            <div class="rating-sold">
-                                <p>Đã bán 300</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <p class="products-sale" id="product-sale-id">1.000.000đ</p>
-                        <p class="products-cost" id="product-cost-id">2.500.000đ</p>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer id="Contact">
+        <div class="footer-main">
+
+            <div class="footer-tag">
+                <h2>Địa điểm</h2>
+                <p>Sri Lanka</p>
+                <p>VietNam</p>
+                <p>USA</p>
+                <p>India</p>
+                <p>Japan</p>
+                <p>Italia</p>
+            </div>
+
+            <div class="footer-tag">
+                <h2>Liên kết</h2>
+                <p>Trang chủ</p>
+                <p>Về chúng tôi</p>
+                <p>Menu</p>
+                <p>Danh mục</p>
+                <p>Đặt đồ</p>
+                <p>Đánh giá</p>
+            </div>
+
+            <div class="footer-tag">
+                <h2>Liên hệ</h2>
+                <p>0886 219 ***</p>
+                <p>0379 439 ***</p>
+                <p>ngocanh****@gmail.com</p>
+                <p>hvthuan.****@gmail.com</p>
+            </div>
+
+            <div class="footer-tag">
+                <h2>Dịch vụ của chúng tôi</h2>
+                <p>Phục vụ 24/7</p>
+                <p>Vận chuyển nhanh</p>
+                <p>Thanh toán dễ dàng</p>
+            </div>
+
+            <div class="footer-tag">
+                <h2>Theo dõi</h2>
+                <i class='bx bxl-facebook' ></i>
+                <i class='bx bxl-instagram' ></i>
+                <i class='bx bxl-tiktok' ></i>
+                <i class='bx bxl-reddit' ></i>
+            </div>
+        </div>
+
+        <p class="end">Design by <span><i class="fa-solid fa-face-grin"></i> Ngoc Anh</span></p>
+    </footer>
+
     <script src="js/cart.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/sanpham.js"></script>
 </body>
 </html>

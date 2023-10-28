@@ -30,32 +30,7 @@ namespace Api.BTL.Controllers
         }
 
 
-        [Route("create-sanpham")]
-        [HttpPost]
-        public SanPhamModel CreateSanPham([FromBody] SanPhamModel model)
-        {
-            _sanPhamBusiness.Create(model);
-            return model;
-        }
-
-        [Route("update-sanpham")]
-        [HttpPut]
-        public SanPhamModel UpdateSanPham([FromBody] SanPhamModel model)
-        {
-            _sanPhamBusiness.Update(model);
-            return model;
-        }
-
-        [Route("delete-sanpham")]
-        [HttpDelete]
-        public IActionResult DeleteSanPham([FromBody] Dictionary<string, object> formData)
-        {
-            string MaSanPham = "";
-            if (formData.Keys.Contains("MaSanPham") && !string.IsNullOrEmpty(Convert.ToString(formData["MaSanPham"]))) { MaSanPham = Convert.ToString(formData["MaSanPham"]); }
-            _sanPhamBusiness.Delete(MaSanPham);
-            return Ok();
-        }
-
+        
 
         [Route("search")]
         [HttpPost]

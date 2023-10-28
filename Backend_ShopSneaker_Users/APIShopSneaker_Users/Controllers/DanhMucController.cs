@@ -36,32 +36,5 @@ namespace Api.BTL.Controllers
             return _danhMucBusiness.GetAllDanhMuc();
         }
 
-
-        [Route("create-danhmuc")]
-        [HttpPost]
-        public DanhMucModel CreateDanhMuc([FromBody] DanhMucModel model)
-        {
-            _danhMucBusiness.Create(model);
-            return model;
-        }
-
-        [Route("update-danhmuc")]
-        [HttpPost]
-        public DanhMucModel UpdateDanhMuc([FromBody] DanhMucModel model)
-        {
-            _danhMucBusiness.Update(model);
-            return model;
-        }
-
-        [Route("delete-danhmuc")]
-        [HttpPost]
-        public IActionResult DeleteDanhMuc([FromBody] Dictionary<string, object> formData)
-        {
-            string MaDanhMuc = "";
-            if (formData.Keys.Contains("MaDanhMuc") && !string.IsNullOrEmpty(Convert.ToString(formData["MaDanhMuc"]))) { MaDanhMuc = Convert.ToString(formData["MaDanhMuc"]); }
-            _danhMucBusiness.Delete(MaDanhMuc);
-            return Ok();
-        }
-
             }
 }

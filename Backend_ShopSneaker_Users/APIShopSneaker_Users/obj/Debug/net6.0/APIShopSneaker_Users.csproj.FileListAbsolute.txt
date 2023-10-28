@@ -51,3 +51,4 @@ E:\Workspace\Phát triển phần mềm hướng dịch vụ\BTL\BTL-Phat-trien-
 E:\Workspace\Phát triển phần mềm hướng dịch vụ\BTL\BTL-Phat-trien-phan-mem-huong-dich-vu\Backend_ShopSneaker_Users\APIShopSneaker_Users\obj\Debug\net6.0\APIShopSneaker_Users.pdb
 E:\Workspace\Phát triển phần mềm hướng dịch vụ\BTL\BTL-Phat-trien-phan-mem-huong-dich-vu\Backend_ShopSneaker_Users\APIShopSneaker_Users\obj\Debug\net6.0\APIShopSneaker_Users.genruntimeconfig.cache
 E:\Workspace\Phát triển phần mềm hướng dịch vụ\BTL\BTL-Phat-trien-phan-mem-huong-dich-vu\Backend_ShopSneaker_Users\APIShopSneaker_Users\obj\Debug\net6.0\ref\APIShopSneaker_Users.dll
+E:\Workspace\Phát triển phần mềm hướng dịch vụ\BTL\BTL-Phat-trien-phan-mem-huong-dich-vu\Backend_ShopSneaker_Users\APIShopSneaker_Users\obj\Debug\net6.0\APIShopSneaker_Users.MvcApplicationPartsAssemblyInfo.cs
