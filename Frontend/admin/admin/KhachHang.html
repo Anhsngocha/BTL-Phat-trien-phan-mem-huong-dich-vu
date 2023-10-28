@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý cửa hàng trang sức - Khách hàng</title>
+    <script src="../js/ajax.googleapis.com_ajax_libs_jquery_3.6.4_jquery.min.js"></script>
+    <script src="../js/ajax.googleapis.com_ajax_libs_angularjs_1.6.9_angular.min.js"></script>
+    <title>Ha-Na Sneaker - Khách hàng</title>
     <link rel="stylesheet" href="../font/fontawesome-free-6.1.1-web/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <style>
@@ -418,7 +420,7 @@
     </style>
 </head>
 
-<body>
+<body ng-app="KhachHangApp" ng-controller="KhachHangCtrl">
     <div id="header">
         <div class="account">
             <p>Xin chào <i class="fa-solid fa-caret-down"></i></p>
@@ -524,24 +526,22 @@
                         </th>
                         <th>Mã khách hàng</th>
                         <th>Tên khách hàng</th>
-                        <th>Số điện thoại</th>
                         <th>Email</th>
+                        <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
-                        <th>Mật khẩu</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tbody id="listCustomer">
-                    <tr>
+                    <tr ng-repeat="x in listKhachHang">
                         <td class="check-product">
                             <input type="checkbox" name="check" id="chk-type-product">
                         </td>
-                        <td class="col-masp">154842</td>
-                        <td class="col-tensp">Nhẫn cưới</td>
-                        <td class="col-img"><img src="../images/act2kc.jpg" alt=""></td>
-                        <td class="col-quantity">3</td>
-                        <td class="col-price">42.560.000đ</td>
-                        <td class="col-password">123</td>
+                        <td class="col-makh">{{x.maKhachHang}}</td>
+                        <td class="col-tenkh">{{x.tenKhachHang}}</td>
+                        <td class="col-email">{{x.email}}</td>
+                        <td class="col-diachi">{{x.diaChi}}</td>
+                        <td class="col-sdt">{{x.sdt}}</td>
                         <td class="col-thaotac"><i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash-can"></i></td>
                     </tr>
                 </tbody>
@@ -549,7 +549,7 @@
             <div class="quantity">
                 <div class="total-quantity">
                     <p>Số lượng khách hàng: </p>
-                    <small style="padding-top: 0px;margin-left: 6px;font-size: 1.1rem; color: #e76800;" id="soluong">0</small>
+                    <small style="padding-top: 0px;margin-left: 6px;font-size: 1.1rem; color: #e76800;" id="soluong"></small>
                 </div>
                 <div class="page">
                     <button><i class="fa-solid fa-angles-left"></i></button>
@@ -573,164 +573,9 @@
             window.location.href = "./Login.html";
         }
 
-        var list = JSON.parse(localStorage.getItem('Customer')) || [];
-
-        function NhapMoi() {
-            document.getElementById('makh').value = '';
-            document.getElementById('tenkh').value = '';
-            document.getElementById('enter-masp').value = '';
-            document.getElementById('enter-tensp').value = '';
-            document.getElementById('enter-quantity').value = '';
-            document.getElementById('password').value = '';
-        }
-
-        function addCustomer() {
-            var makh = document.getElementById('makh').value;
-            var tenkh = document.getElementById('tenkh').value;
-            var sdtkh = document.getElementById('enter-masp').value;
-            var emailkh = document.getElementById('enter-tensp').value;
-            var diachikh = document.getElementById('enter-quantity').value;
-            var mkkh = document.getElementById('password').value;
-            var number = /^[0-9]+$/;
-            var atposition = emailkh.indexOf("@");
-            var dotposition = emailkh.lastIndexOf(".");
-
-            if (makh == null || makh == "") {
-                var d = new Date();
-                makh = Number(d);
-            } else if (!makh.match(number) || makh.length < 6) {
-                alert("Mã khách hàng phải là kiểu số và có độ dài lớn hơn 6 ký tự! Vui lòng nhập lại!");
-                return false;
-            }
-
-            if (tenkh == null || tenkh == "") {
-                alert("Tên khách hàng không được để trống! Vui lòng nhập lại!");
-                return false;
-            } else if (sdtkh == null || sdtkh == "") {
-                alert("Số điện thoại khách hàng không được để trống! Vui lòng nhập lại!");
-                return false;
-            } else if (!sdtkh.match(number) || sdtkh.length != 10) {
-                alert("Số điện thoại khách hàng phải là kiểu số và có độ dài là 10 ký tự! Vui lòng nhập lại!");
-                return false;
-            } else if (emailkh != "" && emailkh != null && (atposition < 1 || dotposition < (atposition + 2) || (dotposition + 2) >= emailkh.length)) {
-                alert("Email khách hàng không hợp lệ! Vui lòng nhập lại!");
-                return false;
-            } else if (diachikh == null || diachikh == "") {
-                alert("Địa chỉ khách hàng không được để trống! Vui lòng nhập lại!");
-                return false;
-            } else {
-                for (var x of list) {
-                    if (x.makh == makh) {
-                        alert("Mã khách hàng đã tồn tại! Vui lòng nhập lại!")
-                        return false;
-                    }
-                }
-            }
-            if (list == null) list = [];
-            var customer = {
-                "makh": makh,
-                "tenkh": tenkh,
-                "sdtkh": sdtkh,
-                "emailkh": emailkh,
-                "diachikh": diachikh,
-                "mkkh": mkkh
-            };
-            list.push(customer);
-            localStorage.setItem("Customer", JSON.stringify(list));
-            alert("Đã thêm thành công!");
-            location.reload();
-        }
-
-        function LoadData() {
-            var str = "";
-            var index = 0;
-            for (x of list) {
-                index++;
-                str += `
-                <tr>
-                        <td class="check-product">
-                            <input type="checkbox" name="check" id="chk-type-product">
-                        </td>
-                        <td class="col-masp">` + x.makh + `</td>
-                        <td class="col-tensp">` + x.tenkh + `</td>
-                        <td class="col-img">` + x.sdtkh + `</td>
-                        <td class="col-quantity">` + x.emailkh + `</td>
-                        <td class="col-price"> ` + x.diachikh + `</td>
-                        <td class="col-password">` + x.mkkh + `</td>
-                        <td class="col-thaotac"><i class="fa-solid fa-pen-to-square" onclick="SuaKhachHang(` + x.makh + `)"></i><i class="fa-solid fa-trash-can" onclick="XoaKhachHang(` + x.makh + `)"></i></td>
-                    </tr>
-                `
-                document.getElementById('listCustomer').innerHTML = str;
-                $('#soluong').html(index);
-            }
-        }
-
-        LoadData();
-
-        function XoaKhachHang(makh) {
-            if (confirm("Bạn chắc chắn muốn xóa!")) {
-                var index = list.findIndex(x => x.makh == makh);
-                if (index >= 0) {
-                    list.splice(index, 1);
-                }
-                LoadData();
-                localStorage.setItem('Customer', JSON.stringify(list));
-            }
-        }
-
-        function CheckAll(parent) {
-            var ids = document.getElementsByTagName('input');
-            for (var i = 0; i < ids.length; i++) {
-                if (ids[i].name == "check_all") {
-                    ids[i].checked = parent.checked;
-                }
-            }
-        }
-
-        function SuaKhachHang(makh) {
-            for (x of list) {
-                if (x.makh == makh) {
-                    document.getElementById('makh').value = x.makh;
-                    document.getElementById('tenkh').value = x.tenkh;
-                    document.getElementById('enter-masp').value = x.sdtkh;
-                    document.getElementById('enter-tensp').value = x.emailkh;
-                    document.getElementById('enter-quantity').value = x.emailkh;
-                    document.getElementById('password').value = x.mkkh;
-                }
-            }
-        }
-
-        function CapNhat() {
-            var makh = document.getElementById('makh').value;
-            var tenkh = document.getElementById('tenkh').value;
-            var sdtkh = document.getElementById('enter-masp').value;
-            var emailkh = document.getElementById('enter-tensp').value;
-            var diachikh = document.getElementById('enter-quantity').value;
-            var mkkh = document.getElementById('password').value;
-            var ok = true;
-
-            if (tenkh == null || tenkh == "") {
-                alert("Tên khách hàng không được để trống! Vui lòng nhập lại!");
-                return false;
-            }
-
-            for (x of list) {
-                if (x.makh == makh) {
-                    x.tenkh = tenkh;
-                    ok = false;
-                    break;
-                }
-            }
-
-            if (ok == false) {
-                alert("Cập nhật thông tin thành công!");
-                localStorage.setItem("Customer", JSON.stringify(list));
-                location.reload();
-            } else {
-                alert("Cập nhật thông tin thất bại!");
-            }
-        }
     </script>
+    <script src="../js/KhachHang.js"></script>
+    <script src="../js/global.js"></script>
 </body>
 
 </html>

@@ -314,7 +314,7 @@
             <p>Xin chào <i class="fa-solid fa-caret-down"></i></p>
             <ul class="manage-user">
                 <li><i class="fa-solid fa-user"></i> Tài khoản</li>
-                <li><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</li>
+                <li onclick="LogOut()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</li>
             </ul>
         </div>
     <div class="menu-responsive">
@@ -438,14 +438,14 @@
         </div>
     </div>
     <script>
-        var user = JSON.parse(localStorage.getItem('user'));
-        if (!user) {
-            window.location.href = 'Login.html';
+        var userAcc = JSON.parse(localStorage.getItem('user'))
+        if(!userAcc){
+            window.location.href='./Login.html'
         }
 
         function LogOut() {
             localStorage.setItem('user', null);
-            window.location.href = " login.html";
+            window.location.href = "./Login.html";
         }
 
         function fixInput(type) {
