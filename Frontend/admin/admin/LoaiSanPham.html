@@ -451,7 +451,7 @@
                         <li class="item-menu"><i class="fa-solid fa-tachograph-digital"></i> Tổng quan</li>
                     </a>
                     <a href="LoaiSanPham.html">
-                        <li class="item-menu active-menu"><i class="fa-solid fa-cubes-stacked"></i> Loại sản phẩm</li>
+                        <li class="item-menu active-menu"><i class="fa-solid fa-cubes-stacked"></i> Danh mục</li>
                     </a>
                     <a href="SanPham.html">
                         <li class="item-menu"><i class="fa-solid fa-bicycle"></i> Sản phẩm</li>
@@ -476,7 +476,7 @@
                 <li class="item-menu"><i class="fa-solid fa-tachograph-digital"></i> Tổng quan</li>
             </a>
             <a href="LoaiSanPham.html">
-                <li class="item-menu active-menu"><i class="fa-solid fa-cubes-stacked"></i> Loại sản phẩm</li>
+                <li class="item-menu active-menu"><i class="fa-solid fa-cubes-stacked"></i> Danh mục</li>
             </a>
             <a href="SanPham.html">
                 <li class="item-menu"><i class="fa-solid fa-bicycle"></i> Sản phẩm</li>
@@ -495,22 +495,22 @@
     </div>
     <div id="main">
         <div class="input-info-type-product">
-            <h3 class="text-header"><i class="fa-solid fa-boxes-stacked"></i> Nhập thông tin loại sản phẩm</h3>
+            <h3 class="text-header"><i class="fa-solid fa-boxes-stacked"></i> Nhập thông tin danh mục</h3>
             <form action="" class="enter-type">
                 <!-- <label for="txt-masp">Mã loại sản phẩm</label>
                 <input type="text" id="txt-masp" placeholder="Nhập mã loại sản phẩm..."> -->
-                <label for="txt-tensp">Tên loại sản phẩm</label>
-                <input type="text" id="txt-tensp" placeholder="Nhập tên loại sản phẩm...">
+                <label for="txt-tensp">Tên danh mục</label>
+                <input type="text" id="txt-tensp" placeholder="Nhập tên danh mục...">
             </form>
             <div class="btns">
-                <button class="add-type" onclick="addTypeProduct()">Thêm loại sản phẩm</button>
+                <button class="add-type" onclick="addTypeProduct()">Thêm danh mục mới</button>
                 <button class="add-new" onclick="NhapMoi()">Nhập mới</button>
                 <button class="reload-info" onclick="CapNhat()">Cập nhật thông tin</button>
             </div>
         </div>
         <div class="list-type-product">
             <div class="header-list">
-                <h3 class="text-header"><i class="fa-solid fa-list-ul"></i> Danh sách loại sản phẩm</h3>
+                <h3 class="text-header"><i class="fa-solid fa-list-ul"></i> Danh sách danh mục</h3>
                 <button><i class="fa-solid fa-trash-can"></i>Xoá tất cả</button>
             </div>
             <div class="search">
@@ -523,8 +523,8 @@
                         <th>
                             <input type="checkbox" name="check" id="chk-type-product">
                         </th>
-                        <th>Mã loại sản phẩm</th>
-                        <th>Tên loại sản phẩm</th>
+                        <th>Mã danh mục</th>
+                        <th>Tên danh mục</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -541,8 +541,8 @@
             </table>
             <div class="quantity">
                 <div class="total-quantity">
-                    <p>Số lượng loại sản phẩm: </p>
-                    <small id="soluong" style="padding-top: 0px;margin-left: 6px;font-size: 1.1rem; color: #e76800;">0</small>
+                    <p>Số lượng danh mục: </p>
+                    <small id="soluong" style="padding-top: 0px;margin-left: 6px;font-size: 1.1rem; color: #e76800;"></small>
                 </div>
                 <div class="page">
                     <button><i class="fa-solid fa-angles-left"></i></button>
