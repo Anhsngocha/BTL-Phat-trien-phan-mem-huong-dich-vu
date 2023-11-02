@@ -2,14 +2,14 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/SanPham/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5174
+          "Port": 44326
         }
       ],
-      "UpstreamPathTem44376plate": "/api-admin/SanPham/{everything}",
+      "UpstreamPathTemplate": "/api-admin/SanPham/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
       //"AuthenticationOptions": {
       //  "AuthenticationProviderKey": "Bearer",

@@ -23,12 +23,7 @@ namespace Api.BTL.Controllers
             return _khachHangBusiness.GetKhachHangByID(id);
         }
 
-        [Route("get-all")]
-        [HttpGet]
-        public List<KhachHangModel> GetAllKhachHang()
-        {
-            return _khachHangBusiness.GetAllKhachHang();
-        }
+       
 
 
         [Route("create-khachhang")]

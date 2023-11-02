@@ -37,6 +37,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
-app.UseOcelot().Wait();
+await app.UseOcelot();
 
 app.Run();
