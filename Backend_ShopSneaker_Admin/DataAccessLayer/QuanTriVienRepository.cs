@@ -11,7 +11,7 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
-        public QuanTriVienModel Login(string taikhoan, string matkhau)
+        public TaiKhoanModel Login(string taikhoan, string matkhau)
         {
             string msgError = "";
             try
@@ -22,7 +22,7 @@ namespace DataAccessLayer
                      );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<QuanTriVienModel>().FirstOrDefault();
+                return dt.ConvertTo<TaiKhoanModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -30,7 +30,7 @@ namespace DataAccessLayer
             }
         }
 
-        public QuanTriVienModel GetQTVBySDT(string sdt)
+        public TaiKhoanModel GetQTVBySDT(string sdt)
         {
             string msgError = "";
             try
@@ -39,7 +39,7 @@ namespace DataAccessLayer
                      "@SDT", sdt);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<QuanTriVienModel>().FirstOrDefault();
+                return dt.ConvertTo<TaiKhoanModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<QuanTriVienModel> GetAllQuanTriVien()
+        public List<TaiKhoanModel> GetAllQuanTriVien()
         {
             string msgError = "";
             try
@@ -55,7 +55,7 @@ namespace DataAccessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_all_quantrivien");
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<QuanTriVienModel>().ToList();
+                return dt.ConvertTo<TaiKhoanModel>().ToList();
             }
             catch (Exception ex)
             {
@@ -63,7 +63,7 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Create(QuanTriVienModel model)
+        public bool Create(TaiKhoanModel model)
         {
             string msgError = "";
             try
@@ -86,7 +86,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Update(QuanTriVienModel model)
+        public bool Update(TaiKhoanModel model)
         {
             string msgError = "";
             try

@@ -9,12 +9,12 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IQuanTriVienRepository
     {
-        QuanTriVienModel Login(string taikhoan, string matkhau);
-        QuanTriVienModel GetQTVBySDT(string sdt);
+        TaiKhoanModel Login(string taikhoan, string matkhau);
+        TaiKhoanModel GetQTVBySDT(string sdt);
 
-        List<QuanTriVienModel> GetAllQuanTriVien();
-        bool Create(QuanTriVienModel model);
-        bool Update(QuanTriVienModel model);
+        List<TaiKhoanModel> GetAllQuanTriVien();
+        bool Create(TaiKhoanModel model);
+        bool Update(TaiKhoanModel model);
         bool Delete(string id);
 
       

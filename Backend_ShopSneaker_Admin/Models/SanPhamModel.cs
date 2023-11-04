@@ -6,15 +6,14 @@
 
         public string TenSanPham { get; set; }
 
-        public int GiaTien { get; set; }
+        public string AnhDaiDien { get; set; }
 
-        public int GiamGia { get; set; }
 
-        public string LinkAnh { get; set; }
+        public Decimal GiaTien { get; set; }
+
+        public Decimal GiamGia { get; set; }
 
         public string MoTa { get; set; }
-
-        public int SoLuong { get; set; }
 
         public int DaBan { get; set; }
 

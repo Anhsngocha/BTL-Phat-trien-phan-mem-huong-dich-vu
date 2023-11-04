@@ -28,14 +28,14 @@ namespace Api.BTL.Controllers
 
         [Route("get-by-sdt/{sdt}")]
         [HttpGet]
-        public QuanTriVienModel GetQTVBySDT(string sdt)
+        public TaiKhoanModel GetQTVBySDT(string sdt)
         {
             return _quanTriVienBusiness.GetQTVBySDT(sdt);
         }
 
         [Route("get-all")]
         [HttpGet]
-        public List<QuanTriVienModel> GetAllQuanTriVien()
+        public List<TaiKhoanModel> GetAllQuanTriVien()
         {
             return _quanTriVienBusiness.GetAllQuanTriVien();
         }
@@ -43,7 +43,7 @@ namespace Api.BTL.Controllers
 
         [Route("create-quantrivien")]
         [HttpPost]
-        public QuanTriVienModel CreateQuanTriVien([FromBody] QuanTriVienModel model)
+        public TaiKhoanModel CreateQuanTriVien([FromBody] TaiKhoanModel model)
         {
             _quanTriVienBusiness.Create(model);
             return model;
@@ -51,7 +51,7 @@ namespace Api.BTL.Controllers
 
         [Route("update-quantrivien")]
         [HttpPost]
-        public QuanTriVienModel UpdateKhachHang([FromBody] QuanTriVienModel model)
+        public TaiKhoanModel UpdateKhachHang([FromBody] TaiKhoanModel model)
         {
             _quanTriVienBusiness.Update(model);
             return model;

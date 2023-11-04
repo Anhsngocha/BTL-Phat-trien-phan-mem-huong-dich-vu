@@ -21,7 +21,7 @@ namespace BusinessLogicLayer
             secret = configuration["AppSettings:Secret"];
         }
 
-        public QuanTriVienModel Login(string taikhoan, string matkhau)
+        public TaiKhoanModel Login(string taikhoan, string matkhau)
         {
             var quantrivien_account = _res.Login(taikhoan, matkhau);
             if (quantrivien_account == null)
@@ -44,21 +44,21 @@ namespace BusinessLogicLayer
             return quantrivien_account;
         }
 
-        public QuanTriVienModel GetQTVBySDT(string sdt)
+        public TaiKhoanModel GetQTVBySDT(string sdt)
         {
             return _res.GetQTVBySDT(sdt);
         }
 
-        public List<QuanTriVienModel> GetAllQuanTriVien()
+        public List<TaiKhoanModel> GetAllQuanTriVien()
         {
             return _res.GetAllQuanTriVien();
         }
 
-        public bool Create(QuanTriVienModel model)
+        public bool Create(TaiKhoanModel model)
         {
             return _res.Create(model);
         }
-        public bool Update(QuanTriVienModel model)
+        public bool Update(TaiKhoanModel model)
         {
             return _res.Update(model);
         }
