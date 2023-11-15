@@ -10,8 +10,8 @@ namespace Api.BTL.Controllers
     [ApiController]
     public class QuanTriVienController : ControllerBase
     {
-        private IQuanTriVienBusiness _quanTriVienBusiness;
-        public QuanTriVienController(IQuanTriVienBusiness quanTriVienBusiness)
+        private ITaiKhoanBusiness _quanTriVienBusiness;
+        public QuanTriVienController(ITaiKhoanBusiness quanTriVienBusiness)
         {
             _quanTriVienBusiness = quanTriVienBusiness;
         }

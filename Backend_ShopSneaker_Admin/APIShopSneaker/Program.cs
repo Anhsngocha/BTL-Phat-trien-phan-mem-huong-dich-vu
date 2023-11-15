@@ -16,12 +16,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddTransient<IDatabaseHelper, DatabaseHelper>();
 builder.Services.AddTransient<ISanPhamRepository, SanPhamRepository>();
 builder.Services.AddTransient<ISanPhamBusiness, SanPhamBusiness>();
-builder.Services.AddTransient<IKhachHangRepository, KhachHangRepository>();
-builder.Services.AddTransient<IKhachHangBusiness, KhachHangBusiness>();
 builder.Services.AddTransient<IHoaDonNhapRepository, HoaDonNhapRepository>();
 builder.Services.AddTransient<IHoaDonNhapBusiness, HoaDonNhapBusiness>();
-builder.Services.AddTransient<IDanhMucRepository, DanhMucRepository>();
-builder.Services.AddTransient<IDanhMucBusiness, DanhMucBusiness>();
 builder.Services.AddTransient<IThuongHieuRepository, ThuongHieuRepository>();
 builder.Services.AddTransient<IThuongHieuBusiness, ThuongHieuBusiness>();
 builder.Services.AddTransient<IDanhGiaRepository, DanhGiaRepository>();
@@ -30,8 +26,8 @@ builder.Services.AddTransient<IGiamGiaRepository, GiamGiaRepository>();
 builder.Services.AddTransient<IGiamGiaBusiness, GiamGiaBusiness>();
 builder.Services.AddTransient<IThuVienRepository, ThuVienRepository>();
 builder.Services.AddTransient<IThuVienBusiness, ThuVienBusiness>();
-builder.Services.AddTransient<IQuanTriVienRepository, QuanTriVienRepository>();
-builder.Services.AddTransient<IQuanTriVienBusiness, QuanTriVienBusiness>();
+builder.Services.AddTransient<ITaiKhoanRepository, TaiKhoanRepository>();
+builder.Services.AddTransient<ITaiKhoanBusiness, TaiKhoanBusiness>();
 // Add services to the container.
 
 // configure strongly typed settings objects

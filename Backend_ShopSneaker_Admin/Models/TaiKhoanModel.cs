@@ -9,7 +9,11 @@ namespace Models
 
         public string MatKhau { get; set; }
 
+        public int MaQuyen { get; set; }
+
         public string token { get; set; }
+
+        public List<ChiTietTaiKhoanModel> list_json_chitietTK { get; set; }
     }
 
 
