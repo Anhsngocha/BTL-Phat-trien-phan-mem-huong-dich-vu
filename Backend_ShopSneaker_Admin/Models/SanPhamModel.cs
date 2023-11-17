@@ -24,6 +24,6 @@
 
         public DateTime? NgayCapNhat { get; set; }
 
-        public List<ChiTietSanPhamModel> list_json_chitietSP { get; set; }
+        public List<ChiTietSanPhamModel> list_json_chitietsp { get; set; }
     }
 }

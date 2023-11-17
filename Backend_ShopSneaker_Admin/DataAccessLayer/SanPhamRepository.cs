@@ -28,14 +28,18 @@ namespace DataAccessLayer
             }
         }
 
-        public List<SanPhamModel> GetAllSanPham()
+        public List<SanPhamModel> GetAllSanPham(int pageIndex, int pageSize, out long total)
         {
             string msgError = "";
+            total = 0;
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_all_sanpham");
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_search_sanpham",
+                    "@page_index", pageIndex,
+                    "@page_size", pageSize);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
                 return dt.ConvertTo<SanPhamModel>().ToList();
             }
             catch (Exception ex)
@@ -53,12 +57,10 @@ namespace DataAccessLayer
                     "@TenSanPham", model.TenSanPham,
                     "@GiaTien", model.GiaTien,
                     "@GiamGia", model.GiamGia,
-                    "@LinkAnh", model.LinkAnh,
-                    "@MoTa", model.MoTa,
-                    "@SoLuong", model.SoLuong,
+                    "@AnhDaiDien", model.AnhDaiDien,
                     "@DaBan", model.DaBan,
-                    "@MaDanhMuc", model.MaDanhMuc,
-                    "@MaThuongHieu", model.MaThuongHieu);
+                    "@MaThuongHieu", model.MaThuongHieu,
+                    "@list_json_chitietsp", model.list_json_chitietsp);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -80,13 +82,10 @@ namespace DataAccessLayer
                     "@TenSanPham", model.TenSanPham,
                     "@GiaTien", model.GiaTien,
                     "@GiamGia", model.GiamGia,
-                    "@LinkAnh", model.LinkAnh,
-                    "@MoTa", model.MoTa,
-                    "@SoLuong", model.SoLuong,
+                    "@AnhDaiDien", model.AnhDaiDien,
                     "@DaBan", model.DaBan,
-                    "@MaDanhMuc", model.MaDanhMuc,
                     "@MaThuongHieu", model.MaThuongHieu,
-                    "@NgayTao", model.NgayTao);
+                    "@list_json_chitietsp", model.list_json_chitietsp);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -124,11 +123,10 @@ namespace DataAccessLayer
             total = 0;
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable (out msgError, "sp_search_sanpham",
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable (out msgError, "sp_search_sanpham_by_tensp",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@ten_sanpham", ten_sanpham,
-                    "@gia_tien", gia_tien);
+                    "@ten_sanpham", ten_sanpham);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];

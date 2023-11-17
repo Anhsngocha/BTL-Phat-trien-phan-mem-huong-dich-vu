@@ -6,77 +6,108 @@ create proc sp_get_sanpham_byid
 )
 as
 begin
-	select * from SanPham
-	where MaSanPham = @MaSanPham
+	select s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenThuongHieu, MoTa from SanPham s
+	inner join ChiTietSanPham c on s.MaSanPham = c.MaSanPham
+	inner join ThuongHieu t on s.MaThuongHieu = t.MaThuongHieu
+	where s.MaSanPham = @MaSanPham
 end
 go
 
---lấy toàn bộ sản phẩm
-create proc sp_get_all_sanpham
+--lấy ra các sản phẩm mới
+create proc sp_get_new_sanpham
 as
 begin
-	select sp.MaSanPham, sp.TenSanPham, sp.GiaTien, sp.LinkAnh, sp.MoTa, sp.SoLuong, sp.DaBan, dm.TenDanhMuc, th.TenThuongHieu, NgayTao, NgayCapNhat
-	from SanPham sp
-	inner join ThuongHieu th on sp.MaThuongHieu = th.MaThuongHieu
-	inner join DanhMuc dm on sp.MaDanhMuc = dm.MaDanhMuc
+	select top 8 * from SanPham
+	order by NgayTao desc
 end
 go
 
-
---lấy sản phẩm theo danh mục
-create proc sp_get_sanpham_by_danhmuc
+--lấy toàn bộ sản phẩm theo phân trang
+create proc sp_get_sanpham_pagination
 (
-	@TenDanhMuc nvarchar(350)
+	@page_size int,
+	@page_index int
 )
 as
 begin
-	SELECT dm.*, 
-        (
-            SELECT sp.*
-            FROM SanPham AS sp
-            WHERE dm.MaDanhMuc = sp.MaDanhMuc FOR JSON PATH
-        ) AS list_json_sanpham_by_danhmuc
-        FROM DanhMuc AS dm
-        WHERE  dm.TenDanhMuc = @TenDanhMuc;
-end
-go
-
---lấy sản phẩm theo thương hiệu
-create proc sp_get_sanpham_by_thuonghieu
-(
-	@TenThuongHieu nvarchar(100)
-)
-as
-begin
-	SELECT th.*, 
-        (
-            SELECT sp.*
-            FROM SanPham AS sp
-            WHERE th.MaThuongHieu = sp.MaThuongHieu FOR JSON PATH
-        ) AS list_json_sanpham_by_thuonghieu
-        FROM ThuongHieu AS th
-        WHERE  th.TenThuongHieu = @TenThuongHieu;
+	DECLARE @RecordCount bigint;
+	if (@page_size <> 0)
+	BEGIN
+		set NOCOUNT ON;
+			select(ROW_NUMBER() OVER(order by MaSanPham asc)) as RowNumber,
+			s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenThuongHieu
+			into #Results1
+			from SanPham as s inner join ThuongHieu as t on s.MaThuongHieu = t.MaThuongHieu
+			select @RecordCount = COUNT(*)
+			from #Results1;
+			SELECT *, @RecordCount as RecordCount
+			from #Results1
+			WHERE ROWNUMBER BETWEEN(@page_index - 1) * @page_size + 1 and (((@page_index - 1) * @page_size + 1) + @page_size) - 1
+				or @page_index = -1;
+			drop TABLE #Results1;
+	END
+	ELSE
+	BEGIN
+		
+		set NOCOUNT ON;
+			select(ROW_NUMBER() OVER(order by MaSanPham asc)) as RowNumber,
+			s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenThuongHieu
+			into #Results2
+			from SanPham as s inner join ThuongHieu as t on s.MaThuongHieu = t.MaThuongHieu
+			select @RecordCount = COUNT(*)
+			from #Results2;
+			SELECT *, @RecordCount as RecordCount
+			from #Results2
+			drop TABLE #Results2;
+	END
 end
 go
 
 --thêm sản phẩm
 create proc sp_them_sanpham
 (
-	@TenSanPham int,
-	@Size int,
-	@GiaTien int,
-	@GiamGia int,
-	@LinkAnh varchar(500),
-	@MoTa nvarchar(500),
-	@SoLuong int,
+	@TenSanPham nvarchar(500),
+	@AnhDaiDien varchar(500),
+	@GiaTien decimal(18, 0),
+	@GiamGia decimal(18, 0),
 	@DaBan int,
-	@MaDanhMuc int,
-	@MaThuongHieu int
+	@MaThuongHieu int,
+	@list_json_chitietsp nvarchar(MAX)
 )
 as
 begin
-	insert into SanPham(TenSanPham, GiaTien, GiamGia, LinkAnh, MoTa, SoLuong, DaBan, MaDanhMuc, MaThuongHieu)
-	values(@TenSanPham, @GiaTien, @GiamGia, @LinkAnh, @MoTa, @SoLuong, @DaBan, @MaDanhMuc, @MaThuongHieu)
+	declare @MaSanPham int;
+	insert into SanPham
+	(
+		TenSanPham,
+		AnhDaiDien,
+		GiaTien,
+		GiamGia,
+		DaBan,
+		MaThuongHieu
+	)
+	values
+	(
+		@TenSanPham,
+		@AnhDaiDien,
+		@GiaTien,
+		@GiamGia,
+		@DaBan,
+		@MaThuongHieu
+	)
+	set @MaSanPham = (select SCOPE_IDENTITY())
+	if(@list_json_chitietsp is not null)
+	begin
+		insert into ChiTietSanPham
+		(
+			MaSanPham,
+			MoTa
+		)
+		select @MaSanPham,
+				JSON_VALUE(l.value, '$.maSanPham')
+		from openjson(@list_json_chitietsp) as l
+	end
+	select '';
 end
 go
 
@@ -84,17 +115,13 @@ go
 create proc sp_sua_sanpham
 (
 	@MaSanPham int,
-	@TenSanPham nvarchar(250),
-	@Size int,
-	@GiaTien int,
-	@GiamGia int, 
+	@TenSanPham nvarchar(500),
+	@GiaTien decimal(18, 0),
+	@GiamGia decimal(18, 0), 
 	@LinkAnh varchar(500),
-	@MoTa nvarchar(500),
-	@SoLuong int,
 	@DaBan int,
-	@MaDanhMuc int,
 	@MaThuongHieu int,
-	@NgayTao datetime
+	@list_json_chitietsp nvarchar(MAX)
 )
 
 AS
@@ -104,16 +131,47 @@ BEGIN
 		TenSanPham = CASE WHEN @TenSanPham IS NOT NULL AND @TenSanPham <> 'null' AND @TenSanPham <> 'string' THEN @TenSanPham ELSE TenSanPham END,
 		GiaTien = CASE WHEN @GiaTien IS NOT NULL AND @GiaTien <> 'null' AND @GiaTien <> 'string' THEN @GiaTien ELSE GiaTien END,
 		GiamGia = CASE WHEN @GiamGia IS NOT NULL AND @GiamGia <> 'null' AND @GiamGia <> 'string' THEN @GiamGia ELSE GiamGia END,
-		LinkAnh = CASE WHEN @LinkAnh IS NOT NULL AND @LinkAnh <> 'null' AND @LinkAnh <> 'string' THEN @LinkAnh ELSE LinkAnh END,
-		MoTa = CASE WHEN @MoTa IS NOT NULL AND @MoTa <> 'null' AND @MoTa <> 'string' THEN @MoTa ELSE MoTa END,
-		SoLuong = CASE WHEN @SoLuong IS NOT NULL AND @SoLuong <> 'null' AND @SoLuong <> 'string' THEN @SoLuong ELSE SoLuong END,
 		DaBan = CASE WHEN @DaBan IS NOT NULL AND @DaBan <> 'null' AND @DaBan <> 'string' THEN @DaBan ELSE DaBan END,
-		MaDanhMuc = CASE WHEN @MaDanhMuc IS NOT NULL AND @MaDanhMuc <> 'null' AND @MaDanhMuc <> 'string' THEN @MaDanhMuc ELSE MaDanhMuc END,
 		MaThuongHieu = CASE WHEN @MaThuongHieu IS NOT NULL AND @MaThuongHieu <> 'null' AND @MaThuongHieu <> 'string' THEN @MaThuongHieu ELSE MaThuongHieu END,
-		NgayTao = CASE WHEN @NgayTao IS NOT NULL AND @NgayTao <> 'null' AND @NgayTao <> 'string' THEN @NgayTao ELSE @NgayTao END,
-		NgayCapNhat = GETDATE()
-
+		NgayCapNhat = cast(GETDATE() as date)
 	where MaSanPham = @MaSanPham
+	if(@list_json_chitietsp is not null)
+	begin
+		select
+			JSON_VALUE(l.value, '$.maChiTietSP') as	maChiTietSP,
+			JSON_VALUE(l.value, '$.maSanPham') as maSanPham,
+			JSON_VALUE(l.value, '$.moTa') as moTa,
+			JSON_VALUE(l.value, '$.status') as status
+		into #Results
+		from openjson(@list_json_chitietsp) as l
+		
+		--insert nếu status = 1
+		insert into ChiTietSanPham
+		(
+			MaSanPham,
+			MoTa
+		)
+		select
+			@MaSanPham,
+			#Results.moTa
+		from #Results
+		where #Results.status = '1'
+
+		--update nếu status = 2
+		update ChiTietSanPham
+		set
+			MoTa = #Results.moTa
+		from #Results
+		where ChiTietSanPham.MoTa = #Results.moTa and #Results.status = '2'
+
+		--delete nếu status = 3
+		delete c
+		from ChiTietSanPham c
+		inner join #Results r on c.MaChiTietSP = r.maChiTietSP
+		where r.status = '3'
+		drop table #Results
+	end
+	select '';
 END
 go
 
@@ -130,10 +188,9 @@ go
 
 
 --tìm kiếm sản phẩm
-create PROCEDURE [dbo].[sp_search_sanpham] (@page_index  INT, 
+create PROCEDURE [dbo].[sp_search_sanpham_by_tensp] (@page_index  INT, 
                                        @page_size   INT,
-									   @ten_sanpham nvarchar(250),
-									   @gia_tien varchar(50))
+									   @ten_sanpham nvarchar(500))
 AS
     BEGIN
         DECLARE @RecordCount BIGINT;
@@ -144,11 +201,14 @@ AS
                               ORDER BY MaSanPham ASC)) AS RowNumber, 
                               sp.MaSanPham,
 							  sp.TenSanPham,
-							  sp.GiaTien
+							  sp.AnhDaiDien,
+							  sp.GiaTien,
+							  sp.GiamGia,
+							  sp.DaBan,
+							  TenThuongHieu
                         INTO #Results1
-                        FROM [SanPham] AS sp
-					    WHERE (@ten_sanpham = '' or sp.TenSanPham like N'%' + @ten_sanpham +'%') and
-						(@gia_tien is null or sp.GiaTien like N'%' + @gia_tien +'%');                   
+                        FROM [SanPham] AS sp inner join ThuongHieu as t on sp.MaThuongHieu = t.MaThuongHieu
+					    WHERE (@ten_sanpham = '' or sp.TenSanPham like N'%' + @ten_sanpham +'%');                   
                         SELECT @RecordCount = COUNT(*)
                         FROM #Results1;
                         SELECT *, 
@@ -165,11 +225,14 @@ AS
                               ORDER BY MaSanPham ASC)) AS RowNumber, 
                               sp.MaSanPham,
 							  sp.TenSanPham,
-							  sp.GiaTien
+							  sp.AnhDaiDien,
+							  sp.GiaTien,
+							  sp.GiamGia,
+							  sp.DaBan,
+							  TenThuongHieu
                         INTO #Results2
-                        FROM [SanPham] AS sp
-					    WHERE (@ten_sanpham = '' or sp.TenSanPham like N'%' + @ten_sanpham +'%') and
-						(@gia_tien is null or sp.GiaTien like N'%' + @gia_tien +'%');                   
+                        FROM [SanPham] AS sp inner join ThuongHieu as t on sp.MaThuongHieu = t.MaThuongHieu
+					    WHERE (@ten_sanpham = '' or sp.TenSanPham like N'%' + @ten_sanpham +'%');                   
                         SELECT @RecordCount = COUNT(*)
                         FROM #Results2;
                         SELECT *, 
@@ -180,127 +243,7 @@ AS
     END;
 go
 
---bảng khách hàng
---lấy khách hàng theo id
-create proc sp_get_khachhang_byid
-(
-	@MaKhachHang int
-)
-as
-begin
-	select * from KhachHang
-	where MaKhachHang = @MaKhachHang
-end
-go
 
---lấy tất cả khách hàng
-create proc sp_get_all_khachhang
-as
-begin
-	select * from KhachHang
-end
-go
-
---thêm khách hàng
-create proc sp_them_khachhang
-(
-	@TenKhachHang nvarchar(500),
-	@Email varchar(100),
-	@DiaChi nvarchar(250),
-	@SDT varchar(20)
-)
-as
-begin
-	insert into KhachHang(TenKhachHang, Email, DiaChi, SDT)
-	values(@TenKhachHang, @Email, @DiaChi, @SDT)
-end
-go
-
---sửa khách hàng
-create proc sp_sua_khachhang
-(
-	@MaKhachHang int,
-	@TenKhachHang nvarchar(500),
-	@Email varchar(100),
-	@DiaChi nvarchar(250),
-	@SDT varchar(20)
-)
-as
-begin
-	update KhachHang
-	set
-		TenKhachHang = CASE WHEN @TenKhachHang IS NOT NULL AND @TenKhachHang <> 'null' AND @TenKhachHang <> 'string' THEN @TenKhachHang ELSE TenKhachHang END,
-		Email = CASE WHEN @Email IS NOT NULL AND @Email <> 'null' AND @Email <> 'string' THEN @Email ELSE Email END,
-		DiaChi = CASE WHEN @DiaChi IS NOT NULL AND @DiaChi <> 'null' AND @DiaChi <> 'string' THEN @DiaChi ELSE DiaChi END,
-		SDT = CASE WHEN @SDT IS NOT NULL AND @SDT <> 'null' AND @SDT <> 'string' THEN @SDT ELSE SDT END
-	where MaKhachHang =@MaKhachHang
-end
-go
-
---xóa khách hàng
-create proc sp_xoa_khachhang
-(
-	@MaKhachHang int
-)
-as
-begin
-	delete KhachHang
-	where MaKhachHang = @MaKhachHang
-end
-go
-
---tìm kiếm khách hàng
-create PROCEDURE sp_search_khachhang(@page_index  INT, 
-                                       @page_size   INT,
-									   @TenKhachHang nvarchar(500),
-									   @DiaChi nvarchar(255))
-AS
-    BEGIN
-        DECLARE @RecordCount BIGINT;
-        IF(@page_size <> 0)
-            BEGIN
-                SET NOCOUNT ON;
-                        SELECT(ROW_NUMBER() OVER(
-                              ORDER BY MaKhachHang ASC)) AS RowNumber, 
-                              kh.MaKhachHang,
-							  kh.TenKhachHang,
-							  kh.Email,
-							  kh.DiaChi
-                        INTO #Results1
-                        FROM [KhachHang] AS kh
-					    WHERE (@TenKhachHang = '' or kh.TenKhachHang like N'%' + @TenKhachHang +'%') and
-						(@DiaChi = '' or kh.DiaChi like N'%' + @DiaChi +'%');                   
-                        SELECT @RecordCount = COUNT(*)
-                        FROM #Results1;
-                        SELECT *, 
-                               @RecordCount AS RecordCount
-                        FROM #Results1
-                        WHERE ROWNUMBER BETWEEN(@page_index - 1) * @page_size + 1 AND(((@page_index - 1) * @page_size + 1) + @page_size) - 1
-                              OR @page_index = -1;
-                        DROP TABLE #Results1; 
-            END;
-            ELSE
-            BEGIN
-                SET NOCOUNT ON;
-                        SELECT(ROW_NUMBER() OVER(
-                              ORDER BY MaKhachHang ASC)) AS RowNumber, 
-                              kh.MaKhachHang,
-							  kh.TenKhachHang,
-							  kh.Email,
-							  kh.DiaChi
-                        INTO #Results2
-                        FROM [KhachHang] AS kh
-					     WHERE (@TenKhachHang = '' or kh.TenKhachHang like N'%' + @TenKhachHang +'%') and
-						(@DiaChi = '' or kh.DiaChi like N'%' + @DiaChi +'%');                  
-                        SELECT @RecordCount = COUNT(*)
-                        FROM #Results2;
-                        SELECT *, 
-                               @RecordCount AS RecordCount
-                        FROM #Results2
-                        DROP TABLE #Results2; 
-        END;
-    END;
-go
 
 --Bảng hóa đơn nhập
 --thêm hóa đơn nhập
