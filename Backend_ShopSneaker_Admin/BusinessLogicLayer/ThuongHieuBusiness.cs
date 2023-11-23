@@ -7,27 +7,27 @@ namespace BusinessLogicLayer
 {
     public class ThuongHieuBusiness : IThuongHieuBusiness
     {
-        private IThuongHieuRepository _res;
-        public ThuongHieuBusiness(IThuongHieuRepository res)
+        private IDanhMucRepository _res;
+        public ThuongHieuBusiness(IDanhMucRepository res)
         {
             _res = res;
         }
 
-        public ThuongHieuModel GetSanPhamByThuongHieu(string name)
+        public DanhMucModel GetSanPhamByThuongHieu(string name)
         {
             return _res.GetSanPhamByThuongHieu(name);
         }
 
-        public List<ThuongHieuModel> GetAllThuongHieu()
+        public List<DanhMucModel> GetAllThuongHieu()
         {
             return _res.GetAllThuongHieu();
         }
 
-        public bool Create(ThuongHieuModel model)
+        public bool Create(DanhMucModel model)
         {
             return _res.Create(model);
         }
-        public bool Update(ThuongHieuModel model)
+        public bool Update(DanhMucModel model)
         {
             return _res.Update(model);
         }

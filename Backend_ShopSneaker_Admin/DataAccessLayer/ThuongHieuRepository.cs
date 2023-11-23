@@ -3,7 +3,7 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public class ThuongHieuRepository : IThuongHieuRepository
+    public class ThuongHieuRepository : IDanhMucRepository
     {
         private IDatabaseHelper _dbHelper;
         public ThuongHieuRepository(IDatabaseHelper dbHelper)
@@ -11,7 +11,7 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
-        public ThuongHieuModel GetSanPhamByThuongHieu(string name)
+        public DanhMucModel GetSanPhamByThuongHieu(string name)
         {
             string msgError = "";
             try
@@ -20,7 +20,7 @@ namespace DataAccessLayer
                      "@TenThuongHieu", name);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<ThuongHieuModel>().FirstOrDefault();
+                return dt.ConvertTo<DanhMucModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -28,7 +28,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<ThuongHieuModel> GetAllThuongHieu()
+        public List<DanhMucModel> GetAllThuongHieu()
         {
             string msgError = "";
             try
@@ -36,7 +36,7 @@ namespace DataAccessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getall_thuonghieu");
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<ThuongHieuModel>().ToList();
+                return dt.ConvertTo<DanhMucModel>().ToList();
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace DataAccessLayer
         }
 
 
-        public bool Create(ThuongHieuModel model)
+        public bool Create(DanhMucModel model)
         {
             string msgError = "";
             try
@@ -64,7 +64,7 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Update(ThuongHieuModel model)
+        public bool Update(DanhMucModel model)
         {
             string msgError = "";
             try

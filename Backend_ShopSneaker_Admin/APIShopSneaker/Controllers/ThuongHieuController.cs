@@ -17,7 +17,7 @@ namespace Api.BTL.Controllers
 
         [Route("get-sp-by-thuonghieu/{name}")]
         [HttpGet]
-        public ThuongHieuModel GetSanPhamByThuongHieu(string name)
+        public DanhMucModel GetSanPhamByThuongHieu(string name)
         {
             return _thuongHieuBusiness.GetSanPhamByThuongHieu(name);
         }
@@ -25,14 +25,14 @@ namespace Api.BTL.Controllers
 
         [Route("get-all")]
         [HttpGet]
-        public List<ThuongHieuModel> GetAllThuongHieu()
+        public List<DanhMucModel> GetAllThuongHieu()
         {
             return _thuongHieuBusiness.GetAllThuongHieu();
         }
 
         [Route("create-thuonghieu")]
         [HttpPost]
-        public ThuongHieuModel CreateThuongHieu([FromBody] ThuongHieuModel model)
+        public DanhMucModel CreateThuongHieu([FromBody] DanhMucModel model)
         {
             _thuongHieuBusiness.Create(model);
             return model;
@@ -40,7 +40,7 @@ namespace Api.BTL.Controllers
 
         [Route("update-thuonghieu")]
         [HttpPost]
-        public ThuongHieuModel UpdateThuongHieu([FromBody] ThuongHieuModel model)
+        public DanhMucModel UpdateThuongHieu([FromBody] DanhMucModel model)
         {
             _thuongHieuBusiness.Update(model);
             return model;

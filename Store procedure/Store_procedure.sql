@@ -6,12 +6,13 @@ create proc sp_get_sanpham_byid
 )
 as
 begin
-	select s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenThuongHieu, MoTa from SanPham s
+	select s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenDanhMuc, MoTa from SanPham s
 	inner join ChiTietSanPham c on s.MaSanPham = c.MaSanPham
-	inner join ThuongHieu t on s.MaThuongHieu = t.MaThuongHieu
+	inner join DanhMuc dm on s.MaDanhMuc = dm.MaDanhMuc
 	where s.MaSanPham = @MaSanPham
 end
 go
+
 
 --lấy ra các sản phẩm mới
 create proc sp_get_new_sanpham

@@ -33,5 +33,7 @@ namespace Models
         public string Email { get; set; }
 
         public int MaTK { get; set; }
+
+        public int status { get; set; }
     }
 }

@@ -9,11 +9,11 @@ namespace BusinessLogicLayer
 {
     public partial interface IThuongHieuBusiness
     {
-        ThuongHieuModel GetSanPhamByThuongHieu(string name);
+        DanhMucModel GetSanPhamByThuongHieu(string name);
 
-        List<ThuongHieuModel> GetAllThuongHieu();
-        bool Create(ThuongHieuModel model);
-        bool Update(ThuongHieuModel model);
+        List<DanhMucModel> GetAllThuongHieu();
+        bool Create(DanhMucModel model);
+        bool Update(DanhMucModel model);
         bool Delete(string id);
 
     }

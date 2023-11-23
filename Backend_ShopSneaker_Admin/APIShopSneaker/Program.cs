@@ -18,7 +18,7 @@ builder.Services.AddTransient<ISanPhamRepository, SanPhamRepository>();
 builder.Services.AddTransient<ISanPhamBusiness, SanPhamBusiness>();
 builder.Services.AddTransient<IHoaDonNhapRepository, HoaDonNhapRepository>();
 builder.Services.AddTransient<IHoaDonNhapBusiness, HoaDonNhapBusiness>();
-builder.Services.AddTransient<IThuongHieuRepository, ThuongHieuRepository>();
+builder.Services.AddTransient<IDanhMucRepository, ThuongHieuRepository>();
 builder.Services.AddTransient<IThuongHieuBusiness, ThuongHieuBusiness>();
 builder.Services.AddTransient<IDanhGiaRepository, DanhGiaRepository>();
 builder.Services.AddTransient<IDanhGiaBusiness, DanhGiaBusiness>();
