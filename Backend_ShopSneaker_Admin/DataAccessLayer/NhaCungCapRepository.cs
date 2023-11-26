@@ -3,10 +3,10 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public class DanhGiaRepository : IDanhGiaRepository
+    public class NhaCungCapRepository : INhaCungCapRepository
     {
         private IDatabaseHelper _dbHelper;
-        public DanhGiaRepository(IDatabaseHelper dbHelper)
+        public NhaCungCapRepository(IDatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }

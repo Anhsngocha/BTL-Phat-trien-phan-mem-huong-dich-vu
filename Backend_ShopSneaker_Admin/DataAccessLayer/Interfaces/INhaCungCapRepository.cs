@@ -7,12 +7,12 @@ using Models;
 
 namespace DataAccessLayer.Interfaces
 {
-    public partial interface IThuongHieuRepository
+    public partial interface INhaCungCapRepository
     {
-        DanhMucModel GetSanPhamByThuongHieu(string name);
-        List<DanhMucModel> GetAllThuongHieu();
-        bool Create(DanhMucModel model);
-        bool Update(DanhMucModel model);
+        NhaCungCapModel GetNhaCungCapByID(string id);
+        List<NhaCungCapModel> GetAllNhaCungCap();
+        bool Create(NhaCungCapModel model);
+        bool Update(NhaCungCapModel model);
         bool Delete(string id);
 
     }
