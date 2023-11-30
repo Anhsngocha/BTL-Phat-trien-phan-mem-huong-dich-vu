@@ -23,8 +23,8 @@ namespace BusinessLogicLayer
 
         public TaiKhoanModel Login(string taikhoan, string matkhau)
         {
-            var quantrivien_account = _res.Login(taikhoan, matkhau);
-            if (quantrivien_account == null)
+            var account = _res.Login(taikhoan, matkhau);
+            if (account == null)
                 return null;
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(secret);
@@ -32,26 +32,34 @@ namespace BusinessLogicLayer
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, quantrivien_account.TenTaiKhoan.ToString()),
-                    new Claim(ClaimTypes.Email, quantrivien_account.Email),
-                    new Claim(ClaimTypes.MobilePhone, quantrivien_account.SDT.ToString())
+                    new Claim(ClaimTypes.Name, account.TenTaiKhoan.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            quantrivien_account.token = tokenHandler.WriteToken(token);
-            return quantrivien_account;
+            account.token = tokenHandler.WriteToken(token);
+            return account;
         }
 
-        public TaiKhoanModel GetQTVBySDT(string sdt)
+        public TaiKhoanModel GetByID(string id)
         {
-            return _res.GetQTVBySDT(sdt);
+            return _res.GetByID(id);
         }
 
-        public List<TaiKhoanModel> GetAllQuanTriVien()
+        public bool SignUp(TaiKhoanModel model)
         {
-            return _res.GetAllQuanTriVien();
+            return _res.SignUp(model);
+        }
+
+        public TaiKhoanModel GetByName(string username)
+        {
+            return _res.GetByName(username);
+        }
+
+        public List<TaiKhoanModel> GetAllTaiKhoan()
+        {
+            return _res.GetAllTaiKhoan();
         }
 
         public bool Create(TaiKhoanModel model)

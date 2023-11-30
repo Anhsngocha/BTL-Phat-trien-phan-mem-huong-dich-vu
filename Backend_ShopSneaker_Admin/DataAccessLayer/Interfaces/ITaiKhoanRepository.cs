@@ -10,9 +10,13 @@ namespace DataAccessLayer.Interfaces
     public partial interface ITaiKhoanRepository
     {
         TaiKhoanModel Login(string taikhoan, string matkhau);
-        TaiKhoanModel GetQTVBySDT(string sdt);
 
-        List<TaiKhoanModel> GetAllQuanTriVien();
+        bool SignUp(TaiKhoanModel model);
+        TaiKhoanModel GetByID(string id);
+
+        TaiKhoanModel GetByName(string username);
+
+        List<TaiKhoanModel> GetAllTaiKhoan();
         bool Create(TaiKhoanModel model);
         bool Update(TaiKhoanModel model);
         bool Delete(string id);

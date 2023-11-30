@@ -72,7 +72,7 @@ create proc sp_them_sanpham
 	@GiaTien decimal(18, 0),
 	@GiamGia decimal(18, 0),
 	@DaBan int,
-	@MaThuongHieu int,
+	@MaDanhMuc int,
 	@list_json_chitietsp nvarchar(MAX)
 )
 as
@@ -85,7 +85,7 @@ begin
 		GiaTien,
 		GiamGia,
 		DaBan,
-		MaThuongHieu
+		MaDanhMuc
 	)
 	values
 	(
@@ -94,7 +94,7 @@ begin
 		@GiaTien,
 		@GiamGia,
 		@DaBan,
-		@MaThuongHieu
+		@MaDanhMuc
 	)
 	set @MaSanPham = (select SCOPE_IDENTITY())
 	if(@list_json_chitietsp is not null)
@@ -121,7 +121,7 @@ create proc sp_sua_sanpham
 	@GiamGia decimal(18, 0), 
 	@LinkAnh varchar(500),
 	@DaBan int,
-	@MaThuongHieu int,
+	@MaDanhMuc int,
 	@list_json_chitietsp nvarchar(MAX)
 )
 
@@ -133,7 +133,7 @@ BEGIN
 		GiaTien = CASE WHEN @GiaTien IS NOT NULL AND @GiaTien <> 'null' AND @GiaTien <> 'string' THEN @GiaTien ELSE GiaTien END,
 		GiamGia = CASE WHEN @GiamGia IS NOT NULL AND @GiamGia <> 'null' AND @GiamGia <> 'string' THEN @GiamGia ELSE GiamGia END,
 		DaBan = CASE WHEN @DaBan IS NOT NULL AND @DaBan <> 'null' AND @DaBan <> 'string' THEN @DaBan ELSE DaBan END,
-		MaThuongHieu = CASE WHEN @MaThuongHieu IS NOT NULL AND @MaThuongHieu <> 'null' AND @MaThuongHieu <> 'string' THEN @MaThuongHieu ELSE MaThuongHieu END,
+		MaDanhMuc = CASE WHEN @MaDanhMuc IS NOT NULL AND @MaDanhMuc <> 'null' AND @MaDanhMuc <> 'string' THEN @MaDanhMuc ELSE MaDanhMuc END,
 		NgayCapNhat = cast(GETDATE() as date)
 	where MaSanPham = @MaSanPham
 	if(@list_json_chitietsp is not null)
@@ -206,9 +206,9 @@ AS
 							  sp.GiaTien,
 							  sp.GiamGia,
 							  sp.DaBan,
-							  TenThuongHieu
+							  TenDanhMuc
                         INTO #Results1
-                        FROM [SanPham] AS sp inner join ThuongHieu as t on sp.MaThuongHieu = t.MaThuongHieu
+                        FROM [SanPham] AS sp inner join DanhMuc as dm on sp.MaDanhMuc = dm.MaDanhMuc
 					    WHERE (@ten_sanpham = '' or sp.TenSanPham like N'%' + @ten_sanpham +'%');                   
                         SELECT @RecordCount = COUNT(*)
                         FROM #Results1;
@@ -230,9 +230,9 @@ AS
 							  sp.GiaTien,
 							  sp.GiamGia,
 							  sp.DaBan,
-							  TenThuongHieu
+							  TenDanhMuc
                         INTO #Results2
-                        FROM [SanPham] AS sp inner join ThuongHieu as t on sp.MaThuongHieu = t.MaThuongHieu
+                        FROM [SanPham] AS sp inner join DanhMuc as dm on sp.MaDanhMuc = dm.MaDanhMuc
 					    WHERE (@ten_sanpham = '' or sp.TenSanPham like N'%' + @ten_sanpham +'%');                   
                         SELECT @RecordCount = COUNT(*)
                         FROM #Results2;
@@ -407,56 +407,6 @@ AS
     END;
 go
 
---Bảng thương hiệu
---Thêm thương hiệu
-create proc sp_getall_thuonghieu
-as
-begin
-	select * from ThuongHieu
-end
-go
-
-create proc [dbo].[sp_create_thuonghieu]
-(
-	@TenThuongHieu nvarchar(350)
-)
-as
-begin
-	insert into ThuongHieu(TenThuongHieu)
-	values(@TenThuongHieu)
-end
-go
-
---Sửa thương hiệu
-create proc [dbo].[sp_update_thuonghieu]
-(
-	@MaThuongHieu int,
-	@TenThuongHieu nvarchar(350)
-)
-as
-begin
-	if @TenThuongHieu is not null and @TenThuongHieu <> 'string'
-	begin
-		update ThuongHieu
-	set
-		@TenThuongHieu = CASE WHEN @TenThuongHieu IS NOT NULL AND @TenThuongHieu <> 'null' AND @TenThuongHieu <> 'string' THEN @TenThuongHieu ELSE TenThuongHieu END
-		
-	where MaThuongHieu = @MaThuongHieu
-	end
-end
-go
-
---Xóa thương hiệu
-create proc [dbo].[sp_delete_thuonghieu]
-(
-	@MaThuongHieu int
-)
-as
-begin
-	delete ThuongHieu
-	where MaThuongHieu = @MaThuongHieu
-end
-go
 
 --Bảng đánh giá
 --Thêm đánh giá
@@ -570,7 +520,7 @@ begin
 	select * from GiamGia
 end
 go
-
+ 
 
 --Thêm mã giảm giá
 create proc [dbo].[sp_them_magiamgia]
@@ -631,7 +581,7 @@ end
 go
 
 
---bảng quản trị viên
+--bảng tài khoản
 --đăng nhập
 create proc sp_login
 (
@@ -640,7 +590,7 @@ create proc sp_login
 )
 as
 begin
-	select * from QuanTriVien
+	select * from TaiKhoan
 	where TenTaiKhoan = @TenTaiKhoan and MatKhau = @MatKhau
 end
 go
@@ -648,12 +598,13 @@ go
 --lấy tài khoản theo id
 create proc sp_get_taiKhoan_byID
 (
-	@MaQTV int
+	@MaTK int
 )
 as
 begin
-	select * from QuanTriVien
-	where MaQTV = @MaQTV
+	select TenTaiKhoan, MatKhau, Ho, Ten, GioiTinh, SDT, DiaChi, Email
+	from TaiKhoan tk inner join ChiTietTaiKhoan ct on tk.MaTK = ct.MaTK
+	where tk.MaTK = @MaTK
 end
 go
 
@@ -665,24 +616,183 @@ create proc sp_get_by_name
 )
 as
 begin
-	select * from QuanTriVien
+	select TenTaiKhoan, MatKhau, Ho, Ten, GioiTinh, SDT, DiaChi, Email
+	from TaiKhoan tk inner join ChiTietTaiKhoan ct on tk.MaTK = ct.MaTK
 	where TenTaiKhoan = @TenTaiKhoan
 end
 go
 
---thêm quản trị viên
-create proc sp_create_admin
+--get all taikhoan
+create proc sp_get_all_taikhoan
+as
+begin
+	select TenTaiKhoan, MatKhau, Ho, Ten, GioiTinh, SDT, DiaChi, Email
+	from TaiKhoan tk inner join ChiTietTaiKhoan ct on tk.MaTK = ct.MaTK
+end
+go
+
+create proc sp_signup
 (
 	@TenTaiKhoan nvarchar(500),
-	@Ho nvarchar(50),
-	@Ten nvarchar(50),
-	@SDT varchar(20),
-	@Email varchar(150),
 	@MatKhau varchar(50)
 )
 as
 begin
-	insert into QuanTriVien
-	values(@TenTaiKhoan, @Ho, @Ten, @SDT, @Email, @MatKhau)
+	insert into TaiKhoan(TenTaiKhoan, MatKhau)
+	values(@TenTaiKhoan, @MatKhau)
+end
+go
+
+--thêm quản trị viên
+create proc sp_create_taikhoan
+(
+	@TenTaiKhoan nvarchar(500),
+	@MatKhau varchar(50),
+	@MaQuyen int,
+	@list_json_account_details nvarchar(max)
+)
+as
+begin
+	DECLARE @MaTK int;
+	INSERT into TaiKhoan(
+		TenTaiKhoan,
+		MatKhau,
+		MaQuyen
+	)
+	VALUES(@TenTaiKhoan, @MatKhau, @MaQuyen);
+	SET @MaTK = (select SCOPE_IDENTITY())
+	IF(@list_json_account_details is not null)
+	BEGIN
+		INSERT into ChiTietTaiKhoan(
+			MaTK,
+			Ho,
+			Ten,
+			GioiTinh,
+			SDT,
+			DiaChi,
+			Email
+		)
+			select @MaTK,
+					JSON_VALUE(l.value, '$.ho'),
+					JSON_VALUE(l.value, '$.ten'),
+					JSON_VALUE(l.value, '$.gioiTinh'),
+					JSON_VALUE(l.value, '$.sdt'),
+					JSON_VALUE(l.value, '$.diaChi'),
+					JSON_VALUE(l.value, '$.email')
+			from openjson(@list_json_account_details) as l;
+	END
+	SELECT '';
+end
+go
+
+create proc sp_update_taikhoan
+(
+	@MaTK int,
+	@TenTaiKhoan nvarchar(500),
+	@MatKhau varchar(50),
+	@MaQuyen int,
+	@list_json_account_details nvarchar(max)
+)
+as
+begin
+	update TaiKhoan
+	set
+		TenTaiKhoan = @TenTaiKhoan,
+		MatKhau = @MatKhau,
+		MaQuyen = @MaQuyen
+	where MaTK = @MaTK
+
+	if(@list_json_account_details is not null)
+	BEGIN
+		select
+			JSON_VALUE(l.value, '$.maChiTiet') as maChiTiet,
+			JSON_VALUE(l.value, '$.maTK') as maTK,
+			JSON_VALUE(l.value, '$.ho') as ho,
+			JSON_VALUE(l.value, '$.ten') as ten,
+			JSON_VALUE(l.value, '$.gioiTinh') as gioiTinh,
+			JSON_VALUE(l.value, '$.sdt') as sdt,
+			JSON_VALUE(l.value, '$.diaChi') as diaChi,
+			JSON_VALUE(l.value, '$.email') as email,
+			JSON_VALUE(l.value, '$.status') as status
+			into #Results
+		from openjson(@list_json_account_details) as l;
+
+		--insert if status = 1
+		INSERT into ChiTietTaiKhoan(
+			MaTK,
+			Ho,
+			Ten,
+			GioiTinh,
+			SDT,
+			DiaChi,
+			Email
+		)
+		SELECT 
+			@MaTK,
+			r.ho,
+			r.ten,
+			r.gioiTinh,
+			r.sdt,
+			r.diaChi,
+			r.email
+		from #Results r
+		where r.status = '1'
+
+		--update if status = 2
+		UPDATE ChiTietTaiKhoan
+		SET
+			Ho = CASE WHEN r.ho IS NOT NULL AND r.ho <> 'null' AND r.ho <> 'string' THEN r.ho ELSE ChiTietTaiKhoan.Ho END,
+			Ten = CASE WHEN r.ten IS NOT NULL AND r.ten <> 'null' AND r.ten <> 'string' THEN r.ten ELSE ChiTietTaiKhoan.Ten END,
+			GioiTinh = CASE WHEN r.gioiTinh IS NOT NULL AND r.gioiTinh <> 'null' AND r.gioiTinh <> 'string' THEN r.gioiTinh ELSE ChiTietTaiKhoan.GioiTinh END,
+			SDT = CASE WHEN r.sdt IS NOT NULL AND r.sdt <> 'null' AND r.sdt <> 'string' AND r.sdt NOT LIKE '%[^0-9]%' THEN 
+			r.sdt ELSE ChiTietTaiKhoan.SDT END,
+			DiaChi = CASE WHEN r.diaChi IS NOT NULL AND r.diaChi <> 'null' AND r.diaChi <> 'string' THEN r.diaChi ELSE ChiTietTaiKhoan.DiaChi END,
+			Email = CASE WHEN r.email IS NOT NULL AND r.email <> 'null' AND r.email <> 'string' THEN r.email ELSE ChiTietTaiKhoan.Email END
+		from #Results r
+		where ChiTietTaiKhoan.MaChiTiet = r.maChiTiet and r.status = '2';
+
+		--delete if status = 3
+		delete ct 
+		from ChiTietTaiKhoan ct
+		inner join #Results r
+			on ct.MaChiTiet = r.maChiTiet
+		where r.status = '3'
+
+		DROP TABLE #Result
+	END;
+	SELECT '';
+end
+go
+
+--delete account
+create proc sp_delete_account
+(
+	@MaTK int
+)
+as
+begin
+	delete TaiKhoan
+	where MaTK = @MaTK
+end
+go
+
+--nhacungcap
+--get by id
+create proc sp_get_ncc_by_id
+(
+	@MaNhaCungCap int
+)
+as
+begin
+	select * from NhaCungCap
+	where MaNhaCungCap = @MaNhaCungCap
+end
+go
+
+--get all
+create proc sp_get_all_ncc
+as
+begin
+	select * from NhaCungCap
 end
 go

@@ -30,13 +30,13 @@ namespace DataAccessLayer
             }
         }
 
-        public TaiKhoanModel GetQTVBySDT(string sdt)
+        public TaiKhoanModel GetByID(string id)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_quantrivien_bysdt",
-                     "@SDT", sdt);
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_taiKhoan_byID",
+                     "@MaTK", id);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<TaiKhoanModel>().FirstOrDefault();
@@ -47,15 +47,52 @@ namespace DataAccessLayer
             }
         }
 
-        public List<TaiKhoanModel> GetAllQuanTriVien()
+        public TaiKhoanModel GetByName(string username)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_all_quantrivien");
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_by_name",
+                     "@TenTaiKhoan", username);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<TaiKhoanModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<TaiKhoanModel> GetAllTaiKhoan()
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_all_taikhoan");
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<TaiKhoanModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool SignUp(TaiKhoanModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_signup",
+                    "@TenTaiKhoan", model.TenTaiKhoan,
+                    "@MatKhau", model.MatKhau);
+                if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
             }
             catch (Exception ex)
             {
@@ -70,11 +107,9 @@ namespace DataAccessLayer
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_them_quantrivien",
                     "@TenTaiKhoan", model.TenTaiKhoan,
-                    "@Ho", model.Ho,
-                    "@Ten", model.Ten,
-                    "@SDT", model.SDT,
-                    "@Email", model.Email,
-                    "@MatKhau", model.MatKhau);
+                    "@MatKhau", model.MatKhau,
+                    "@MaQuyen", model.MaQuyen,
+                    "@list_json_account_details", model.list_json_account_details != null ? MessageConvert.SerializeObject(model.list_json_account_details) : null);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -91,9 +126,12 @@ namespace DataAccessLayer
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sua_quantrivien",
-                    "@MaQTV", model.MaQTV,
-                    "@MatKhau", model.MatKhau);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_update_taikhoan",
+                    "@MaTK", model.MaTK,
+                    "@TenTaiKhoan", model.TenTaiKhoan,
+                    "@MatKhau", model.MatKhau,
+                    "@MaQuyen", model.MaQuyen,
+                    "@list_json_account_details", model.list_json_account_details != null ? MessageConvert.SerializeObject(model.list_json_account_details) : null);
                 
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -112,8 +150,8 @@ namespace DataAccessLayer
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_xoa_quantrivien",
-                "@MaQTV", id);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_delete_account",
+                "@MaTK", id);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
