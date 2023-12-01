@@ -11,7 +11,7 @@ namespace BusinessLogicLayer
     {
         DanhMucModel GetDanhMucByID(string id);
 
-        DanhMucModel GetSanPhamByDanhMuc(string name);
+        //DanhMucModel GetSanPhamByDanhMuc(string name);
 
         List<DanhMucModel> GetAllDanhMuc();
         bool Create(DanhMucModel model);

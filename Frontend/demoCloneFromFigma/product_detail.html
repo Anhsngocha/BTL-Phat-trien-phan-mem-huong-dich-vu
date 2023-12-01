@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/product_detail.css" />
+    <link rel="stylesheet" href="./assets/css/styleguide.css" />
+
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/ajax.googleapis.com_ajax_libs_angularjs_1.6.9_angular.min.js"></script>
+    <script src="./assets/js/ajax.googleapis.com_ajax_libs_jquery_3.6.4_jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<body ng-app="ChiTietSanPhamApp" ng-controller="ChiTietSanPhamCtrl">
+    <header>
+        <div class="header-top">
+            <div class="header-top-left">
+                <ul class="flexitem">
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-phone"></i>
+                            <span class="contact-info">0987654322</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span class="contact-info">hanaSneaker@gmail.com</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="header-top-right">
+                <ul class="flexitem">
+                    <li><a href="#">Tiếng Việt</a></li>
+                    <li><a href="#">Đăng ký</a></li>
+                    <li><a href="#">Đăng nhập</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-middle flexitem">
+            <a href="index.html">
+                <div class="logo">
+                    <h3>Ha-Na <br> Sneaker</h3>
+                </div>
+            </a>
+
+            <div class="header-page flexitem">
+                <ul class="flexitem">
+                    <li><a href="#">Sản phẩm mới</a></li>
+                    <li>
+                        <a href="#">Giới thiệu</a>
+                    </li>
+                    <li><a href="#">Blog</a></li>
+                    <li>
+                        <a href="#size-shoes">Hướng dẫn chọn size</a>
+                    </li>
+                </ul>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm..." />
+                    <div class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-icon flexitem">
+                <a href="cart.html" class="icon-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="fly-item">
+                        <span class="item-number" id="slsp">0</span>
+                    </div>
+                </a>
+
+                <a href="#" class="header-btn">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            </div>
+        </div>
+        <div class="subnav">
+            <ul class="flexitem">
+                <li>
+                    <a href="#" class="flexitem">
+                        <img src="./assets/img/brands/nike.png" alt="" />
+                        <span>Nike</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexitem">
+                        <img src="./assets/img/brands/converse.jpg" alt="" />
+                        <span>Converse</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexitem">
+                        <img src="./assets/img/brands/new-balance.png" alt="" />
+                        <span>New Balance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexitem">
+                        <img src="./assets/img/brands/adidas.png" alt="" />
+                        <span>Adidas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flexitem">
+                        <img src="./assets/img/brands/puma.png" alt="" />
+                        <span>Puma</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="pro_detail" class="section-p1">
+        <div class="single_pro_image">
+            <img src="{{chiTietSanPham.anhDaiDien}}" alt="" width="100%"
+                id="MainImg">
+
+            <div class="small_img_group">
+                <div class="small_img_col">
+                    <img src="img/products/f1.jpg" alt="" width="100" class="small_img">
+                </div>
+            </div>
+        </div>
+
+        <div class="single_pro_details">
+            <h6>Trang chủ / Chi tiết sản phẩm</h6>
+            <h4 class="product-detail-title">{{chiTietSanPham.tenSanPham}}</h4>
+            <h2> <span class="product-detail-price">{{chiTietSanPham.giaTien}}</span> VND</h2>
+            <!-- <select name="" id="">
+                <option value="" hidden selected>Select Size</option>
+                <option value="">S</option>
+                <option value="">M</option>
+                <option value="">L</option>
+                <option value="">XL</option>
+                <option value="">XXL</option>
+            </select> -->
+
+            <div class="product-quantity-box">
+                <!-- <div class="product-quantity">
+                    Số lượng <span>{{chiTietSanPham.}}</span>
+                </div> -->
+                <div class="product-sold-number">
+                    Đã bán <span>{{chiTietSanPham.daBan}}</span>
+                </div>
+            </div>
+            <!-- <input type="number" value="1"> -->
+            <button class="normal" id="add-to-cart">Thêm vào giỏ hàng</button>
+            <h4>Product Details</h4>
+            <span>
+                {{chiTietSanPham.moTa}}
+            </span>
+        </div>
+    </section>
+
+    <section class="product-suggest">
+        <div class="header-product">
+            <h1>Sản phẩm liên quan</h1>
+            <hr />
+        </div>
+        <div class="product-container">
+            <div class="product-item">
+                <div class="product-banner">
+                    <a href="#" class="product-images">
+                        <img src="./assets\img\products\nike\jordan-nu-retro-1-low\jordan-nu-retro1-1.webp" alt=""
+                            class="product-img default" />
+                    </a>
+
+                    <div class="product-badge light-pink">Hot</div>
+                </div>
+
+                <div class="product-content">
+                    <span class="product-brand"> Adidas </span>
+                    <a href="#">
+                        <h3 class="product-title">
+                            Lorem, ipsum dolor sit amet consectetur.
+                        </h3>
+                    </a>
+                    <div class="product-rating-quantity flexitem">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="product-sold">
+                            Đã bán <span class="sold-number">1.2k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-price flexitem">
+                    <span class="new-price"><span class="vnd">₫</span>1.200.000</span>
+                    <input type="hidden" value="1200000" />
+
+                    <span class="old-price"><span class="vnd">₫</span>2.500.000</span>
+                    <input type="hidden" value="2500000" />
+                </div>
+            </div>
+
+            <div class="product-item">
+                <div class="product-banner">
+                    <a href="#" class="product-images">
+                        <img src="./assets\img\products\nike\jordan-nu-retro-1-low\jordan-nu-retro1-1.webp" alt=""
+                            class="product-img default" />
+                    </a>
+
+                    <div class="product-badge light-pink">Hot</div>
+                </div>
+
+                <div class="product-content">
+                    <span class="product-brand"> Adidas </span>
+                    <a href="#">
+                        <h3 class="product-title">
+                            Lorem, ipsum dolor sit amet consectetur.
+                        </h3>
+                    </a>
+                    <div class="product-rating-quantity flexitem">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="product-sold">
+                            Đã bán <span class="sold-number">1.1k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-price flexitem">
+                    <span class="new-price"><span class="vnd">₫</span>1.200.000</span>
+                    <input type="hidden" value="1200000" />
+
+                    <span class="old-price"><span class="vnd">₫</span>2.500.000</span>
+                    <input type="hidden" value="2500000" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="col">
+            <h4>Thông tin liên hệ</h4>
+            <p>
+                <strong>Địa chỉ: </strong>Trường Đại học Sư phạm Kỹ thuật Hưng Yên, Mỹ Hào, Phố Nối, Hưng Yên
+            </p>
+            <p><strong>Điện thoại: </strong>0221 3742 076 /02213 689 333</p>
+            <p><strong>Mở cửa: </strong>18:00 - 21:00, T2 - T7</p>
+            <div class="follow">
+                <h4>Follow chúng tôi:</h4>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>Về Ha-na Sneaker</h4>
+            <a href="#">Tuyển dụng</a>
+            <a href="#">Thông tin vận chuyển</a>
+            <a href="#">Điều khoản & Bảo mật</a>
+            <a href="#">Thời gian bảo hành</a>
+            <a href="#">Ha-na Blog</a>
+        </div>
+
+        <div class="col">
+            <h4>Chăm sóc khách hàng</h4>
+            <a href="#">Liên hệ với truyền thông</a>
+            <a href="#">Kênh người bán</a>
+            <a href="#">Ha-na Sneaker x Adidas</a>
+            <a href="#">Trung tâm trợ giúp</a>
+        </div>
+
+        <div class="col install">
+            <h4>Tải ứng dụng ngay thôi</h4>
+            <p>Trên App Store hoặc Google Play</p>
+            <div class="row">
+                <img src="assets/img/pay/app.jpg" alt="" />
+                <img src="assets/img/pay/play.jpg" alt="" />
+            </div>
+            <p>Cổng thanh toán điện tử</p>
+            <img src="assets/img/pay/pay.png" alt="" />
+        </div>
+
+
+    </footer>
+
+    <script src="./assets/js/cart.js"></script>
+    <script src="./assets/js/global.js"></script>
+    <script src="./assets/js/product_detail.js"></script>
+</body>
+
+</html>

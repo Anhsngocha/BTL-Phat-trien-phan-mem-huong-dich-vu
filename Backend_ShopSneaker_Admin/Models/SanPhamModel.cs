@@ -14,16 +14,12 @@
 
         public int DaBan { get; set; }
 
-        public int MaThuongHieu { get; set; }
-
-        public string TenDanhMuc { get; set; }
-
-        public string TenThuongHieu { get; set; }
+        public string MaDanhMuc { get; set; }
 
         public DateTime? NgayTao { get; set; }
 
         public DateTime? NgayCapNhat { get; set; }
 
-        public List<ChiTietSanPhamModel> list_json_chitietsp { get; set; }
+        public List<ChiTietSanPhamModel>? list_json_chitietsp { get; set; }
     }
 }

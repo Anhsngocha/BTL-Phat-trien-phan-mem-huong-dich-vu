@@ -17,12 +17,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddTransient<IDatabaseHelper, DatabaseHelper>();
 builder.Services.AddTransient<ISanPhamRepository, SanPhamRepository>();
 builder.Services.AddTransient<ISanPhamBusiness, SanPhamBusiness>();
-builder.Services.AddTransient<IKhachHangRepository, KhachHangRepository>();
-builder.Services.AddTransient<IKhachHangBusiness, KhachHangBusiness>();
 builder.Services.AddTransient<IDanhMucRepository, DanhMucRepository>();
 builder.Services.AddTransient<IDanhMucBusiness, DanhMucBusiness>();
-builder.Services.AddTransient<IThuongHieuRepository, ThuongHieuRepository>();
-builder.Services.AddTransient<IThuongHieuBusiness, ThuongHieuBusiness>();
+builder.Services.AddTransient<ITaiKhoanRepository, TaiKhoanRepository>();
+builder.Services.AddTransient<ITaiKhoanBusiness, TaiKhoanBusiness>();
 // Add services to the container.
 
 // configure strongly typed settings objects

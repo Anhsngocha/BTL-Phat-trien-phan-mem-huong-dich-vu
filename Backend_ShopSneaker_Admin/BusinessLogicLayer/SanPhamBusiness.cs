@@ -18,9 +18,14 @@ namespace BusinessLogicLayer
             return _res.GetSanPhamByID(id);
         }
 
-        public List<SanPhamModel> GetAllSanPham()
+        public List<SanPhamModel> GetAllSanPham(int pageIndex, int pageSize, out long total)
         {
-            return _res.GetAllSanPham();
+            return _res.GetAllSanPham(pageIndex, pageSize, out total);
+        }
+
+        public List<SanPhamModel> GetNewSanPham()
+        {
+            return _res.GetNewSanPham();
         }
 
         public bool Create(SanPhamModel model)
@@ -37,9 +42,14 @@ namespace BusinessLogicLayer
             return _res.Delete(id);
         }
 
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string TenSanPham, int GiaTien)
+        public List<SanPhamModel> SearchTheoTen(int pageIndex, int pageSize, out long total, string ten_sanpham)
         {
-            return _res.Search(pageIndex, pageSize, out total, TenSanPham, GiaTien);
+            return _res.SearchTheoTen(pageIndex, pageSize, out total, ten_sanpham);
+        }
+
+        public List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, decimal fr_price, decimal to_price)
+        {
+            return _res.SearchTheoGia(pageIndex, pageSize, out total, fr_price, to_price);
         }
     }
 }

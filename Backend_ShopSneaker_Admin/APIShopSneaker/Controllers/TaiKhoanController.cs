@@ -20,20 +20,20 @@ namespace Api.BTL.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] AuthenticateModel model)
         {
-            var quantrivien_account = _taiKhoanBusiness.Login(model.Username, model.Password);
-            if (quantrivien_account == null)
+            var account = _taiKhoanBusiness.Login(model.Username, model.Password);
+            if (account == null)
                 return BadRequest(new { message = "Tài khoản hoặc mật khẩu không đúng!" });
-            return Ok(new { username = quantrivien_account.TenTaiKhoan, token = quantrivien_account.token });
+            return Ok(new { username = account.TenTaiKhoan, maquyen = account.MaQuyen,  token = account.token });
         }
 
-        [Route("get-by-id/{id}")]
+        [Route("get-by-id/{maTK}")]
         [HttpGet]
-        public TaiKhoanModel GetByID(string id)
+        public TaiKhoanModel GetByID(string maTK)
         {
-            return _taiKhoanBusiness.GetByID(id);
+            return _taiKhoanBusiness.GetByID(maTK);
         }
 
-        [Route("get-by-name/{name}")]
+        [Route("get-by-name/{username}")]
         [HttpGet]
         public TaiKhoanModel GetByName(string username)
         {

@@ -11,12 +11,19 @@ namespace BusinessLogicLayer
     {
         SanPhamModel GetSanPhamByID(string id);
 
-        List<SanPhamModel> GetAllSanPham();
+        List<SanPhamModel> GetNewSanPham();
+
+        List<SanPhamModel> GetAllSanPham(int pageIndex, int pageSize, out long total);
+
         bool Create(SanPhamModel model);
+
         bool Update(SanPhamModel model);
+
         bool Delete(string id);
 
-        List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string TenSanPham, int GiaTien);
+        List<SanPhamModel> SearchTheoTen(int pageIndex, int pageSize, out long total, string ten_sanpham);
+
+        List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, decimal fr_price, decimal to_price);
 
     }
 }

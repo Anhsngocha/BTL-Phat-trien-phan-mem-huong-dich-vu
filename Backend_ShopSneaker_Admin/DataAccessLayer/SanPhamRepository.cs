@@ -28,13 +28,29 @@ namespace DataAccessLayer
             }
         }
 
+        public List<SanPhamModel> GetNewSanPham()
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_new_sanpham");
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<SanPhamModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<SanPhamModel> GetAllSanPham(int pageIndex, int pageSize, out long total)
         {
             string msgError = "";
             total = 0;
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_search_sanpham",
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_sanpham_pagination",
                     "@page_index", pageIndex,
                     "@page_size", pageSize);
                 if (!string.IsNullOrEmpty(msgError))
@@ -55,12 +71,12 @@ namespace DataAccessLayer
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_them_sanpham",
                     "@TenSanPham", model.TenSanPham,
+                    "@AnhDaiDien", model.AnhDaiDien,
                     "@GiaTien", model.GiaTien,
                     "@GiamGia", model.GiamGia,
-                    "@AnhDaiDien", model.AnhDaiDien,
                     "@DaBan", model.DaBan,
-                    "@MaThuongHieu", model.MaThuongHieu,
-                    "@list_json_chitietsp", model.list_json_chitietsp);
+                    "@MaDanhMuc", model.MaDanhMuc,
+                    "@list_json_chitietsp", model.list_json_chitietsp != null ? MessageConvert.SerializeObject(model.list_json_chitietsp) : null);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -84,8 +100,8 @@ namespace DataAccessLayer
                     "@GiamGia", model.GiamGia,
                     "@AnhDaiDien", model.AnhDaiDien,
                     "@DaBan", model.DaBan,
-                    "@MaThuongHieu", model.MaThuongHieu,
-                    "@list_json_chitietsp", model.list_json_chitietsp);
+                    "@MaDanhMuc", model.MaDanhMuc,
+                    "@list_json_chitietsp", model.list_json_chitietsp != null ? MessageConvert.SerializeObject(model.list_json_chitietsp) : null);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -117,13 +133,35 @@ namespace DataAccessLayer
             }
         }
 
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string ten_sanpham, int gia_tien)
+        public List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, decimal fr_price, decimal to_price)
         {
             string msgError = "";
             total = 0;
             try
             {
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable (out msgError, "sp_search_sanpham_by_tensp",
+                    "@page_index", pageIndex,
+                    "@page_size", pageSize,
+                    "@fr_price", fr_price,
+                    "to_price", to_price);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPhamModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<SanPhamModel> SearchTheoTen(int pageIndex, int pageSize, out long total, string ten_sanpham)
+        {
+            string msgError = "";
+            total = 0;
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_search_sanpham_by_tensp",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
                     "@ten_sanpham", ten_sanpham);

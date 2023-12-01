@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/cart.css" />
+    <link rel="stylesheet" href="./assets/css/styleguide.css" />
+
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-top-left">
+                <ul class="flexitem">
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-phone"></i>
+                            <span class="contact-info">0987654322</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span class="contact-info">hanaSneaker@gmail.com</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="header-top-right">
+                <ul class="flexitem">
+                    <li><a href="#">Tiếng Việt</a></li>
+                    <li><a href="#">Đăng ký</a></li>
+                    <li><a href="#">Đăng nhập</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-middle flexitem">
+            <a href="index.html">
+                <div class="logo">
+                    <h3>Ha-Na <br> Sneaker</h3>
+                </div>
+            </a>
+
+            <div class="header-page flexitem">
+                <ul class="flexitem">
+                    <li><a href="#">Sản phẩm mới</a></li>
+                    <li>
+                        <a href="#">Giới thiệu</a>
+                    </li>
+                    <li><a href="#">Blog</a></li>
+                    <li>
+                        <a href="#size-shoes">Hướng dẫn chọn size</a>
+                    </li>
+                </ul>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm..." />
+                    <div class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-icon flexitem">
+                <a href="#" class="icon-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="fly-item">
+                        <span class="item-number" id="slsp">0</span>
+                    </div>
+                </a>
+
+                <a href="#" class="header-btn">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="main">
+        <div class="cart-freeship-banner">
+            <img src="./assets/img/freeship.png" alt="">
+            <span class="cart-freeship-banner-title">
+                Nhấn vào mục Mã giảm giá ở cuối trang để hưởng miễn phí vận chuyển bạn nhé!
+            </span>
+        </div>
+        <div class="cart-frame-heading">
+            <p class="cart-product">Sản phẩm</p>
+            <p class="cart-price">Đơn giá</p>
+            <p class="cart-quantity">Số lượng</p>
+            <p class="cart-total">Số tiền</p>
+            <p class="cart-active">Thao tác</p>
+        </div>
+        <div class="cart-frame-body">
+            <div class="cart-box">
+                <div class="cart-title-product cart-product">
+                    <img src="./img/product/product1.jpg" alt="">
+                    <p class="cart-name-product">Lorem ipsum dolor sit amet consectetur adipisicing. </p>
+                </div>
+                <div class="cart-box-price cart-price">
+                    <p class="cart-name-price">300.000</p>
+                </div>
+                <div class="cart-box-quantity cart-quantity">
+                    <button class="minus border-quantity">-</button>
+                    <input type="text" class="product-number border-quantity" value="1" aria-valuenow="1">
+                    <button class="plus border-quantity">+</button>
+                </div>
+                <div class="cart-box-total cart-total">
+                    <p class="cart-name-total">300.000</p>
+                </div>
+                <div class="cart-box-active cart-active">
+                    <p class="cart-name-active">Xóa</p>
+                </div>
+
+            </div>
+
+            <div class="cart-box">
+                <div class="cart-title-product cart-product">
+                    <img src="./img/product/product1.jpg" alt="">
+                    <p class="cart-name-product">Lorem ipsum dolor sit amet consectetur adipisicing. </p>
+                </div>
+                <div class="cart-box-price cart-price">
+                    <p class="cart-name-price">300.000</p>
+                </div>
+                <div class="cart-box-quantity cart-quantity">
+                    <button class="minus border-quantity">-</button>
+                    <input type="text" class="product-number border-quantity" value="1" aria-valuenow="1">
+                    <button class="plus border-quantity">+</button>
+                </div>
+                <div class="cart-box-total cart-total">
+                    <p class="cart-name-total">300.000</p>
+                </div>
+                <div class="cart-box-active cart-active">
+                    <p class="cart-name-active">Xóa</p>
+                </div>
+
+            </div>
+
+            <div class="cart-box">
+                <div class="cart-title-product cart-product">
+                    <img src="./img/product/product1.jpg" alt="">
+                    <p class="cart-name-product">Lorem ipsum dolor sit amet consectetur adipisicing. </p>
+                </div>
+                <div class="cart-box-price cart-price">
+                    <p class="cart-name-price">300.000</p>
+                </div>
+                <div class="cart-box-quantity cart-quantity">
+                    <button class="minus border-quantity">-</button>
+                    <input type="text" class="product-number border-quantity" value="1" aria-valuenow="1">
+                    <button class="plus border-quantity">+</button>
+                </div>
+                <div class="cart-box-total cart-total">
+                    <p class="cart-name-total">300.000</p>
+                </div>
+                <div class="cart-box-active cart-active">
+                    <p class="cart-name-active">Xóa</p>
+                </div>
+
+            </div>
+
+            <div class="cart-box">
+                <div class="cart-title-product cart-product">
+                    <img src="./img/product/product1.jpg" alt="">
+                    <p class="cart-name-product">Lorem ipsum dolor sit amet consectetur adipisicing. </p>
+                </div>
+                <div class="cart-box-price cart-price">
+                    <p class="cart-name-price">300.000</p>
+                </div>
+                <div class="cart-box-quantity cart-quantity">
+                    <button class="minus border-quantity">-</button>
+                    <input type="text" class="product-number border-quantity" value="1" aria-valuenow="1">
+                    <button class="plus border-quantity">+</button>
+                </div>
+                <div class="cart-box-total cart-total">
+                    <p class="cart-name-total">300.000</p>
+                </div>
+                <div class="cart-box-active cart-active">
+                    <p class="cart-name-active">Xóa</p>
+                </div>
+
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <div class="cart-payment">
+                <div class="cart-voucher">
+                    <div class="title">
+                        <p>Voucher</p>
+                    </div>
+                    <div class="voucher-body">
+                        <input type="text" class="voucher-type" placeholder="Nhập mã giảm giá...">
+                        <button class="voucher-button">Kiểm tra mã</button>
+                    </div>
+                </div>
+                <div class="cart-total-price">
+                    <div class="title">
+                        <p>Tổng đơn hàng</p>
+                    </div>
+                    <div class="cart-total-info">
+                        <div class="bill-price">
+                            <p>Tổng giá trị</p>
+                            <span>300.000</span>
+                        </div>
+                        <div class="bill-shipping">
+                            <p>Phí vận chuyển</p>
+                            <span>20.000</span>
+                        </div>
+                    </div>
+    
+                    <div class="bill-price-total">
+                        <p>Tổng đơn hàng</p>
+                        <span>320.000</span>
+                    </div>
+                    <div class="checkout">
+                        <a href="checkout.html">
+                            <button class="checkout-btn">
+                                Xác nhận thanh toán
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script src="./assets/js/global.js"></script>
+</body>
+
+</html>

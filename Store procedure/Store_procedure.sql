@@ -6,19 +6,21 @@ create proc sp_get_sanpham_byid
 )
 as
 begin
-	select s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenDanhMuc, MoTa from SanPham s
-	inner join ChiTietSanPham c on s.MaSanPham = c.MaSanPham
-	inner join DanhMuc dm on s.MaDanhMuc = dm.MaDanhMuc
+	select s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenDanhMuc, MoTa from SanPham as s
+	left join ChiTietSanPham as c on s.MaSanPham = c.MaSanPham
+	left join DanhMuc as dm on s.MaDanhMuc = dm.MaDanhMuc
 	where s.MaSanPham = @MaSanPham
 end
 go
+
+
 
 
 --lấy ra các sản phẩm mới
 create proc sp_get_new_sanpham
 as
 begin
-	select top 8 * from SanPham
+	select top 8 *, TenDanhMuc from SanPham inner join DanhMuc on SanPham.MaDanhMuc = DanhMuc.MaDanhMuc
 	order by NgayTao desc
 end
 go
@@ -36,9 +38,9 @@ begin
 	BEGIN
 		set NOCOUNT ON;
 			select(ROW_NUMBER() OVER(order by MaSanPham asc)) as RowNumber,
-			s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenThuongHieu
+			s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenDanhMuc
 			into #Results1
-			from SanPham as s inner join ThuongHieu as t on s.MaThuongHieu = t.MaThuongHieu
+			from SanPham as s left join DanhMuc as dm on s.MaDanhMuc = dm.MaDanhMuc
 			select @RecordCount = COUNT(*)
 			from #Results1;
 			SELECT *, @RecordCount as RecordCount
@@ -52,9 +54,9 @@ begin
 		
 		set NOCOUNT ON;
 			select(ROW_NUMBER() OVER(order by MaSanPham asc)) as RowNumber,
-			s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenThuongHieu
+			s.MaSanPham, TenSanPham, AnhDaiDien, GiaTien, GiamGia, DaBan, TenDanhMuc
 			into #Results2
-			from SanPham as s inner join ThuongHieu as t on s.MaThuongHieu = t.MaThuongHieu
+			from SanPham as s inner join DanhMuc as dm on s.MaDanhMuc = dm.MaDanhMuc
 			select @RecordCount = COUNT(*)
 			from #Results2;
 			SELECT *, @RecordCount as RecordCount
@@ -244,6 +246,83 @@ AS
     END;
 go
 
+--tim kiem theo gia
+CREATE PROC sp_search_product_by_price_range
+(
+	@page_index int,
+	@page_size int,
+	@fr_price DECIMAL(18, 0),
+	@to_price DECIMAL(18, 0)
+)
+AS
+BEGIN
+	DECLARE @RecordCount bigint;
+	if(@page_size <> 0)
+		BEGIN
+			SET NOCOUNT ON;
+			SELECT(ROW_NUMBER() OVER(
+				order by MaSanPham asc)) as RowNumber,
+				MaSanPham,
+				TenSanPham
+				AnhDaiDien,
+				GiaTien,
+				GiamGia,
+				DaBan,
+				NgayTao,
+				NgayCapNhat,
+				TenDanhMuc
+			into #Results1
+			from SanPham sp INNER JOIN DanhMuc dm ON sp.MaDanhMuc = dm.MaDanhMuc
+			WHERE ((@fr_price is null
+				and @to_price is null)
+				or (@fr_price is not null
+					and @to_price is null
+					and GiaTien >= @fr_price)
+				or (@fr_price is null
+					and @to_price is not null
+					and GiaTien <= @to_price)
+				or (GiaTien BETWEEN @fr_price and @to_price))
+			SELECT @RecordCount = COUNT(*)
+			from #Results1;
+			SELECT *, @RecordCount as RecordCount
+			from #Results1
+			where ROWNUMBER BETWEEN(@page_index - 1) * @page_size + 1 and (((@page_index - 1) * @page_size + 1) + @page_size) - 1
+				or @page_index = -1
+			drop TABLE #Results1;
+		END
+		ELSE
+		BEGIN
+			SET NOCOUNT ON;
+			SELECT(ROW_NUMBER() OVER(
+				order by MaSanPham asc)) as RowNumber,
+				MaSanPham,
+				TenSanPham
+				AnhDaiDien,
+				GiaTien,
+				GiamGia,
+				DaBan,
+				NgayTao,
+				NgayCapNhat,
+				TenDanhMuc
+			into #Results2
+			from SanPham sp INNER JOIN DanhMuc dm ON sp.MaDanhMuc = dm.MaDanhMuc
+			WHERE ((@fr_price is null
+				and @to_price is null)
+				or (@fr_price is not null
+					and @to_price is null
+					and GiaTien >= @fr_price)
+				or (@fr_price is null
+					and @to_price is not null
+					and GiaTien <= @to_price)
+				or (GiaTien BETWEEN @fr_price and @to_price))
+			SELECT @RecordCount = COUNT(*)
+			from #Results2;
+			SELECT *, @RecordCount as RecordCount
+			from #Results2
+			drop TABLE #Results2;
+		END
+END
+GO
 
 
 --Bảng hóa đơn nhập
@@ -512,74 +591,6 @@ AS
 
 go
 
---Bảng giảm giá
---Lấy về tất cả mã giảm giá
-create proc [dbo].[sp_get_all_magiamgia]
-as
-begin
-	select * from GiamGia
-end
-go
- 
-
---Thêm mã giảm giá
-create proc [dbo].[sp_them_magiamgia]
-(
-	@TenMaGG nvarchar(250),
-	@BatDau datetime,
-	@KetThuc datetime,
-	@SoLuongMa int,
-	@SoTienGiam int,
-	@MaCode nvarchar(200),
-	@TrangThai bit
-)
-as
-begin
-	insert into GiamGia(TenMaGG, BatDau, KetThuc, SoLuongMa, SoTienGiam, MaCode, TrangThai)
-	values(@TenMaGG, @BatDau, @KetThuc, @SoLuongMa, @SoTienGiam, @MaCode, @TrangThai)
-end
-go
-
-
---Sửa mã giảm giá
-create proc [dbo].[sp_sua_magiamgia]
-(
-	@MaGiamGia int,
-	@TenMaGG nvarchar(250),
-	@BatDau datetime,
-	@KetThuc datetime,
-	@SoLuongMa int,
-	@SoTienGiam int,
-	@MaCode nvarchar(200),
-	@TrangThai bit
-)
-as
-begin
-	update GiamGia
-	set
-		TenMaGG = CASE WHEN @TenMaGG IS NOT NULL AND @TenMaGG <> 'null' AND @TenMaGG <> 'string' THEN @TenMaGG ELSE TenMaGG END,
-		BatDau = CASE WHEN @BatDau IS NOT NULL AND @BatDau <> 'null' AND @BatDau <> 'string' THEN @BatDau ELSE BatDau END,
-		KetThuc = CASE WHEN @KetThuc IS NOT NULL AND @KetThuc <> 'null' AND @KetThuc <> 'string' THEN @KetThuc ELSE KetThuc END,
-		SoLuongMa = CASE WHEN @SoLuongMa IS NOT NULL AND @SoLuongMa <> 'null' AND @SoLuongMa <> 'string' THEN @SoLuongMa ELSE SoLuongMa END,
-		SoTienGiam = CASE WHEN @SoTienGiam IS NOT NULL AND @SoTienGiam <> 'null' AND @SoTienGiam <> 'string' THEN @SoTienGiam ELSE SoTienGiam END,
-		MaCode = CASE WHEN @MaCode IS NOT NULL AND @MaCode <> 'null' AND @MaCode <> 'string' THEN @MaCode ELSE MaCode END,
-		TrangThai = CASE WHEN @TrangThai IS NOT NULL AND @TrangThai <> 'null' AND @TrangThai <> 'string' THEN @TrangThai ELSE TrangThai END
-	where MaGiamGia =@MaGiamGia
-end
-go
-
---Xóa mã giám giá
-create proc [dbo].[sp_xoa_magiamgia]
-(
-	@MaGiamGia int
-)
-as
-begin
-	delete GiamGia
-	where MaGiamGia = @MaGiamGia
-end
-go
-
 
 --bảng tài khoản
 --đăng nhập
@@ -596,15 +607,15 @@ end
 go
 
 --lấy tài khoản theo id
-create proc sp_get_taiKhoan_byID
+alter proc sp_get_taiKhoan_byID
 (
 	@MaTK int
 )
 as
 begin
-	select TenTaiKhoan, MatKhau, Ho, Ten, GioiTinh, SDT, DiaChi, Email
-	from TaiKhoan tk inner join ChiTietTaiKhoan ct on tk.MaTK = ct.MaTK
-	where tk.MaTK = @MaTK
+	select TenTaiKhoan, MatKhau
+	from TaiKhoan 
+	where MaTK = @MaTK
 end
 go
 
@@ -616,9 +627,9 @@ create proc sp_get_by_name
 )
 as
 begin
-	select TenTaiKhoan, MatKhau, Ho, Ten, GioiTinh, SDT, DiaChi, Email
-	from TaiKhoan tk inner join ChiTietTaiKhoan ct on tk.MaTK = ct.MaTK
-	where TenTaiKhoan = @TenTaiKhoan
+	select tk.TenTaiKhoan, tk.MatKhau, ct.Ho, ct.Ten, ct.GioiTinh, ct.SDT, ct.DiaChi, ct.Email
+	from TaiKhoan tk left join ChiTietTaiKhoan ct on tk.MaTK = ct.MaTK
+	where tk.TenTaiKhoan = @TenTaiKhoan
 end
 go
 
@@ -627,7 +638,7 @@ create proc sp_get_all_taikhoan
 as
 begin
 	select TenTaiKhoan, MatKhau, Ho, Ten, GioiTinh, SDT, DiaChi, Email
-	from TaiKhoan tk inner join ChiTietTaiKhoan ct on tk.MaTK = ct.MaTK
+	from TaiKhoan tk left join ChiTietTaiKhoan ct on tk.MaTK = ct.MaTK
 end
 go
 
@@ -660,6 +671,8 @@ begin
 		MaQuyen
 	)
 	VALUES(@TenTaiKhoan, @MatKhau, @MaQuyen);
+
+	--set mã tài khoản là mã vừa được thêm vào
 	SET @MaTK = (select SCOPE_IDENTITY())
 	IF(@list_json_account_details is not null)
 	BEGIN
@@ -758,7 +771,7 @@ begin
 			on ct.MaChiTiet = r.maChiTiet
 		where r.status = '3'
 
-		DROP TABLE #Result
+		DROP TABLE #Results
 	END;
 	SELECT '';
 end
@@ -796,3 +809,49 @@ begin
 	select * from NhaCungCap
 end
 go
+
+--them nha cung cap
+create proc sp_them_ncc
+(
+	@TenNhaCungCap nvarchar(100),
+	@DiaChiNCC nvarchar(200),
+	@SDT varchar(20)
+)
+as
+begin
+	insert into NhaCungCap(TenNhaCungCap, DiaChiNCC, SDT)
+	values(@TenNhaCungCap, @DiaChiNCC, @SDT)
+end
+go
+
+--cap nhat
+create proc sp_update_ncc
+(
+	@MaNhaCungCap int,
+	@TenNhaCungCap nvarchar(100),
+	@DiaChiNCC nvarchar(200),
+	@SDT varchar(20)
+)
+as
+begin
+	update NhaCungCap
+	set
+		TenNhaCungCap = CASE WHEN @TenNhaCungCap IS NOT NULL AND @TenNhaCungCap <> 'null' AND @TenNhaCungCap <> 'string' THEN @TenNhaCungCap ELSE TenNhaCungCap END,
+		DiaChiNCC = CASE WHEN @DiaChiNCC IS NOT NULL AND @DiaChiNCC <> 'null' AND @DiaChiNCC <> 'string' THEN @DiaChiNCC ELSE DiaChiNCC END,
+		SDT = CASE WHEN @SDT IS NOT NULL AND @SDT <> 'null' AND @SDT <> 'string' AND @SDT NOT LIKE '%[^0-9]%' THEN @SDT ELSE SDT END
+	where MaNhaCungCap = @MaNhaCungCap
+end
+go
+
+--delete
+create proc sp_delete_ncc
+(
+	@MaNhaCungCap int
+)
+as
+begin
+	delete from NhaCungCap
+	where MaNhaCungCap = @MaNhaCungCap
+end
+go
+

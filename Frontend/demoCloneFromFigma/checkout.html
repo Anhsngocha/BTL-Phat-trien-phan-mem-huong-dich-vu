@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de pago</title>
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./assets/css/checkout.css" />
+    <!-- JavaScript -->
+    <script src="alive.js" charset="utf-8" type="module"></script>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="checkout-page-master/devchallenges.png" type="image/x-icon">
+    <!-- Íconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main id="main">
+        <h1>Thanh toán</h1>
+        <!-- Mercancía -->
+        <div class="checkout-box">
+            <div class="ware__item">
+                <figure class="item__figure">
+                    <img class="item__img" src="checkout-page-master/photo1.png" alt="Bolso vintage" />
+                    <figcaption class="item__figure__figcaption">Bolso vintage</figcaption>
+                    <p class="item__figure__price"><span class="figure__price--off"><span>1.000.000</span>đ</span></p>
+                    <div class="item__cont__btns">
+                        Số lượng <span>1</span>
+                    </div>
+                </figure>
+            </div>
+            <div class="ware__item">
+                <figure class="item__figure item__figure--second">
+                    <img class="item__img" src="checkout-page-master/photo2.png" alt="Zapatos Levi" />
+                    <figcaption class="item__figure__figcaption">Zapatos Levi</figcaption>
+                    <p class="item__figure__price"><span class="figure__price--off"><span>1.000.000</span>đ</span></p>
+                    <div class="item__cont__btns">
+                        Số lượng <span>1</span>
+                    </div>
+                </figure>
+            </div>
+            <!-- <p class="global__price global__price--shipping"><span>Shipping</span> <span>$19</span></p> -->
+            <p class="global__price"><span>Total</span> <span class="quantity__total"><span>1.000.000</span>đ</span></p>
+        </div>
+        <!-- Formulario -->
+        <form class="form">
+            <!-- Información de contacto -->
+            <fieldset class="fieldset fieldset--contact">
+                <legend class="legend">Thông tin thanh toán</legend>
+                <label class="label" for="e-mail">Tên người nhận</label>
+                <p class="field field--text">
+                    <i class="material-icons form__icons">account_circle</i>
+                    <input type="text" name="full-name" id="f-name" class="input input--text" placeholder="Nhập tên người nhận..." required />
+                </p>
+                <label class="label" for="phone-num">Số điện thoại</label>
+                <p class="field field--text">
+                    <i class="material-icons form__icons">phone</i>
+                    <input type="tel" name="phone-number" id="phone-num" class="input input--text" placeholder="Nhập số điện thoại" maxlength="10" pattern="\(\w{3}\) \w{3}[ -]\w{4}" title="Un número de teléfono válido tiene los tres primeros números entre paréntesis seguidos de un espacio, tres números seguidos de un espacio o guión y los últimos cuatro números. Además, evita poner el código de tu país." required />
+                </p>
+            </fieldset>
+
+            <!-- Dirección de envío -->
+            <fieldset class="fieldset">
+                <div class="legend">Thông tin chi tiết</div>
+
+                <label class="label" for="address">Địa chỉ</label>
+                <p class="field field--text">
+                    <i class="material-icons form__icons">home</i>
+                    <input type="text" name="address" id="address" class="input input--text" placeholder="Nhập địa chỉ..." required />
+                </p>
+
+                <label class="label" for="city">Ghi chú</label>
+                <p class="field field--text">
+                    <i class="material-icons form__icons">description </i>
+                    <input type="text" name="loc-city" id="city" class="input input--text" placeholder="Nhập ghi chú..." required />
+                </p>
+
+
+            </fieldset>
+            <!-- Checkbox para guardar info -->
+            <!-- <p class="field field__saveInfo">
+                <input type="checkbox" name="s-info" id="save-info" class="saveInfo--pointer" />
+                <label class="label label__saveInfo saveInfo--pointer" for="save-info"></label>                
+            </p> -->
+            <!-- Botón de envío -->
+            <div class="container__form__btn">
+                <button type="submit" class="form__btn">Thanh toán</button>
+            </div>
+        </form>
+    </main>
+
+</body>
+</html>

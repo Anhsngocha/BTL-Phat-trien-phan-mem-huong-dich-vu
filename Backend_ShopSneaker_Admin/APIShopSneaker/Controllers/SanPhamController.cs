@@ -22,11 +22,33 @@ namespace Api.BTL.Controllers
             return _sanPhamBusiness.GetSanPhamByID(id);
         }
 
+
+
         [Route("get-all-sp")]
         [HttpGet]
-        public List<SanPhamModel> GetAllSanPham()
+        public IActionResult GetAllSanPham([FromBody] Dictionary<string, object> formData)
         {
-            return _sanPhamBusiness.GetAllSanPham();
+            var response = new ResponseModel();
+            try
+            {
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                
+                long total = 0;
+                var data = _sanPhamBusiness.GetAllSanPham(page, pageSize, out total);
+                return Ok(
+                    new
+                    {
+                        TotalItems = total,
+                        Data = data,
+                        Page = page,
+                        PageSize = pageSize
+                    });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
 
@@ -57,9 +79,9 @@ namespace Api.BTL.Controllers
         }
 
 
-        [Route("search")]
+        [Route("search-by-ten")]
         [HttpPost]
-        public IActionResult Search([FromBody] Dictionary<string, object> formData)
+        public IActionResult SearchTheoTen([FromBody] Dictionary<string, object> formData)
         {
             var response = new ResponseModel();
             try
@@ -69,12 +91,8 @@ namespace Api.BTL.Controllers
                 string ten_sanpham = "";
                 if (formData.Keys.Contains("ten_sanpham") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_sanpham"]))) { ten_sanpham = Convert.ToString(formData["ten_sanpham"]); }
 
-                int gia_tien = formData.ContainsKey("gia_tien") && int.TryParse(formData["gia_tien"].ToString(), out var giaTienValue) ? giaTienValue : 0;
-
-                //int gia_tien = 0;
-                //if (formData.Keys.Contains("gia_tien") && !string.IsNullOrEmpty(Convert.ToString(formData["gia_tien"]))) { gia_tien = Convert.ToInt32(formData["gia_tien"]); }
                 long total = 0;
-                var data = _sanPhamBusiness.Search(page, pageSize, out total, ten_sanpham, gia_tien);
+                var data = _sanPhamBusiness.SearchTheoTen(page, pageSize, out total, ten_sanpham);
                 return Ok(
                     new
                     {
@@ -90,6 +108,37 @@ namespace Api.BTL.Controllers
             }
         }
 
+        [Route("search-by-gia")]
+        [HttpPost]
+        public IActionResult SearchTheoGia([FromBody] Dictionary<string, object> formData)
+        {
+            var response = new ResponseModel();
+            try
+            {
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                string ten_sanpham = "";
+                if (formData.Keys.Contains("ten_sanpham") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_sanpham"]))) { ten_sanpham = Convert.ToString(formData["ten_sanpham"]); }
+                decimal fr_price = formData.ContainsKey("fr_price") && int.TryParse(formData["fr_price"].ToString(), out var fr_priceValue) ? fr_priceValue : 0;
+                decimal to_price = formData.ContainsKey("to_price") && int.TryParse(formData["to_price"].ToString(), out var to_priceValue) ? to_priceValue : 0;
+
+
+                long total = 0;
+                var data = _sanPhamBusiness.SearchTheoGia(page, pageSize, out total, fr_price, to_price);
+                return Ok(
+                    new
+                    {
+                        TotalItems = total,
+                        Data = data,
+                        Page = page,
+                        PageSize = pageSize
+                    });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
     }
 }

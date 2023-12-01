@@ -23,6 +23,6 @@ namespace DataAccessLayer.Interfaces
 
         List<SanPhamModel> SearchTheoTen(int pageIndex, int pageSize, out long total, string ten_sanpham);
 
-        List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, decimal fr_gia, decimal to_gia);
+        List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, decimal fr_price, decimal to_price);
     }
 }
